@@ -1,0 +1,17 @@
+/*
+Used for formatting code on an HTML page.
+
+- Roland Christensen 2022-06-10
+*/
+
+/* Used for all code tags. Combine with 'pre' tag to style and align a larger box of code. */
+code {
+  color: #000;
+  background-color: #C6C6C6;
+}
+
+pre code {
+  border: 1px solid #999;
+  display: block;
+  padding: 10px;
+}

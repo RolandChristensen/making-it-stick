@@ -1,37 +1,23 @@
 <!DOCTYPE html>
-<!--
-Use this template to create new "flashcard/notes" pages.
-
-Replace the template text on the fronts and backs of cards with the question and answer.
-
-To create a bunch of cards, copy and paste the flashcard-frame section over and over again. To avoid the need to copy the flashcard-frame section from the original template, always keep at least one flashcard-frame section template.
-
-For the notes section replace the
-
-- Roland Christensen 2022-06-10
--->
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Template Flash Cards</title>
+    <title>Programming Paradigms Flashcards</title>
 
     <link rel="stylesheet" href="css/card.css">
     <link rel="stylesheet" href="css/notes-section.css">
-    <link rel="stylesheet" href="css/code.css">
 
     <script src="js/notes.js"></script>
   </head>
-
   <body onload="OnBodyLoad();">
     <header>
 
     </header>
 
     <main>
-      <h1>____ Flashcards</h1>
+      <h1>Programming Paradigms Flashcards</h1>
 
       <div class="flashcards-grid">
 
@@ -46,7 +32,7 @@ For the notes section replace the
                 </div>
 
                 <div class="center-left">
-                  <p>Why is the sky blue in the day?</p>
+                  <p>Is SQL an &quot;Imperative Programming Language&quot; or a &quot;Declarative Programming Language&quot;?</p>
                 </div>
               </div>
 
@@ -57,7 +43,7 @@ For the notes section replace the
                 </div>
 
                 <div class="center-left">
-                  <p>Because black was already taken!</p>
+                  <p>SQL is a declarative programming language.</p>
                 </div>
               </div>
             </div>
@@ -75,7 +61,7 @@ For the notes section replace the
                 </div>
 
                 <div class="center-left">
-                  <p>What is your question?</p>
+                  <p>Briefly describe &quot;Declarative Programming&quot;</p>
                 </div>
               </div>
 
@@ -86,7 +72,7 @@ For the notes section replace the
                 </div>
 
                 <div class="center-left">
-                  <p>The answer to the question.</p>
+                  <p>Declarative programming: declaration statements are used to describe the logic needed to get results. A programmer will declare the logic expected and is not concerned with how the calculations are done to get the results. Example: SELECT * FROM TableName WHERE value-x = 0. This declares that we expect all records in the table where value-x equals 0. There are no loops, lists, or return statements, just a declarative statement.</p>
                 </div>
               </div>
             </div>
@@ -104,7 +90,7 @@ For the notes section replace the
                 </div>
 
                 <div class="center-left">
-                  <p>What is your question?</p>
+                  <p>Ask something?</p>
                 </div>
               </div>
 
@@ -115,73 +101,29 @@ For the notes section replace the
                 </div>
 
                 <div class="center-left">
-                  <p>The answer to the question.</p>
+                  <p>The answer is...</p>
                 </div>
               </div>
             </div>
           </div>
         </div> <!-- End of Flashcard Frame -->
 
-        <div class="flashcard-frame">
-          <div class="flashcard" onclick="this.classList.toggle('flip');">
-            <div class="flip-card">
-              <div class="card-front">
-                <img src="images/flashcard.gif" alt="Image of a flashcard.">
-
-                <div class="top-left">
-                  <p>Question</p>
-                </div>
-
-                <div class="center-left">
-                  <p>What is your question?</p>
-                </div>
-              </div>
-
-              <div class="card-back">
-                <img src="images/flashcard.gif" alt="Image of a flashcard.">
-                <div class="top-left">
-                  <p>Answer</p>
-                </div>
-
-                <div class="center-left">
-                  <p>The answer to the question.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> <!-- End of Flashcard Frame -->
-
-      </div> <!-- End of Flash Cards Grid section -->
+      </div> <!-- End of Flash Cards grid -->
 
       <section class="notes-section">
         <h2>Notes On Flashcard Topics</h2>
 
-        <button type="button" class="collapse-button">The Physics of the sky.</button>
-        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <button type="button" class="collapse-button" id="declarative-section">Declarative Programming Notes</button>
         <section class="collapsible-section">
-          <h3>Notes on the color of the sky.</h3>
-          <p>The sky changes color due to ...</p>
-
-        </section>
-
-        <button type="button" class="collapse-button">Title of Note</button>
-        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
-        <section class="collapsible-section">
-          <h3>Below are notes on ...</h3>
-          <p>Take notes and drop in here...</p>
-          <ul>
-            <li>A quick note.</li>
-            <li>Another quick note.</li>
-          </ul>
+          <h3>Declarative Programming Paradigm</h3>
+          <p>The opposite of imperative programming, declarative programming focuses on the outcome rather than the steps required to achieve the outcome. In other words, declarative programs expresses the logic without describing the control flow. The programmer declares an object with specific properties not specific directions about how this will be accomplished. Example: I want a pizza with thin crust and olive oil base and mozzarella, but I do not specify how the dough is made or what order the items should be added.</p>
+          <p>Structured Query Language (SQL), used in relational databases, is an example of a declarative language. Most of the time you will declare what you want from the database: SELECT * FROM PizzaTable WHERE Crust = 'thin'. The computation is conducted and all pizzas are checked if they are thin crust, but we do not describe the computation in code. We don't tell it to use a foreach, but it most certainly checks all pizzas in the table.</p>
+          <p>Declarative programming is an umbrella term that applies to a group of programming paradigms including &quot;Functional Programming&quot; and &quot;Logic Programming&quot;.</p>
         </section>
 
       </section> <!-- End of Expandable Notes section -->
 
     </main>
-
-    <footer>
-
-    </footer>
 
   </body>
 </html>

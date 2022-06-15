@@ -1,3 +1,6 @@
+# backup files
+*.bak
+
 # General
 .DS_Store
 .AppleDouble

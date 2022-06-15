@@ -1,4 +1,26 @@
-.flash-card {
+/*
+This is used to animate the flashcards.
+The flashcard will flip and display the answer when clicked.
+
+CSS for collapsible section.
+Creates a button that covers the width of the container.
+Adds a small arrow (triangle) in front of the button text to indicate expandable and collapsible section.
+Clicking the button expands section.
+
+- Roland Christensen 2022-06-10
+*/
+
+.flashcards-grid {
+  display: grid;
+}
+
+.flashcard-frame {
+  position: relative;
+  max-width: 518px;
+  margin: 2% auto;
+}
+
+.flashcard {
   background-color: transparent;
   width: 518px;
   min-height: 318px;
@@ -16,7 +38,7 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.flash-card.flip .flip-card {
+.flashcard.flip .flip-card {
   transform: rotateY(180deg);
 }
 
@@ -46,9 +68,79 @@
   font-size: 1.5em;
 }
 
-.left-center {
+.center-left {
   position: absolute;
   top: 46px;
   left: 16px;
+  right: 16px;
   text-align: left;
 }
+
+/* We want to display as many flashcards side by side as the page allows.
+Each card is 518px and we have a gap of 5px. Looks best to add a new card every
+528px. */
+
+/* This begins the one card media query. */
+@media screen and (min-width: 528px) {
+  .two-card, .three-card, .four-card {
+    display: none;
+  }
+
+  .one-card {
+    display: block;
+  }
+
+  .flashcards-grid {
+    grid-template-columns: auto;
+    gap: 5px;
+  }
+} /* End of one card style. */
+
+/* Two Card Media Query */
+@media screen and (min-width: 1056px) {
+  .one-card, .three-card, .four-card {
+    display: none;
+  }
+
+  .two-card {
+    display: block;
+  }
+
+  .flashcards-grid {
+    grid-template-columns: auto auto;
+    max-width: 1056px;
+  }
+
+} /* End of two card style. */
+
+/* Three Card Media Query */
+@media screen and (min-width: 1584px) {
+  .one-card, .two-card, .four-card {
+    display: none;
+  }
+
+  .three-card {
+    display: block;
+  }
+
+  .flashcards-grid {
+    grid-template-columns: auto auto auto;
+    max-width: 1584px;
+  }
+} /* End of three card style. */
+
+/* Four Card Media Query (The Rush width :) */
+@media screen and (min-width: 2112px) {
+  .one-card, .two-card, .three-card {
+    display: none;
+  }
+
+  .four-card {
+    display: block;
+  }
+
+  .flashcards-grid {
+    grid-template-columns: auto auto auto auto;
+    max-width: 2112px;
+  }
+} /* End of four card style. */

@@ -1,0 +1,56 @@
+/*
+This is used to hide notes on the topic of the flashcards, so you can read through the notes if you need a refresher after going through the flashcards.
+
+CSS for collapsible section.
+Creates a button that covers the width of the container.
+Adds a small arrow (triangle) in front of the button text to indicate expandable and collapsible section.
+Clicking the button expands section.
+
+- Roland Christensen 2022-06-10
+*/
+
+.notes-section {
+
+}
+
+.collapse-button {
+  background-color: #706f6f;
+  color: #fffafa;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: solid;
+  border-width: thin;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.collapse-button.active, .collapse-button:hover {
+  background-color: #800080;
+  border-style: solid solid none solid;
+  border-width: thin;
+}
+
+/* Create a small triangle to indicate expandable content using CSS entities. */
+.collapse-button::before {
+  content: "\25B6\0000a0";
+  font-weight: bold;
+}
+
+/* Add small downward triangle to indicate expanded content. */
+.collapse-button.active::before {
+  content: '\25BC\0000a0';
+}
+
+.collapsible-section {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #FFF;
+}
+
+/* Used to not show the bullets on an unordered list, but keep the alignment. */
+ul.no-bullets {
+  list-style-type: none;
+}

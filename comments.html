@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<!--
+These notes are about code comments.
+
+- Roland Christensen 2022-06-10
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Code Comments Notes</title>
+
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/notes-section.css">
+    <link rel="stylesheet" href="css/code.css">
+
+    <script src="js/notes.js"></script>
+  </head>
+
+  <body onload="OnBodyLoad();">
+    <header>
+
+    </header>
+
+    <main>
+      <h1>Code Comments Notes & Flashcards</h1>
+
+      <div class="flashcards-grid">
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <!-- This is the label at the top of the card, not the actual question. -->
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Name four languages that use double forward slashes for single-line comments.</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <!-- This is the label at the top of the card, not the actual answer. -->
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>C, C++, C#, Java, JavaScript, and PHP.</p>
+                  <p>These are only the ones I can think of right now. If I think of more I will add them.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>In PHP, what do you use for a single-line comment and what do you use for a multi-line comment.</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>There are two single-line comments: </p>
+                  <ol>
+                    <li><code># comment</code></li>
+                    <li><code>// comment</code></li>
+                  </ol>
+                  <p>Multi-line comments use <code>/* comments */</code></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>In JavaScript, what do you use for a single-line comment and what do you use for a multi-line comment.</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>For a single-line comment: <code>// comment</code> </p>
+                  <p>Multi-line comments use <code>/* comments */</code></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Do Java and JavaScript share the same commenting tokens?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Yes, both use the same tokens to indicate a comment.</p>
+                  <p>For a single-line comment: <code>// comment</code> </p>
+                  <p>Multi-line comments use <code>/* comments */</code></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>In HTML, what do you use for a single-line comment and what do you use for a multi-line comment?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Trick question! HTML only has one way to comment code: <code>&lt;!-- comments --&gt;</code></p>
+                  <p>Trying to comment out a large section of HTML that contains other comments can be tricky, due to this limitation.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>In order to debug HTML or hide templated code, how can you simulate commenting out large sections of code containing other comments?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Create a CSS class that will hide a section of HTML and surround the HTML you want hidden with a section that has the class attribute used to hide it.</p>
+
+                  <pre><code>  &lt;style&gt;
+    .hide-section {
+      display: none;
+    }
+  &lt;/style&gt;
+  &lt;section class="hide-section"&gt;
+    &lt;!-- Hide both this comment and paragraph. --&gt;
+    &lt;p&gt;Hide this paragraph.&lt;/p&gt;
+  &lt;/section&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>For all the C's (C#, C++, and C), what do you use for a single-line comment and what can you use for a multi-line comment?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>For a single-line comment: <code>// comment</code> </p>
+                  <p>Multi-line comments use: <code>/* comments */</code></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>In CSS, what do you use for a single-line comment and what can you use for a multi-line comment?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Trick question! CSS only has on way of creating comments: <code>/* comments */</code></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>In Python, what do you use for a single-line comment and what can you use for a multi-line comment?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>For a single-line comment: <code>// comment</code> </p>
+                  <p>Multi-line comments use: <code>""" comments """</code></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+      </div> <!-- End of Flash Cards Grid div -->
+
+      <section class="notes-section">
+        <h2>Notes On Flashcard Topics</h2>
+
+        <button type="button" class="collapse-button">Code Comments</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>The &quot;Single Line Comment&quot;</h3>
+
+          <p>Not all languages have a short hand for a single line comment. HTML and CSS do not have a shorthand for a single line comment, but many high level languages, such as C# and Python do.</p>
+
+          <ul>
+            <li>The C's (C#, C++, and C): <code>// Single Line Comment.</code> </li>
+            <li>
+              <ul>
+                <li>Slightly interesting: MS has coding conventions about multi-line comments. They use double forward slashes on each line to create multi-line comments. The Visual Studio IDEs have a multi-line comment feature, where you select the code you want to comment and click a button to comment all selected text. It does this by using a single-line comment on each line instead of a multi-line comment. <code>/* imagine multiple lines */</code> </li>
+              </ul>
+            </li>
+            <li>CSS: <code>/* Comment Here */</code> There is no single line comment. Use the same method for multi-line comments.</li>
+            <li>HTML: <code>&lt;!-- Single Line Comment --&gt;</code> </li>
+            <li>
+              <ul class="no-bullets">
+                <li>Bonus: To display the comment above on a web page, use the HTML entities for the less than and greater than symbols.</li>
+                <li> <code>&amp;lt;!-- Single Line Comment --&amp;gt;</code> </li>
+                <li>Guess how I got the less than and greater than entities to display on the page. :)</li>
+              </ul>
+            </li>
+            <li>Java:  <code>// Single line comment.</code> </li>
+            <li>JavaScript:  <code>// Single line comment.</code> </li>
+            <li>PHP: There are two different string literals you can use for a PHP single line comment.</li>
+            <li>
+              <ul class="no-bullets">
+                <li> <code>// Single Line Comment.</code> </li>
+                <li> <code># Single Line Comment.</code> </li>
+              </ul>
+            </li>
+            <li>Python: <code># Single Line Comment.</code> </li>
+            <li>SQL: <code>-- Single Line Comment.</code> </li>
+          </ul>
+
+          <h3>Multi-line Comments</h3>
+
+          <p>In general multi-line comments start with some token such as (/*) and end with a token that closes the comment, such as (*/).</p>
+
+          <ul>
+
+            <li>Some prefer to use a single line comment to comment multiple lines. For example:</li>
+            <li>
+              <ul class="no-bullets">
+                <li> <code>// Line One.</code> </li>
+                <li> <code>// Line Two.</code> </li>
+              </ul>
+            </li>
+            <li>The C's (C#, C++, and C): <code>/* Imagine multiple lines */</code> </li>
+            <li>CSS: <code>/* Imagine multiple lines */</code> </li>
+            <li>
+              <ul class="no-bullets">
+                <li> <code>/* </code> </li>
+                <li> <code>Line one.</code> </li>
+                <li> <code>Line two.</code> </li>
+                <li> <code>*/</code> </li>
+              </ul>
+            </li>
+            <li>HTML: <code>&lt;!-- Imagine multiple lines --&gt;</code> </li>
+            <li>
+              <ul class="no-bullets">
+                <li> <code>&lt;!-- </code> </li>
+                <li> <code>Line one.</code> </li>
+                <li> <code>Line two.</code> </li>
+                <li> <code>--&gt;</code> </li>
+              </ul>
+            </li>
+            <li>Java:  <code>/* Imagine multiple lines */</code> </li>
+            <li>JavaScript:  <code>/* Imagine multiple lines */</code> </li>
+            <li>PHP: <code>/* Imagine multiple lines */</code> </li>
+            <li>Python: <code>""" Imagine multiple lines """</code> </li>
+            <li>SQL: <code>/* Imagine multiple lines */</code> </li>
+          </ul>
+
+        </section>
+
+        <button type="button" class="collapse-button">Template - Title of Note</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Below are notes on ...</h3>
+          <p>Take notes and drop in here...</p>
+          <ul>
+            <li>A quick note.</li>
+            <li>Another quick note.</li>
+          </ul>
+        </section>
+
+      </section> <!-- End of Expandable Notes section -->
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+  </body>
+</html>
