@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<!--
+Used to study RestSharp 107.
+
+- Roland Christensen 2022-06-15
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>RestSharp Flash Cards</title>
+
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/notes-section.css">
+    <link rel="stylesheet" href="css/code.css">
+
+    <script src="js/notes.js"></script>
+  </head>
+
+  <body onload="OnBodyLoad();">
+    <header>
+
+    </header>
+
+    <main>
+      <h1>RestSharp 107 Flashcards</h1>
+
+      <div class="flashcards-grid">
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What are three signatures of the constructor used to create an object used to add options to the RestSharp Client?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p> <pre> <code>public RestClientOptions()
+public RestClientOptions(string baseUrl)
+public RestClientOptions(Uri baseUrl)
+</code> </pre></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Give an example of instantiating the class used to create options with a timeout set to 40 seconds. Use this to instantiate a RestSharp client.</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p> <pre> <code>var uri = new Uri();
+var options = new RestClientOptions(uri)
+{
+  Timeout = 40000
+};
+var client = new RestClient(options);</code> </pre></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What property in the RestSharp options is used to to indicate you should use the credentials of the Windows user running the current process?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The UseDefaultCredentials property. <pre> <code>var uri = new Uri();
+var options = new RestClientOptions(uri)
+{
+  UseDefaultCredentials = true
+};
+var client = new RestClient(options);</code> </pre></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Give an example of instantiating the class used to create options with a basic authentication using username and password assigned. Use this to instantiate a RestSharp client.</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p> <pre> <code>var uri = new Uri();
+var options = new RestClientOptions(uri)
+{
+  Credentials = new NetworkCredential("username", "password")
+};
+var client = new RestClient(options);</code> </pre></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Write a simple generic typed parameter method that could be used in a base class for RestSharp to execute requests and return the deserialized response in the type expected. Assume the class type passed is a class consisting of properties representing the response of an endpoint. Add a constraint to the method with this assumption in mind.</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p> <pre> <code>public T Execute&lt;T&gt;(RestRequest request) where T : new()
+{
+  var response = Client.ExecuteAsync&lt;T&gt;(request);
+  return response.Data;
+}</code> </pre></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+      </div> <!-- End of Flash Cards Grid section -->
+
+      <section class="notes-section">
+        <h2>Notes On Flashcard Topics</h2>
+
+        <button type="button" class="collapse-button">RestSharp Base Classes</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Notes on creating a base class for a service:</h3>
+
+          <p>The base class should have a field or property for the RestClient that will be used by the service. The client is instantiated by setting the RestClientOptions and passing that into the RestClient constructor. Example: </p>
+          <pre> <code>public RestClient Client { get; }
+
+public ConstructorName()
+{
+  var baseUrl = new Uri("https//subdomain.second-level-domain.top-level-domain/subdirectory");
+  var options = new RestClientOptions(baseUrl)
+  {
+    // Key-value pairs for options separated by commas.
+    Timeout = 40000,
+    Credentials = new NetworkCredential(username, password)
+  };
+  Client = new RestClient(options);
+}</code> </pre>
+
+        <p>Useful options:</p>
+        <ul>
+          <li>Credentials: Used for basic authentication using a username and password.</li>
+          <li>UseDefaultCredentials: Set to true, uses the credentials of the Windows user who is running the current process.</li>
+          <li>Timeout: Sets the timeout client side to give up waiting for a response. Example: The service I am connecting to uses MuleSoft Gateway and has a timeout of 35 seconds. I set my timeout to 40 seconds to give myself a 5 second buffer. If the gateway is up, then I will get a Gateway Timeout, but if it is not up I will get a client side timeout from RestSharp.</li>
+        </ul>
+
+        <p>The base class should have a method that uses generic typed parameters to execute requests. The type should be a class that can be deserialized from the response. Example: </p>
+
+        <pre> <code>// Uses .Result to make this synchronous.
+public T Execute&lt;T&gt;(RestRequest request) where T : new()
+{
+  var response = Client.ExecuteAsync&lt;T&gt;(request).Result;
+
+  // Handle response
+
+  return response.Data;
+}
+
+public async Task&lt;T&gt; Execute&lt;T&gt;(RestRequest request) where T : new()
+{
+  var response = await Client.ExecuteAsync&lt;T&gt;(request);
+
+  // Handle response
+
+  return response.Data;
+}</code> </pre>
+
+        <p>The base class should have some logging around the request and response. Below is a quick method to output the transaction based on the response status code and any exceptions thrown.</p>
+        <p>RestSharp sets the IsSuccessful property on the response to true if we get a 200 level response back. Any non 200 response or a RestSharp internal error will set this to false.</p>
+        <p>RestSharp will eat exceptions and put them in the ErrorException property of the response, so you will need to check that message on failure.</p>
+        <p>You can get a successful response and still have an exception in the RestSharp ErrorException property.</p>
+
+        <pre> <code>public void LogTransaction(RestRequest request, RestResponse response)
+{
+  // Guard conditions for parameters
+
+  if (response.IsSuccessful)
+  {
+    // BuildUri() will display the full URI of the request.
+    Debug.Writeline($"{Client.BuildUri(request)} returned status \"{response.StatusCode}\"")
+    return;
+  }
+
+  if (response.ErrorException != null)
+  {
+    Debug.Writeline($"RestSharp ErrorException Message: {response.ErrorException.Message}")
+  }
+
+  var logRequest = new
+  {
+    resource = request.Resource,
+    parameters = request.Parameters.Select(parameter =>
+      new
+      {
+        name = parameter.Name,
+        value = parameter.Value,
+        type = parameter.Type.ToString()
+      }),
+    method = request.Method.ToString(),
+    uri = Client.BuildUri(request)
+  };
+
+  var logResponse = new
+  {
+    statusCode = response.StatusCode,
+    content = response.Content,
+    headers = response.Headers,
+    responseUri = response.ResponseUri,
+    errorMessage = response.ErrorMessage
+  };
+
+  // NewtonsoftJson package is used to serialize objects to JSON.
+  var message = $"The response was not Successful, instead {response.StatusCode} was reveived." +
+    $"Request: {JsonConvert.SerializeObject(logRequest)}" +
+    $"Response: {JsonConvert.SerializeObject(logResponse)}"
+  Debug.Writeline(message);
+}</code> </pre>
+
+        </section>
+
+        <button type="button" class="collapse-button">Title of Note</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Below are notes on ...</h3>
+          <p>Take notes and drop in here...</p>
+          <ul>
+            <li>A quick note.</li>
+            <li>Another quick note.</li>
+          </ul>
+        </section>
+
+      </section> <!-- End of Expandable Notes section -->
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+  </body>
+</html>
