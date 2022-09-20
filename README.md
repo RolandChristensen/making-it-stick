@@ -3,4 +3,4 @@
 This is a site used to self test knowledge. The inspiration of this site is the amazing book Make It Stick: The Science of Successful Learning.
 
 ## Purpose of Website
-This application that will help one learn things in a durable and flexible way.  
+This application will help one learn things in a durable and flexible way.  
