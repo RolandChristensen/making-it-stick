@@ -25,7 +25,7 @@ Used to study RestSharp 107.
     </header>
 
     <main>
-      <h1>RestSharp 107 Flashcards</h1>
+      <h1>RestSharp 108 Flashcards</h1>
 
       <div class="flashcards-grid">
 
@@ -83,10 +83,10 @@ public RestClientOptions(Uri baseUrl)
                 </div>
 
                 <div class="center-left">
-                  <p> <pre> <code>var uri = new Uri();
+                  <p> <pre> <code>var uri = new Uri("uri");
 var options = new RestClientOptions(uri)
 {
-  Timeout = 40000
+  MaxTimeout = 40000
 };
 var client = new RestClient(options);</code> </pre></p>
                 </div>
@@ -117,7 +117,7 @@ var client = new RestClient(options);</code> </pre></p>
                 </div>
 
                 <div class="center-left">
-                  <p>The UseDefaultCredentials property. <pre> <code>var uri = new Uri();
+                  <p>The UseDefaultCredentials property. <pre> <code>var uri = new Uri("uri");
 var options = new RestClientOptions(uri)
 {
   UseDefaultCredentials = true
@@ -140,7 +140,7 @@ var client = new RestClient(options);</code> </pre></p>
                 </div>
 
                 <div class="center-left">
-                  <p>Give an example of instantiating the class used to create options with a basic authentication using username and password assigned. Use this to instantiate a RestSharp client.</p>
+                  <p>Give an example of instantiating the class used to create options with Windows authentication to use the Azure DevOps API. Use this to instantiate a RestSharp client.</p>
                 </div>
               </div>
 
@@ -286,7 +286,7 @@ public ConstructorName()
           <li>Timeout: Sets the timeout client side to give up waiting for a response. Example: The service I am connecting to uses MuleSoft Gateway and has a timeout of 35 seconds. I set my timeout to 40 seconds to give myself a 5 second buffer. If the gateway is up, then I will get a Gateway Timeout, but if it is not up I will get a client side timeout from RestSharp.</li>
         </ul>
 
-        <p>The base class should have a method that uses generic typed parameters to execute requests. The type should be a class that can be deserialized from the response. Example: </p>
+        <p>The base class should have methods that use generic typed parameters to execute requests. The type should be a class that can be deserialized from the response. Example: </p>
 
         <pre> <code>// Uses .Result to make this synchronous.
 public T Execute&lt;T&gt;(RestRequest request) where T : new()
@@ -305,32 +305,101 @@ public async Task&lt;T&gt; Execute&lt;T&gt;(RestRequest request) where T : new()
   // Handle response
 
   return response.Data;
+}
+
+// Use this to return the RestResponse for inspection of status code and any errors that may be found.
+public async Task&lt;RestResponse&lt;T&gt;&gt; ExecuteAsync&lt;T&gt;(RestRequest request)
+{
+    if (request == null)
+        throw new ArgumentException("The request was not set.");
+
+    var response = await Client.ExecuteAsync&lt;T&gt;(request);
+    // See below for this method.
+    LogTransaction(request, response);
+
+    return response;
 }</code> </pre>
+
+        <p>Occasionally, you will find that the response is not something you want RestSharp to deserialize. For example a request that will return a different response dependent on the request parameters, or a gateway that returns a default string (HTML) instead of JSON. Then you will want to examine the response content to decide what to do. The base class will need something like the following: </p>
+
+<pre><code>public async Task&lt;RestResponse&gt; ExecuteAsync(RestRequest request)
+{
+  if (request == null)
+    throw new ArgumentException("The request was not set.");
+
+  var response = await Client.ExecuteAsync(request);
+  LogTransaction(request, response);
+
+  return response;
+}
+
+public async Task&lt;string&gt; ExecuteReturnsContent(RestRequest request)
+{
+  if (request == null)
+    throw new ArgumentException("The request was not set.");
+
+  var response = await Client.ExecuteAsync(request);
+  LogTransaction(request, response);
+
+  return response.Content;
+}</code></pre>
+
+        <p>You may also find the response is not a single JSON node at the root, but is instead an array of objects. You will need to have separate methods to deal with responses that are arrays.</p>
+
+<pre><code>public List&lt;T&gt; ExecuteReturnsList&lt;T&gt;(RestRequest request)
+{
+    if (request == null)
+        throw new ArgumentException("The request was not set.");
+
+    var response = Client.Execute&lt;List&lt;T&gt;&gt;(request);
+    LogTransaction(request, response);
+
+    return response.Data;
+}
+
+public async Task&lt;RestResponse&lt;List&lt;T&gt;&gt;&gt; ExecuteReturnsList&lt;T&gt;(RestRequest request)
+{
+    if (request == null)
+        throw new ArgumentException("The request was not set.");
+
+    var response = await Client.ExecuteAsync&lt;List&lt;T&gt;&gt;(request);
+    LogTransaction(request, response);
+
+    return response;
+}</code></pre>
 
         <p>The base class should have some logging around the request and response. Below is a quick method to output the transaction based on the response status code and any exceptions thrown.</p>
         <p>RestSharp sets the IsSuccessful property on the response to true if we get a 200 level response back. Any non 200 response or a RestSharp internal error will set this to false.</p>
         <p>RestSharp will eat exceptions and put them in the ErrorException property of the response, so you will need to check that message on failure.</p>
-        <p>You can get a successful response and still have an exception in the RestSharp ErrorException property.</p>
+        <p>You can get a successful response and still have an exception in the RestSharp ErrorException property, so we check both first and log a success if successful and error free.</p>
 
         <pre> <code>public void LogTransaction(RestRequest request, RestResponse response)
 {
-  // Guard conditions for parameters
+  if (request == null)
+    throw new ArgumentException("The request was not set.");
+  if (response == null)
+    throw new ArgumentException("The response was not set.");
 
-  if (response.IsSuccessful)
+  if (response.IsSuccessful && response.ErrorException == null)
   {
-    // BuildUri() will display the full URI of the request.
-    Debug.Writeline($"{Client.BuildUri(request)} returned status \"{response.StatusCode}\"")
+    Debug.WriteLine($"{Environment.NewLine}" +
+      $"{Client.BuildUri(request)} returned status " +
+      $"\"{response.StatusCode}\"" +
+      $"{Environment.NewLine}");
     return;
   }
 
   if (response.ErrorException != null)
   {
-    Debug.Writeline($"RestSharp ErrorException Message: {response.ErrorException.Message}")
+    Debug.WriteLine($"{Environment.NewLine}" +
+      $"RestSharp ErrorException Message: " +
+      $"{response.ErrorException.Message}" +
+      $"{Environment.NewLine}");
   }
 
   var logRequest = new
   {
-    resource = request.Resource,
+    resouce = request.Resource,
     parameters = request.Parameters.Select(parameter =>
       new
       {
@@ -341,7 +410,6 @@ public async Task&lt;T&gt; Execute&lt;T&gt;(RestRequest request) where T : new()
     method = request.Method.ToString(),
     uri = Client.BuildUri(request)
   };
-
   var logResponse = new
   {
     statusCode = response.StatusCode,
@@ -350,15 +418,29 @@ public async Task&lt;T&gt; Execute&lt;T&gt;(RestRequest request) where T : new()
     responseUri = response.ResponseUri,
     errorMessage = response.ErrorMessage
   };
-
-  // NewtonsoftJson package is used to serialize objects to JSON.
-  var message = $"The response was not Successful, instead {response.StatusCode} was reveived." +
+  var message = $"{Environment.NewLine}" +
+    $"The response was not Successful, instead " +
+    $"{response.StatusCode} was received." +
+    $"{Environment.NewLine}" +
     $"Request: {JsonConvert.SerializeObject(logRequest)}" +
-    $"Response: {JsonConvert.SerializeObject(logResponse)}"
-  Debug.Writeline(message);
+    $"{Environment.NewLine}" +
+    $"Response: {JsonConvert.SerializeObject(logResponse)}" +
+    $"{Environment.NewLine}";
+  Debug.WriteLine(message);
 }</code> </pre>
 
         </section>
+
+        <button type="button" class="collapse-button">Request and Response Models</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Converting the Response from JSON to C# Class</h3>
+          
+          <p>RestSharp automatically deserializes responses into classes using generic type parameters.</p>
+
+        </section>
+
+      </section> <!-- End of Expandable Notes section -->
 
         <button type="button" class="collapse-button">Title of Note</button>
         <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->

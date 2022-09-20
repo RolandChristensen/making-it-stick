@@ -6,9 +6,12 @@ Replace the template text on the fronts and backs of cards with the question and
 
 To create a bunch of cards, copy and paste the flashcard-frame section over and over again. To avoid the need to copy the flashcard-frame section from the original template, always keep at least one flashcard-frame section template.
 
-For the notes section replace the
+For the notes section replace the template heading (h2) text and add notes to the collapsible sections.
+1. Replace the collapsible button text with notes on each specific topic covered in the flashcards.
+2. Replace template heading (h3) with specific text for each sup topic.
+3. Repeat as necessary.
 
-- Roland Christensen 2022-06-10
+- Roland Christensen 2022-08-30
 -->
 
 <html lang="en">
@@ -168,11 +171,21 @@ For the notes section replace the
         <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
         <section class="collapsible-section">
           <h3>Below are notes on ...</h3>
-          <p>Take notes and drop in here...</p>
+          <p>
+            Take notes and drop in here...
+          </p>
           <ul>
             <li>A quick note.</li>
             <li>Another quick note.</li>
           </ul>
+          <p>
+            Introduction to code...<br>
+<pre><code>&lt;tag&gt;
+  &lt;tag"&gt;
+
+  &lt;/tag&gt;
+&lt;/tag&gt;</code></pre>
+          </p>
         </section>
 
       </section> <!-- End of Expandable Notes section -->

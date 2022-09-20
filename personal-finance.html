@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!--
+The following page is for notes on my edX course Finance For Everyone.
+
+- Roland Christensen 2022-08-30
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Personal Finance Flash Cards</title>
+
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/notes-section.css">
+    <link rel="stylesheet" href="css/code.css">
+
+    <script src="js/notes.js"></script>
+  </head>
+
+  <body onload="OnBodyLoad();">
+    <header>
+
+    </header>
+
+    <main>
+      <h1>Personal Finance Flashcards</h1>
+
+      <div class="flashcards-grid">
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Why is the sky blue in the day?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Because black was already taken!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+      </div> <!-- End of Flash Cards Grid section -->
+
+      <section class="notes-section">
+        <h2>Notes On Personal Finance</h2>
+
+        <button type="button" class="collapse-button">Finance For Everyone</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Finance For Everyone: The Basics</h3>
+
+          <p>Finance is about value. Value creation takes time and has a degree of uncertainty. You make a decision to the best of your ability, knowing you don't know what the future may bring (uncertainty), and then wait (time) to measure the outcome (gather data). Develop a strategy to make good decisions, so the outcome is rarely unpleasant.</p>
+
+          <p>Competitive markets enable anybody to profit. There are monopolies, in the real world, but ideally the market is competitive.</p>
+
+          <p>Frictions: The cost to start a financial endeavor (fees, taxes, etc..). These should not be so excessive or prohibitive that you cannot overcome them given time and your good ideas should be able to be acted upon.</p>
+
+          <p>Capital should be able to flow relatively easily. Artificial barriers, such as interest rates are designed to control the flow when natural flow starts to harm the economy.</p>
+
+          <h3>Time Value of Money</h3>
+
+          <p>The future is made up of decisions. Important decisions affect us more significantly and potentially for longer.</p>
+
+          <p>Deeply understand the impact of just the passage of time on a decision before we make it.</p>
+
+          <p>Try to assess the risk, but this is an advanced topic that will not be covered here. Seek out another course to understand that more deeply.</p>
+
+          <h3>Time Lines & Convention</h3>
+
+          <ul>
+            <li>PV = Present Value ($)</li>
+            <li>FV = Future Value ($)</li>
+            <li>n = # of Periods (#): year, month, etc..</li>
+            <li>r = Interest Rate (%) > 0 (Assume positive)</li>
+            <li>Risk: Assumes higher rate of return</li>
+          </ul>
+
+          <h4>Rate of Return</h4>
+          <ul>
+            <li>initial value: 100</li>
+            <li>period of time: 1 month</li>
+            <li>final value: 102</li>
+            <li>rate of return: final value - initial value / initial value = 2%</li>
+          </ul>
+
+          <p><strong><bold>A dollar today is worth more than a dollar tomorrow.</bold></strong></p>
+
+          <h4>Future Value (Annuity)</h4>
+          <p>Future Value = Initial Amount + Accumulated Interest<br>
+          FV = P + r*P = (1 + r)P<br>
+          Future Value Factor (FVF) = 1 + r = The value of one dollar one period from now</p>
+          <h5>Multiple Periods (Compounding)</h5>
+          <p>Future Value = P(1+r)(1+r) = P(1+r)^n<br>
+          n = the number of periods</p>
+          <p>Excel and Google Sheets has a FV function you can use to calculate future value<br>
+          The number generated will be negative or positive based on the PV entered and depends on your perspective (debits & credits)</p>
+          <p>Monthly compounding on a yearly interest rate:<br>
+          FV = P(1 + r/12)^n</p>
+
+          <h4>Present Value (Discounting)</h4>
+          <p>PV = FV / 1 + r<br>
+          Multiple Periods: PV = FV / (1 + r)^2<br>
+          Discounting: The act of calculating initial investment</p>
+          <p>Excel has function for discounting</p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Simple Applications</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Multiple Payments: Annuities</h3>
+          <p>Multiple payments into an account with an ultimate payout.</p>
+          <ul>
+            <li>C: cash flow or (payment / payout?) PMT for excel. Each period you are carrying forward cash flows until the last period, which will not be carried forward.</li>
+            <li>n: Years to end. This is a countdown to the eventual payout.</li>
+          </ul>
+          <table>
+            <tr>
+              <th>Year</th>
+              <th>Cash Flow</th>
+              <th>Years to End: n</th>
+              <th>Future Value: Note the exponent is the same as the years to end.</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td></td>
+              <td>3</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>C</td>
+              <td>2</td>
+              <td>C(1+r)^2</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>C</td>
+              <td>1</td>
+              <td>C(1+r)</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>C</td>
+              <td>0</td>
+              <td>C</td>
+            </tr>
+          </table>
+          <p>FV of an Annuity: Formula<br>
+          FV<sub>Annuity</sub>=C(1+r)<sup>2</sup>+C(1+r)+C<br>
+          = C[(1+r)<sup>2</sup>+(1+r)+1]<br>
+          = C * Future Value Annuity Factor (FVAF): composed of the rate (r) and the number of periods (n)</p>
+          <p>The difference between this and the other FV, is that we get multiple cash flows.</p>
+
+          <h3>Saving Regularly: FV of an Annuity</h3>
+          <p>What will be the value of your bank account if you deposit $1,000 every year in a bank. You plan to leave homme in five years and expect to earn 5% in your bank account?</p>
+          <p>Normally, we skip t=0 and assume we start tracking at the end of the first period, t=1.</p>
+          <p>=FV(0.05, 5, -1000)</p>
+          <p>To make this more clear, we are losing $1000 every period to the bank. We can make the PMT negative, which makes sense or negate the entire equation to get the cash flow correct for us at the end. We will be getting the FV calculation. Note: Excel displays negatives with parenthesis around them and is a common notation for negative values from our perspective (The bank sees it as a positive value).</p>
+
+          <h4>Power of Saving Regularly</h4>
+          <p>How much will be in your bank account 50 years from now if you save $1,000 every year at 5% versus 15%?</p>
+          <p>The difference is about 7 million dollars. Each percent increase is extremely valuable over a long period!</p>
+
+          <h3>PV of an Annuity II</h3>
+          <p>PV<sub>Annuity</sub>=C/(1+r)+C/(1+r)^2+C/(1+r)^3<br>
+          =C[1/(1+r)+1/(1+r)^2+1/(1+r)^3]<br>
+          Present Value Annuity Formula (PVAF): PVAF(r,n)<br>
+          r=rate<br>
+          n=number of periods (Years to end)</p>
+
+          <table>
+            <tr>
+              <th>Year</th>
+              <th>Cash Flow</th>
+              <th>Years to Discount: n</th>
+              <th>Present Value</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>C</td>
+              <td>1</td>
+              <td>C/(1+r)</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>C</td>
+              <td>2</td>
+              <td>C/(1+r)^2</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>C</td>
+              <td>3</td>
+              <td>C/(1+r)^3</td>
+            </tr>
+          </table>
+
+          <h3>Saving for the Future: Example 1</h3>
+          <p>
+            You are starting college. How much money do you need in the bank today so that you can spend $3,000 every year for the next four years, starting at the end of this year? Suppose the bank pays an interest rate of 5%.<br>
+            If you want to have $3000 spending cash each year, how much do you need in the bank right now? This could also apply to how much you need in a retirement account.<br>
+            =PV(0.05,4,3000)<br>
+            Double checking your work, by taking it year by year is a good practice to make sure you are doing it right.
+          </p>
+
+          <h3>PV Taking a Loan: Example 2 - What is the payment per period amount?</h3>
+          <p>
+            You plan to attend an in-state college and your parents will take out a loan of $100,000 at 6%. What are the <strong>yearly</strong> payments, given that they will have 5 years to pay back the loan?<br>
+            If you are a resident tuition is cheaper.<br>
+            =PMT(0.06,5,100000) (payments are negative to us and present value is positive to us and negative to the bank)<br>
+            The loan amount and the time period to pay it back are generally under your control, but the interest rate is <strong>not</strong> under your control.
+          </p>
+
+          <h3>Perpetuities</h3>
+          <ul>
+            <li>A perpetuity is simply a set of equal payments that are paid forever, with or without growth</li>
+            <li>PV<sub>perpetuity</sub>=C/(1+r)+C/(1+r)^2+...+infinity=C/r</li>
+            <li>Applicable to stocks, something that does not have definite life. Unlike loans or CDs which have a definite period.</li>
+            <li>You are giving them money now hoping that you will get many back (dividends) forever.</li>
+          </ul>
+          <p>Examples of Perpetuities:</p>
+          <ul>
+            <li>Stocks</li>
+            <li>Company</li>
+            <li>Long Term Transactions: You can approximate a perpetuity by using a 30 year time frame. =PV(rate,30,payment). This is a very close approximation. The higher the time frame and the higher the interest rate the closer an approximation it is.</li>
+          </ul>
+          <p>
+            Growth Stock: PV=C+C(1+g)+C(1+g)^2+...+infinity<br>
+            C<sub>1</sub>+C<sub>2</sub>+C<sub>3</sub>+...+infinity<br>
+            c<sub>2</sub>=C<sub>1</sub>(1+g) = C<sub>1</sub>(1+0.02) if g = 2% growth.<br>
+            For example if inflation is 2%, you want your growth rate to be 2%.<br>
+            Growth Rate: C<sub>1</sub>/(r-g) Doesn't really make sense if g is equal or greater than r. So we use this short hand only when it is applicable and use the long form when it is not.<br>
+            Teacher says that if you understand this simple equation you understand all of finance! When trying to predict the future, you are going to be wrong anyway, so you need to try your best to make a decision today that is impacting you forever. The more uncertain you are the more helpful shortcuts like this help you think through the problem.
+          </p>
+          <p>
+            The formulas are in the notes downloaded for the course.<br>
+            Excel knows the formulas however, so this is an academic exercise for the most part.
+          </p>
+
+
+        </section>
+
+        <button type="button" class="collapse-button">Title of Note</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Below are notes on ...</h3>
+          <p>Take notes and drop in here...</p>
+          <ul>
+            <li>A quick note.</li>
+            <li>Another quick note.</li>
+          </ul>
+        </section>
+
+      </section> <!-- End of Expandable Notes section -->
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+  </body>
+</html>
