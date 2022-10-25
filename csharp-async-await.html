@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<!--
+Notes on asynchronous programming based on MSDN documentation dated 08/04/2022.
+
+- Roland Christensen 2022-09-20
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>C# Asynchronous Programming with "async" and "await" Notes</title>
+
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/notes-section.css">
+    <link rel="stylesheet" href="css/code.css">
+
+    <script src="js/notes.js"></script>
+  </head>
+
+  <body onload="OnBodyLoad();">
+    <header>
+
+    </header>
+
+    <main>
+      <h1>C# Asynchronous Programming with "async" and "await" Flashcards</h1>
+
+      <div class="flashcards-grid">
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Why is the sky blue in the day?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Because black was already taken!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+      </div> <!-- End of Flash Cards Grid section -->
+
+      <section class="notes-section">
+        <h2>Notes On Flashcard Topics</h2>
+
+        <button type="button" class="collapse-button">Asynchronous Programming Overview</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Overview</h3>
+          <p>
+            <ul>
+              <li>Task asynchronous programming model (TAP): an abstraction that makes asynchronous code look synchronous for ease of reading.</li>
+              <li>Some code returns a "Task" representing ongoing work.</li>
+              <li>Asynchronous programming enables tasks to continue in the background while you start something else.</li>
+              <li>I am going to use the example of an average work day. Starting my day I will do several tasks. Check email, attend meeting, and run automated regression tests.</li>
+              <li>Example tasks:<br>
+                <ol>
+                  <li>Start automated regression tests</li>
+                  <li>Attend stand up</li>
+                  <li>Check email</li>
+                  <li>Check test results</li>
+                </ol>
+              </li>
+              <li>I can start the tests running and while the tests are running I can click the meeting link to start the stand up. While both of those are going, I can go through any emails I have gotten since I last checked.</li>
+              <li>I have three simultaneous tasks going at once and I don't know which will end first.</li>
+              <li>Notice that there is a requirement for the last task, checking the test results. I have to wait for the automated regression tests to end in order to check those results.</li>
+              <li>Another thing of note is that information gained from email or stand up may give us data that will be used by another task. An email may need to be communicated during stand up or stand up may alert you to additional tests that need to be performed.</li>
+              <li>Communication between tasks and data shared between tasks is complicated and needs to be handled safely, so that all tasks can reliably use the data shared.</li>
+              <li>Note on parallelism: If there were three of me, I could run the first three tasks in parallel, but still need to wait for the last task. If there were even more of me, I could check each email separately speeding things up greatly. In my examples I have many clones (threads) capable of handling these tasks in parallel.</li>
+            </ul>
+          </p>
+          <p>
+            Write asynchronous code by default adding "async" to methods, return "Task&lt;TResult&gt;." Put an "await" in front of the method calls. Once you get in the habit it is nothing. Finally, start to notice when you can lose the "await" to speed things up.<br>
+            Convention says you should append Async to the end of asynchronous methods. (Example: public Task&lt;Email&gt; CheckEmailAsync() {...})
+          </p>
+          <p>
+            Starting tasks simultaneously and then awaiting:<br>
+<pre><code>Task&lt;RegressionTestResults&gt; RegressionTestTask StartRegressionTests();
+Task&lt;EmailNotes&gt; EmailTask CheckEmail();
+Task&lt;MeetingNotes&gt; MeetingTask AttendMeeting();
+
+// The following will block until regression tests are done, but we increase
+// performance because the email task and meeting task are running.
+// They may be done before the regression tests, but we wait here for the tests.
+// The other tasks will also have their own awaits below.
+RegressionTestResults testResults = await RegressionTestTask;
+...</code></pre>
+          </p>
+
+          <h3>Composition with Tasks</h3>
+          <p>
+            Note: The composition of an asynchronous task followed by synchronous tasks is asynchronous.<br>
+            Compose methods that complete a single task with both asynchronous and related synchronous methods and then return the completed task. Ensure that each task returned is self contained, so that we can start multiple tasks concurrently.
+          </p>
+
+          <h3>Asynchronous Exceptions</h3>
+          <p>
+            An exception thrown from an "async" method:<br>
+            <ul>
+              <li>That Task is faulted</li>
+              <li>The exception is held in the Task.Exception property.</li>
+              <li>Faulted Tasks throw the exception when they are awaited.</li>
+              <li>The exception in Task.Exception is of type AggregateException.</li>
+              <li>To find the exceptions in the AggregateException you will need to check the AggregateException.InnerExceptions collection.</li>
+              <li>Usually, you will only have one exception in the collection.</li>
+              <li>Regardless, the first exception in the collection is rethrown when awaiting to make this as similar to synchronous programming as possible.</li>
+            </ul>
+          </p>
+
+          <h3>Efficiently Awaiting</h3>
+          <p>
+            The Task class has methods that make waiting work for you.<br>
+            <ul>
+              <li>await Task.WhenAll(Task1, Task2, ...); This waits for all of the tasks to complete, but they can complete in their own time, but all must complete before the next line of code.</li>
+              <li>Task firstTaskToComplete = await Task.WhenAny(Task1, Task2, ...); This returns the first task to complete and continues to execute the others, so you can process the tasks as they complete instead of serially.</li>
+            </ul>
+          </p>
+          <p>
+            Introduction to code...<br>
+<pre><code>var tasks = new List&lt;Task&gt; { testTask, emailTask, meetingTask }
+while (tasks.Count > 0) {
+  Task finishedTask = await Task.WhenAny(tasks);
+  if (finishedTask == testTask) { ... }
+  else if (finishedTask == emailTask) { ... }
+  else if (finishedTask == meetingTask) { ... }
+
+  // You know it is already completed because it was returned by WhenAny()
+  await finishedTask;
+  // Remove it from the tasks.
+  tasks.Remove(finishedTask);
+}</code></pre>
+          </p>
+          <p>await Task.Delay(3000): like a sleep</p>
+        </section>
+
+        <button type="button" class="collapse-button">Asynchronous Programming Scenarios</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Notes on MSDN documents for Asynchronous Scenarios.</h3>
+          <p>
+            Long running I/O such as requests from network, accessing database, or file access should be asynchronous. So should CPU intensive tasks.<br>
+            <ul>
+              <li>For I/O-bound code, you await an operation that returns a Task or Task&lt;T&gt; inside an async method. Do not use Task.Run().</li>
+              <li>For CPU-bound code, you await an operation that is started on a background thread with the Task.Run() method.</li>
+              <li>Task.Run() spawns another thread with some overhead. You may want to consider using the Task Parallel Library if the work is appropriate for concurrency and parallelism.</li>
+              <li>Is this I/O-bound work: Will your code be waiting for something, such as data from a database?</li>
+              <li>Is this CPU-bound work: Will the code be performing an expensive calculation?</li>
+              <li>Measure the execution of your code to make sure it is worth it to spawn that other thread.</li>
+            </ul>
+          </p>
+          <p>
+            To ensure the UI does not become unresponsive, the I/O is thrown onto its own thread, leaving the UI thread free to continue.<br>
+<pre><code>someButton.Clicked += async (o, e) =>
+{
+  var response = await _httpClient.GetAsync(Url);
+  DoSomethingWithResponse(response);
+}</code></pre>
+          </p>
+          <p>
+            To ensure the UI does not become unresponsive, a long running intensive calculation is put on its own thread leaving the UI to run smoothly.<br>
+<pre><code>someButton.Clicked += async (o, e) =>
+{
+  // Using "await" instead of a sychronous call lets the UI continue, while waiting for this to complete.
+  var result = await Task.Run(() => IntensiveCalculation());
+  DoSomethingWithResult(result);
+}</code></pre>
+          </p>
+
+          <h4>Extracting data from a network</h4>
+          <p>
+            Asynchronous call on an ASP.net Web API controller method.<br>
+<pre> <code>private readonly HttpClient _httpClient = new HttpClient();
+
+[HttpGet, Route("DotNetCount")]
+public async Task<int> GetDotNetCount()
+{
+    // Suspends GetDotNetCount() to allow the caller (the web server)
+    // to accept another request, rather than blocking on this one.
+    var html = await _httpClient.GetStringAsync("https://dotnetfoundation.org");
+
+    // Note: on a production server never use regex, use a parser library.
+    return Regex.Matches(html, @"\.NET").Count;
+}</code> </pre><br>
+            Doing the same thing from a Universal Windows App<br>
+<pre> <code>private readonly HttpClient _httpClient = new HttpClient();
+
+private async void OnSeeTheDotNetsButtonClick(object sender, RoutedEventArgs e)
+{
+    // Capture the task handle here so we can await the background task later.
+    var getDotNetFoundationHtmlTask = _httpClient.GetStringAsync("https://dotnetfoundation.org");
+
+    // Any other work on the UI thread can be done here, such as enabling a Progress Bar.
+    // This is important to do here, before the "await" call, so that the user
+    // sees the progress bar before execution of this method is yielded.
+    NetworkProgressBar.IsEnabled = true;
+    NetworkProgressBar.Visibility = Visibility.Visible;
+
+    // The await operator suspends OnSeeTheDotNetsButtonClick(), returning control to its caller.
+    // This is what allows the app to be responsive and not block the UI thread.
+    var html = await getDotNetFoundationHtmlTask;
+    int count = Regex.Matches(html, @"\.NET").Count;
+
+    DotNetCountLabel.Text = $"Number of .NETs on dotnetfoundation.org: {count}";
+
+    NetworkProgressBar.IsEnabled = false;
+    NetworkProgressBar.Visibility = Visibility.Collapsed;
+}</code> </pre>
+          </p>
+
+          <h4>Multiple tasks - Asynchronous code and LINQ</h4>
+          <p>
+            Although LINQ uses fewer lines of code, use caution when mixing LINQ with Asynchronous code. LINQ uses deferred (lazy) execution, so async calls won't happen immediately as they would if in the foreach loop below.<br>
+            You can force the sequence in the loop to iterate with a call to .ToList() or .ToArray(), however.
+<pre> <code>public async Task<User> GetUserAsync(int userId)
+{
+    // Code omitted:
+    //
+    // Given a user Id {userId}, retrieves a User object corresponding
+    // to the entry in the database with {userId} as its Id.
+}
+
+public static async Task<IEnumerable<User>> GetUsersAsync(IEnumerable<int> userIds)
+{
+    var getUserTasks = new List<Task<User>>();
+    foreach (int userId in userIds)
+    {
+        getUserTasks.Add(GetUserAsync(userId));
+    }
+
+    return await Task.WhenAll(getUserTasks);
+}
+
+// Another way using LINQ.
+// Take note of the warning above about LINQ and Asynchronous code.
+
+public static async Task<User[]> GetUsersAsync(IEnumerable<int> userIds)
+{
+    var getUserTasks = userIds.Select(id => GetUserAsync(id));
+    return await Task.WhenAll(getUserTasks);
+}</code> </pre>
+          </p>
+
+          <h4>Important info and advice</h4>
+          <ul>
+            <li>If you add an <code>async</code> to a method add an <code>await</code> in the method. The warning generated is telling you it is very inefficient as the state machine generated is not accomplishing anything.</li>
+            <li>Add "Async" to the end of asynchronous methods for coding standards. This is not neccessary if the method is not called explicitely, like event handlers. </li>
+            <li><code>async void</code> should only be used for event handlers. Event handlers have no return types, so must be void and cannot use Task. Otherwise, use Task so you can catch exceptions and avoid bad side effects.</li>
+            <li>Care must be taken when combining LINQ and Async lambdas. The deferred execution could mean you get code running when you don't expect it to.</li>
+            <li>Write code that "awaits" Tasks in a non-blocking manner.<br>
+              <table>
+                <tr>
+                  <td>Use this...</td>
+                  <td>Instead of this...</td>
+                </tr>
+                <tr>
+                  <td>await</td>
+                  <td>Task.Wait or Task.Result</td>
+                </tr>
+                <tr>
+                  <td>await Task.WhenAny</td>
+                  <td>Task.WaitAny</td>
+                </tr>
+                <tr>
+                  <td>await Task.WhenAll</td>
+                  <td>Task.WaitAll</td>
+                </tr>
+                <tr>
+                  <td>await Task.Delay</td>
+                  <td>Thread.Sleep</td>
+                </tr>
+              </table>
+            </li>
+          </ul>
+        </section>
+
+        <button type="button" class="collapse-button">Title of Note</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Below are notes on ...</h3>
+          <p>
+            Take notes and drop in here...
+          </p>
+
+          <ul>
+            <li>A quick note.</li>
+            <li>Another quick note.</li>
+          </ul>
+
+          <p>
+            Intro to list of quick notes<br>
+            <ul>
+              <li>Note 1</li>
+            </ul>
+          </p>
+
+          <p>
+            Introduction to code...<br>
+<pre><code>&lt;tag&gt;
+  &lt;tag"&gt;
+
+  &lt;/tag&gt;
+&lt;/tag&gt;</code></pre>
+          </p>
+        </section>
+
+      </section> <!-- End of Expandable Notes section -->
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+  </body>
+</html>

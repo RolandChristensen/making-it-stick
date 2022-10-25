@@ -192,9 +192,12 @@ The following page is for notes on my edX course Finance For Everyone.
           <p><strong><bold>A dollar today is worth more than a dollar tomorrow.</bold></strong></p>
 
           <h4>Future Value (Annuity)</h4>
-          <p>Future Value = Initial Amount + Accumulated Interest<br>
-          FV = P + r*P = (1 + r)P<br>
-          Future Value Factor (FVF) = 1 + r = The value of one dollar one period from now</p>
+          <p>
+            This simply represents our abiity to invest and get interest on that investment.<br>
+            Future Value = Initial Amount + Accumulated Interest<br>
+            FV = P + r*P = (1 + r)P<br>
+            Future Value Factor (FVF) = 1 + r = The value of one dollar one period from now
+          </p>
           <h5>Multiple Periods (Compounding)</h5>
           <p>Future Value = P(1+r)(1+r) = P(1+r)^n<br>
           n = the number of periods</p>
@@ -204,9 +207,15 @@ The following page is for notes on my edX course Finance For Everyone.
           FV = P(1 + r/12)^n</p>
 
           <h4>Present Value (Discounting)</h4>
-          <p>PV = FV / 1 + r<br>
-          Multiple Periods: PV = FV / (1 + r)^2<br>
-          Discounting: The act of calculating initial investment</p>
+          <p>
+            This represents the idea that $100 today is worth more than $100 in the future.<br>
+            Inflation rate is the first example of this<br>
+            Also, the fact that investing that same money would yield a rate of return rather than simply sitting under your mattress.<br>
+            Think of this as the present value of money sitting under your mattress 'n' years from now.<br>
+            PV = FV / 1 + r<br>
+            Multiple Periods: PV = FV / (1 + r)^2<br>
+            Discounting: The act of calculating initial investment
+          </p>
           <p>Excel has function for discounting</p>
 
         </section>
@@ -250,6 +259,39 @@ The following page is for notes on my edX course Finance For Everyone.
               <td>C</td>
               <td>0</td>
               <td>C</td>
+            </tr>
+          </table>
+          <p>If the payments are $100 and the rate is 5%.</p>
+          <table>
+            <tr>
+              <th>Year</th>
+              <th>Cash Flow</th>
+              <th>Years to End: n</th>
+              <th>Future Value: Note the exponent is the same as the years to end.</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td></td>
+              <td>3</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>100</td>
+              <td>2</td>
+              <td>110.25</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>100</td>
+              <td>1</td>
+              <td>105</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>100</td>
+              <td>0</td>
+              <td>100</td>
             </tr>
           </table>
           <p>FV of an Annuity: Formula<br>
@@ -307,6 +349,39 @@ The following page is for notes on my edX course Finance For Everyone.
               <td>C/(1+r)^3</td>
             </tr>
           </table>
+          <p>At $100 Payments and 5% interest rate.</p>
+          <table>
+            <tr>
+              <th>Year</th>
+              <th>Cash Flow</th>
+              <th>Years to Discount: n</th>
+              <th>Present Value</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>100</td>
+              <td>1</td>
+              <td>95.24</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>100</td>
+              <td>2</td>
+              <td>90.70</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>100</td>
+              <td>3</td>
+              <td>86.38</td>
+            </tr>
+          </table>
 
           <h3>Saving for the Future: Example 1</h3>
           <p>
@@ -350,7 +425,281 @@ The following page is for notes on my edX course Finance For Everyone.
             Excel knows the formulas however, so this is an academic exercise for the most part.
           </p>
 
+          <h3>Practice Problems</h3>
 
+
+        </section>
+
+        <button type="button" class="collapse-button">Advanced Applications</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>The Fundamentals of a Loan</h3>
+          <p>Problem 1: A Loan for college<br>
+            Deja Vu<br>
+            You plan to attend an in-state college and your parents will take out a loan of $100,000 at 6%. What are your <strong>yearly</strong> payments, given that you will have 5 years to pay ack the loan?
+          </p>
+          <p>Amortization table
+            <table>
+              <tr>
+                <td>Year</td>
+                <td>Beginning Balance</td>
+                <td>Yearly Payment (PMT)</td>
+                <td>Interest (Beginning Balance * Interest Rate)</td>
+                <td>Principle Repayment (Yearly Payment - Interest)</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>100,000</td>
+                <td>23,739.64</td>
+                <td>100,000 * 0.06 = 6,000</td>
+                <td>23,739.64-6,000=17,739.64</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>100,000-17,739.64=82,260.36</td>
+                <td>23,739.64</td>
+                <td>82,260.36*0.06=4,935.62</td>
+                <td>23,739.64-4,935.62=18,804.02</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>63456.34</td>
+                <td>23,739.64</td>
+                <td>3807.38</td>
+                <td>19932.26</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>43524.08</td>
+                <td>23,739.64</td>
+                <td>2611.44</td>
+                <td>21128.20</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>22395.89</td>
+                <td>23,739.64</td>
+                <td>1343.75</td>
+                <td>22395.89</td>
+              </tr>
+            </table><br>
+            Remember: Interest is a function that you pay at the end of the year. Cash flow is a function of what you borrow at the beginning.<br>
+            The Yearly Payment is a contract to pay the same amount each year.<br>
+            Interest Paid per year goes down, while the amount paid to principle goes up.<br>
+            The final year's beginning balance and principle repayment are equal.
+          </p>
+          <p>
+            Patterns of Note<br>
+            Components of a Payment: 1. Interest, which is paid on the Beginning Balance; 2. The Payment Amount.<br>
+            Decreasing Component: Interest paid decreases each year.<br>
+            Increasing Component: The Repayment amount increases each year.
+          </p>
+          <p>
+            How would you figure out the outstanding balance after the second payment?<br>
+            Finance looks forward. The value of anything today is the present value of the future. You don't need to go back and calculate the previous two years.<br>
+            It is the Present Value (PV) of what you currently owe the bank.<br>
+            You know the rate and the PMT and to get the number of periods, simply subtract the total, by the number paid off n= 5-2=3<br>
+            =PV(0.06,3,23739.64)<br>
+            Value comes from the future. And looking forward, remember you've gotta discount, because of the time value of money?<br>
+            Where you look forward from is dictated by the problem you are trying to solve.<br>
+          </p>
+          <p>
+            How would you figure out the interest paid component of the third payment?<br>
+            Interest paid is a component of two things: 1. The interest rate; 2. The beginning balance of the period.<br>
+            Beginning Balance * rate = Interest Paid in Period
+          </p>
+          <p>
+            Now we do a real world example of the same problem as above.<br>
+            Now we consider <strong>Monthly Payments</strong>.<br>
+            To make a more realistic timeline we would use the number of months in a 5 year loan. (5 * 12 = 60 months) 60 periods.<br>
+            The loan interest rate is an Annual Percentage Rate (APR) of 6%<br>
+            In order to use this effectively we divide it into a monthly rate (0.06% / 12 = 0.005% monthly)<br>
+            We have made sure the interest rate matches the period so we can work with monthly periods to match our monthly payments.<br>
+            PMT(rate, number_of_periods, present_value), where rate = 0.06/12, number_of_periods = 5*12, and present_value is 100,000.<br>
+            <br>
+            How much will you owe the bank after the 18th month's payment?<br>
+            =PV(0.06/12,60-18,PMT)<br>
+            <br>
+            What is the interest component of the 37th months payment?<br>
+            = PV * Interest Rate<br>
+            =PV(0.06/12,60-36,PMT)*(0.06/12)
+          </p>
+
+          <h4>Effective Annual Interest Rates</h4>
+          <p>
+            The stated rate is 6%. If you are compounding yearly then it is actually 6%, but if you are compounding interval is one month the interest will be more or less than 6%.<br>
+            EAR = (1+r/k)^k - 1<br>
+            where 'k' is the 'compounding interval' or the number of periods in a year and r is the annual interest rate (APR).<br>
+            EAR = (1+0.06/12)^12 - 1
+          </p>
+
+          <h4>Complex problems</h4>
+          <p>
+            Saving for a large investment<br>
+            College tuition has been rising at a rate of 2.5% per year. Currently the average tuition of a state college is $10,000 per year. Emilia's daughter Jessica will begin college in 5 years. Emilia's portfolio of savings is making 5% annually. How much does Emilia need to have set aside today/now to pay for four years of college for Jessica?<br>
+            The instructor recommends always drawing a time line first, with now or 0 on one side and the number of years in advance we are trying to predict.<br>
+            In these kinds of investment problems there will be a period of investments before cash flows begin.<br>
+            In a business, you will invest in supplies in advance. In this case you will save for college in advance and begin payments four years before the completion of university.<br>
+            Starting on year 5 you begin payments to the university and years 6, 7, and 8 will be the final cash flows.
+          </p>
+
+          <h4>A simple algorithm</h4>
+          <ol>
+            <li>Draw a timeline. You can use a spreadsheet as a natural timeline. Column 'A' being time 0, 'B' being time 1, etc...</li>
+            <li>Break the problem into bite-size pieces</li>
+            <li>Solve the pieces in logical order</li>
+            <li>Use financial tools to help you</li>
+          </ol>
+
+          <p>
+            I<br>
+            The increase in tuition from year to year can be put on a timeline or spreadsheet and you can see the increase from year to year.<br>
+            The equation is tuition(1+rate of increase)^number of years<br>
+            =10000(1.025)^n<br>
+            The Future Value of the tuition, due to inflation, is not necessarily and hopefully not identical to the discount rate.<br>
+            The Discount Rate is distinct from the Future Value and is suppossed to capture inflation.<br>
+            Remember that here the cash flow happens ahead of the year in question. We pay tuition before taking classes.<br>
+            <br>
+            II<br>
+            You cannot use the PV() function, because PMT is assumed to be a fixed number, but here it is not.<br>
+            NPV function: Calculates the net present value of an investment based on a series of periodic cash flows and a discount rate.<br>
+            Similar to PV, but allows for variable cash flows<br>
+            =NPV(discount rate, cash flow 1, cash flow 2, etc..)<br>
+            NPV(0.05,F1:I1) // assumes row 1 and the yearly tuitions from part I. We are only working with the last four years, because those are the payments we will be making.<br>
+            The number from the NPV will be the amount needed in year 4 to have enough for tuition in the last four years.
+            <br>
+            III<br>
+            What do we need at time 0 (now).<br>
+            =PV(rate,periods,PMT(0), Future Value)<br>
+            =PV(0.05, 4, 0, NPV()=41586.22)<br>
+            <br>
+            <strong>Double Check</strong><br>
+            <ol>
+              <li>Timeline focusing on years 5, 6, 7, and 8.</li>
+              <li>Second line focusing on the Net Fund amount. This should have $0 at the end of the timeline.</li>
+              <li>Third line that shows the tuition paid each year. This increases by 2.5% each year.</li>
+            </ol><br>
+            For year 5 we have a future value problem with the rate of 5% and the PV of $34,213<br>
+            The tuition is 11314.08<br>
+            So the net Fund is 32,351.45<br>
+            For year 6 we have another future value problem with rate = 0.05, n = 1, and PV = 32,351.45.<br>
+            This goes for the next two years<br>
+            We should end up with 0 in the account.<br>
+          </p>
+
+          <h4>Financial Planning</h4>
+          <p>
+            Abebi, who has just celebrated her 25th birthday, plans to retire on her 55th birthday. She has just set up a retirement fund to pay her an annual income starting on her retirement day, and to continue paying for 20 more years. Abebi's goal is to recieve $50,000 for each of these twenty years. Abebi has commited to set aside equal investments at the end of each year, for the next 29 years starting on her 26th birthday. If the annual interest rate is 5%, how big should Abebi's equal investments be?
+          </p>
+          <p>
+            Build the timeline starting at 0 (Age 25) continuing to 55 (retirement age) and then 20 more years after that.<br>
+            There are two distinct periods (n). One for the savings period and the second for the spending period. <br>
+            We don't know what we need to save yearly for this to work. That is a PMT problem.<br>
+            <br>
+            I<br>
+            Find the amount needed for the 21 years of spending<br>
+            Calculate the PV for year 54. The convention is 1 year from now. Everybody fucks this one up. :)<br>
+            =PV(0.05,21,50000)=641057.64<br>
+            <br>
+            II<br>
+            Figure out the PMT. First payment will be in year 25 and last payment will be in year 54. n = 29<br>
+            I know the FV from step one, so I need to do a PMT using that.<br>
+            =PMT(0.05,29,0,641057.64)=10286.10<br>
+          </p>
+
+          <h4>Making Complex Simple</h4>
+          <p>
+            You have invested $75,000 in a trust fund at 7.5% for your child's education. Your child will draw $12,000 per year from this fund for four years, starting at the end of year 7. What will be the amount that will be left over in this fund at the end of year 10 (after the child has withdrawn for the fourth time)?
+          </p>
+          <p>
+            Draw the timeline starting at year 0 you have 75000, at year 7 you will start to withdraw 12000 per year.<br>
+            To make this easy we separate the negative from the positive and break this up into two pieces<br>
+            The positive piece is to take the 75K and solve the FV for 10 years.<br>
+            The negative is also a FV with a rate of .075, n = 4, PMT = 12000.<br>
+            Simply subtract the one from the other.<br>
+            This is a lot more simple than the double check way we did before.
+          </p>
+          <p>
+            To do this the more complicated way we can double check<br>
+            Take the 75000 and carry it forward to year 7.<br>
+            Subtract the 12K<br>
+            Calculate the net fund after the subtraction as before<br>
+            Carry the result forward with the rate of 0.075 and n = 1.<br>
+
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Bonds</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>What are Bonds?</h3>
+          <p>
+            Bond: a contract between a borrower and a lender, where the borrower gets a bond (IOU with a promise to pay back the lender at a later date). You can also think of it as a loan.<br>
+            In general, the risk of losing money on a bond is lower, so the rate of return is low.<br>
+            There are exceptions. <strong>Junk Bonds</strong> are called that due to the risk involved, but they offer high returns.
+            Governments fund their activities through bonds for better or for worse.<br>
+            Stocks are freely traded in the marketplace all over the world and are a way a company can borrow at the cost of paying a higher rate of return on success.<br>
+            Governments say they will give you say $100000 in a year for a bond. The market talks it over and decides on the price of the bond, which is less than the $100000, say $900000. So you make $10000, for loaning them $90000, a year from now.<br>
+            Companies also borrow a lot from private banks.<br>
+            Although mortgages can be lumped together into a large tradable security, which is traded.
+          </p>
+          <p>
+            <strong>Structure of Bonds</strong><br>
+            State governments issue bonds (municipal bonds), which are publically priced, which allows you to compare to other investments.<br>
+            Bonds are paid out in two ways:
+          </p>
+          <ol>
+            <li>A Coupon: paid out periodically, decided by the borrower or issuer of the bond. The will pay coupons every year or some other period.</li>
+            <li>Face value: typically smaller amounts periodically and then one ballon payment at the end of the face value.</li>
+          </ol>
+          <p>
+            Bonds are named such that they have a limited lifetime (maturity). It doesn't go on forever.<br>
+            There are rare exceptions of that called 'perpetuities'<br>
+          </p>
+          <p>
+            Draw a timeline with 0 through 10 periods.<br>
+            Each period is a payment (C for coupon) and the last period gives you a coupon + Face Value (F), paid by the borrower (government).<br>
+            At 0 period is when the lender pays for the bond (x).<br>
+            x = p = PV(C's, F)<br>
+            The time value of money again.<br>
+          </p>
+          <p>
+            <strong>Government Bonds: Zero Coupon</strong><br>
+            Treasury security: Offered by a governemnt backed by the treasury. A zero coupon bond.<br>
+            Zero coupon bonds do not pay any coupons, just a Face Value when they mature.<br>
+            Treasury bill vs. strip: a strip is a zero coupon bond with a maturity greater than one year. A treasury bill is issue with a maturity up to a year.<br>
+            Price of a zero coupon bond: P = (Face Value) * PF(r,n) = Face Value / (1 + r)^n<br>
+          </p>
+          <p>Suppose a zero-coupon bond pays $100,000 in exactly one year. What is the price of value/price of the bond today if the interst rate on similar bonds is 5%?</p>
+          The discount rate is 5%<br>
+          =PV(0.05, 1, 0, 100000) = 95,238.10<br>
+          Zero Coupon Bond is also called a Discount Bond.<br>
+          Discount because the present value must be less than the face value.<br>
+          Note that we have not taken inflation into the picture, which is a risk with a low interest rate.
+          <p>
+            <strong>Yield to Maturity</strong><br>
+            The return built into the pricing of the bond is called Yield-to-Maturity (YTM)<br>
+            =RATE(number_of_periods, payment_per_period, present_value, [future_value], [end_or_beginning], [rate_guess])<br>
+            for zero coupon bonds = RATE(number_of_periods, 0, present_value, -future_value)<br>
+            There are no payments and the future value will be negative<br>
+            The number_of_periods is equal to the compounding interval. Usually this is determined at six months<br>
+            So a five year bond would have 10 periods of compounding<br>
+            The coupons (payments) must also be divided by two, since you are getting two payments a year, but the coupon will be stated as a yearly coupon.
+          </p>
+          <p><strong>Coupon Paying Bonds</strong><br>
+            Suppose a government bond has a 3% coupon, face value of $100000, and 6 years to maturity. What is the price of this bond given that similar bonds yield an annual return of 4%?<br>
+            Another timeline is drawn, where the right side is the Face Value + Coupon (C) / 2, since it is compounded every six months and Coupon is stated annually. Interest rates are stated annually, determined by the market. The coupon is determined by the issuer of the bond.<br>
+            What is the payment being made? What is the coupon: 3% of 100000 = 3000<br>
+            There are 12 compounding intervals over 6 years<br>
+            The total coupons equal c/2 * 12<br>
+            The price equals the PV = PV(rate/2, periods * 2, -payment / 2, FV)<br>
+            rate = 4% / 2<br>
+            number of periods = 6 years * 2<br>
+            Payment = -3000 / 2<br>
+            Future Value (Face Value) = 100000<br>
+            =PV(.04/2, 6*2, -3000/2, -100000)
+          </p>
         </section>
 
         <button type="button" class="collapse-button">Title of Note</button>

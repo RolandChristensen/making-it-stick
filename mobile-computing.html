@@ -540,11 +540,12 @@ Notes on Mobile Computing class.
 
           <p>(img src="path-to-image" alt="alternate text for screen readers and pop up" height="###" width ="###") used for images. Notice there is no closing tag.</p>
 
+<pre> <code>&lt;video controls&gt;
+  &lt;source src="path-to-video.mp4" type="video/mp4"&gt;
+  &lt;source src="path-to-video.ogg" type="video/ogg"&gt;
+&lt;/video&gt;</code> </pre>
+
           <p>
-<pre><code>&ltvideo controls&gt
-  &ltsource src="path-to-video.mp4" type="video/mp4"&gt
-  &ltsource src="path-to-video.ogg" type="video/ogg"&gt
-&lt/video&gt</code></pre>
             controls: displays controls for video<br>
             source: multiple sources lets the browser decide which type it prefers<br>
             Check for the supported file types of the browsers you are targeting.
@@ -697,8 +698,72 @@ Notes on Mobile Computing class.
             fahrenheit = celsius * 9/5 + 32<br>
             In the normal range of temperatures we usually experience, fahrenheit is higher than celsius. At extreme lows fahrenheit starts to be a larger negative number. They are equal at -40.
           </p>
+          <p>
+            Speed of light: 299,792,458 m/s<br>
+            velocity: m/s<br>
+            acceleration (The rate of change of velocity): m/s^2<br>
+            Initial Velocity: u<br>
+            final velocity: v<br>
+            acceleration: a<br>
+            time: t<br>
+            distance: s<br>
+            a = (v-u)/t<br>
+            t=(v-u)/a<br>
+            v=u+a*t<br>
+            s=u*t+1/2*a*t^2<br>
+            gravitational acceleration: g=9.81m/s^2 (going down) g=-9.81m/s^2 (going up)
+          </p>
+          <p>Algorithms
+            <ol>
+              <li>A sequence of unambiguous steps.</li>
+              <li>When these steps are executed, the algorithm should produce correct results for all possible cases/inputs.</li>
+            </ol><br>
+            Example:<br>
+            <strong>Input:</strong> Velocity u, Angle &theta;<br>
+            <strong>Known constant:</strong> Gravitational acceleration g=-9.81 m/s^2<br>
+            <strong>Output:</strong> <em>height</em> and <em>distance</em><br>
+            <strong>Algoritm:</strong><br>
+            <ol>
+              <li>Calculate the horizontal velocity u<sub>x</sub>=u*cos(&theta;)</li>
+              <li>Calculate the vertical velocity u<sub>y</sub>=u*sin(&theta;)</li>
+              <li>Calculate the time until the projectile reaches its maximum height. t=(v-u<sub>y</sub>)/a=(0-u<sub>y</sub>)/g=(0-u<sub>y</sub>)/-9.81=-u<sub>y</sub>/-9.81=u<sub>y</sub>/9.81<br>
+              t<sub>maxHeight</sub>=u<sub>y</sub>/9.81</li>
+              <li>Calculate the time until the projectile lands (twice t<sub>maxHeight</sub>) - t<sub>landing</sub>=2*t</li>
+              <li>Height is calculated using s=u*t+1/2*a*t^2<br>
+              height=u<sub>y</sub>*t<sub>maxHeight</sub>-1/2*9.81*t<sub>maxHeight</sub>^2</li>
+              <li>Distance is calculated using s=u*t+1/2*a*t^2, where a = 0, t=t<sub>landing</sub>, u = u<sub>x</sub><br>
+              distance=u<sub>x</sub>*t<sub>landing</sub></li>
+            </ol>
+          </p>
+          <p>
+            JavaScript to calculate height and distance of projectile<br>
+<pre> <code>function calculate(angle, velocity) {
+  var horizontalVelocity = velocity*Math.cos((angle*Math.PI)/180);
+  var verticalVelocity = velocity*Math.sin((angle*Math.PI)/180);
+  var timeToMaxHeight = verticalVelocity/9.81;
+  var timeToLanding = 2*timeToMaxHeight;
+
+  var distance = calculateDistance(horizontalVelocity, timeToLanding);
+  var height = calculateHeight(verticalVelocity, timeToMaxHeight);
+}
+
+function calculateDistance(horizontalVelocity, time) {
+  var distance=horizontalVelocity*time;
+  return distance;
+}
+
+function calculateHeight(verticalVelocity, time) {
+  var height = (verticalVelocity*time) - (0.5*9.81*time*time);
+  return height;
+}</code> </pre>
+          </p>
 
           <h3>JavaScript</h3>
+          <p>
+            Did you know there was a command line JavaScript editor for Chrome dev tools? Maybe investigate.<br>
+            There are also JavaScript interpreters online and downloadable that allow you to run commands on a command line.<br>
+            Node.js allows you to do the same.<br>
+          </p>
           <p>
             The onload attribute can call a JavaScript function that sets the "onclick" attribute of other elements.
 <pre><code>function setUp() {
@@ -752,23 +817,48 @@ Notes on Mobile Computing class.
             </ul>
           </p>
           <p>
+            In case you missed it above here is the JavaScript to calculate height and distance of projectile using the Math object.<br>
+<pre> <code>function calculate(angle, velocity) {
+  var horizontalVelocity = velocity*Math.cos((angle*Math.PI)/180);
+  var verticalVelocity = velocity*Math.sin((angle*Math.PI)/180);
+  var timeToMaxHeight = verticalVelocity/9.81;
+  var timeToLanding = 2*timeToMaxHeight;
+}</code> </pre>
+          </p>
+          <p>
             Arrays<br>
             <ul>
               <li>var a = [] - Dynamic addition and deletion.</li>
               <li>a.length - attribute for the length</li>
               <li>a.push("Add this string to end of array")</li>
+              <li>var x = a.pop() deletes the last element and returns it.</li>
               <li>var x = a.shift() - deletes the first element and returns it's value</li>
-              <li>d = b.concat(c) - concatenates two arrays</li>
-              <li>...</li>
+              <li>a.unshift('x') - adds the character "x" to the beginning of the array.</li>
+              <li>a.reverse() - reverses all elements</li>
+              <li>b = a.slice(0,5); = creates a new array with elements 0-4 of array "a". Note the first parameter is the start index and the second parameter is the number of elements. Does not change the original array.</li>
+              <li>c = a.slice(5, a.length) - because it does not change the original array we can use a.length even after the first slice.</li>
+              <li>d = b.concat(c) - concatenates two arrays (identical to array "a" now)</li>
+              <li>We can add an element into an empty array at index x for example a = []; a[11] = "Just added 12 elements and inserted this into index 11";</li>
+              <li>e = [1,2,55,99] initialize during creation</li>
+              <li>e.sort() - sorts from lowest to highest including alphabetically sorted strings</li>
+              <li>a.indexOf('search term'): returns the first index of the searched for term.</li>
             </ul>
           </p>
           <p>
-            Dynamically adding rows and cells to a table<br>
-<pre><code>// Get an existing table
-var table = document.getElementById("tableId");
+            Dynamically adding rows and cells to a table.<br>
+<pre><code>&lt-- HTML --&gt;
+&lt;table id="dataTable" border="1"&gt;&lt;/table&gt;
+
+// JavaScript
+
+// Get an existing table
+var table = document.getElementById("dataTable");
 
 // Create a new empty row &lt;tr&gt;
 var row = table.insertRow(0);
+
+// Using the parameter -1 inserts a row in the last position.
+var newRow = row.insertRow(-1);
 
 // Create a couple of data cells &lt;td&gt;
 var cell1 = row.insertCell(0);
@@ -790,6 +880,51 @@ cell2.innerHTML = "Value two";</code></pre>
   }
 }</code> </pre>
           </p>
+          <p>
+            JavaScript Boolean operators are the same as C, C++, C#, and Java.<br>
+            Can you build a truth table of values with A, B, A||B, A&&B, !A as the header?<br>
+            Can you add XOR to that?
+          </p>
+          <p>
+            Extended Operators: +=, -=, etc...
+          </p>
+            Create an element with JavaScript:
+<pre> <code>function createElement() {
+  // creates an element in memory.
+  var newElement = document.createElement("table");
+  // add any properties.
+  newElement.border = 1;
+  // add to bottom of page.
+  document.body.appendChild(newElement);
+
+  // Instead of adding to the bottom, add to section predefined for the task.
+  document.getElementById("divName").appendChild(newElement)
+
+  // Write a for loop to add some dynamic data to a table.
+  ...
+}
+
+// Insert an element before another element in the DOM.
+function pushElement() {
+  // create a li in front of another.
+  var newNode = document.createElement("li");
+  var textNode = document.createTextNode("Some Text");
+  newNode.appendChild(textNode);
+  // You could also assign text to innerHTML later.
+
+  var list = document.getElementById("listId");
+  list.insertBefore(newNode, list.children[0]);
+}</code> </pre>
+          <ul>
+            <li>replaceChild()</li>
+            <li>removeChild()</li>
+            <li>remove()</li>
+            <li>childNodes()</li>
+            <li>firstChild()</li>
+            <li>lastChild()</li>
+            <li>firstElementChild property</li>
+            <li>lastElementChild property</li>
+          </ul>
 
           <h3>HTML</h3>
           <ul>
@@ -800,6 +935,7 @@ cell2.innerHTML = "Value two";</code></pre>
             <li>infin is &infin;, #8734 is also &#8734;, and #x221E is the hex for &#x221E;</li>
             <li>(fieldset)(legend)&#8230;(/legend)&#8230;(/fieldset)</li>
             <li>(input type="radio"): Empty HTML element / Singleton Element</li>
+            <li>The browser loads the html from top to bottom. It reads the head and loads any scripts and css and continues down the page. If you expect to have a script loaded before you reference it, it will not work.</li>
           </ul>
 
           <h3>jQuery</h3>
@@ -837,7 +973,835 @@ cell2.innerHTML = "Value two";</code></pre>
             Always provide feedback as soon as possible after any interaction by the client.<br>
             Mobile device buttons should be large enough to be easily tapped.
           </p>
+
+          <h3>Node.js</h3>
+          <p>
+            Download and install to be able to run scripts from a command line.<br>
+            I should definitely look into the Getting Started guide. The first thing they show you is how to start a local web server in just a few lines of code.<br>
+            In Node.js you can output arrays using console.log(arrayName);<br>
+            You can write a JavaScript script and save it then run it by typing "node fileName.js" on the command line.<br>
+            You could create an HTML file by piping the output, on a *nix based system:<br>
+            node fileName.js > arrayTable.html
+          </p>
         </section>
+
+        <button type="button" class="collapse-button">Menu Driven App</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Password Entry</h3>
+          <p>
+            &lt;label for="passcode"&gt;Password:&lt;/label&gt;<br>
+            &lt;input type="password" id="passcode"&gt;&lt;/input&gt;<br>
+            Characters are masked when using type="password".<br>
+            Should be passed over https.
+          </p>
+
+          <h3>Creating a Keypad HTML</h3>
+          <p>
+            data-role="controlgroup" with data-type="horizontal" creates a row across the page of controls in the section/div<br>
+            In this case the numeric pad is defined by four sections<br>
+<pre> <code>&lt;div data-role="content"&gt;
+  &lt;label for="textBox"&gt;Text Entry&lt/label&gt;
+  &lt;input type="text" id="textBox"&gt;&lt;/input&gt;
+
+  &lt;div data-role="controlgroup" id="numberKeyPad"&gt;
+    &lt;a data-role="button" id="enterButton" type="submit"&gt;Enter&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div data-role="controlgroup" data-type="horizontal"&gt;
+    &lt;a data-role="button" onclick="addValueToTextBox(7)"&gt;7&lt;/a&gt;
+    &lt;a data-role="button" onclick="addValueToTextBox(8)"&gt;8&lt;/a&gt;
+    &lt;a data-role="button" onclick="addValueToTextBox(9)"&gt;9&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div data-role="controlgroup" data-type="horizontal"&gt;
+    &lt;a data-role="button" onclick="addValueToTextBox(4)"&gt;4&lt;/a&gt;
+    &lt;a data-role="button" onclick="addValueToTextBox(5)"&gt;5&lt;/a&gt;
+    &lt;a data-role="button" onclick="addValueToTextBox(6)"&gt;6&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div data-role="controlgroup" data-type="horizontal"&gt;
+    &lt;a data-role="button" onclick="addValueToTextBox(1)"&gt;1&lt;/a&gt;
+    &lt;a data-role="button" onclick="addValueToTextBox(2)"&gt;2&lt;/a&gt;
+    &lt;a data-role="button" onclick="addValueToTextBox(3)"&gt;3&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div data-role="controlgroup" data-type="horizontal"&gt;
+    &lt;a data-role="button" onclick="addValueToTextBox(0)"&gt;0&lt;/a&gt;
+    &lt;a data-role="button" onclick="addValueToTextBox('bksp')"
+    data-icon="delete"&gt;del&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+Javascript
+
+/* Adds given text value to the password text
+ * field
+ */
+function addValueToTextBox(button) {
+  var currVal = $("#textBox").val();
+  if (button == "bksp") {
+    $("#textBox").val(currVal.substring(0,
+      currVal.length - 1));
+  } else {
+    $("#textBox").val(currVal.concat(button));
+  }
+}</code> </pre>
+          </p>
+
+          <h3>Multi-Page in Single HTML File</h3>
+          <p>
+            Use multiple divs with data-role="page" and unique ids.<br>
+            Create links to these ids and the "page" will load.<br>
+<pre> <code>&lt;div data-role="page" id="homePage"&gt;
+  &lt;div data-role="content"&gt;
+    &lt;a href="#aboutPage" data-role="button"&gt;About&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-role="page" id="aboutPage"&gt;
+  &lt;div data-role="content"&gt;
+    &lt;a href="#homePage" data-role="button"&gt;Home&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code> </pre>
+          </p>
+
+          <h3>Link Buttons</h3>
+          <p>
+            Use &lt;a href="#somePage" data-role="button"&gt;Some Page&lt;/a&gt;<br>
+            Add an icon to a button, such as a hamburger menu or carat using data-icon="bars" or data-icon="carat-r"<br>
+            Not all icons display correctly on all devices. Test, test, test...<br>
+<pre> <code>&lt;a href="#homePage" data-role="button" data-icon="bars"&gt;Home Page&lt;/a&gt;
+</code> </pre>
+            <strong>Header Sample</strong><br>
+            This creates a couple of buttons on each side of a "heading"<br>
+            data-inline="true" keeps all three on the same line<br>
+            data-iconpos can be right, left, top, or bottom<br>
+<pre> <code>&lt;div data-role="header"&gt;
+  &lt;a href="#menuPage" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true"&gt;Menu&lt;/a&gt;
+  &lt;a href="#aboutPage" data-role="button" data-icon="info" data-iconpos="right" data-inline="true"&gt;Info&lt;/a&gt;
+  &lt;h1&gt;Heading&lt;/h1&gt;
+&lt;/div&gt;</code> </pre>
+            Stacked buttons on a page<br>
+<pre> <code>&lt;div data-role="page" id="pageMenu"&gt;
+  &lt;div data-role="content"&gt;
+    &lt;div data-role="controlgroup"&gt;
+      &lt;a href="#homePage" data-role="button"&gt;Home&lt;/a&gt;
+      &lt;a href="#aboutPage" data-role="button"&gt;About&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code> </pre>
+          </p>
+          <p>
+            The size of buttons are automatically shrinked for mobile devices. In order to make buttons normal sized to make them stand out, set the attribute data-mini="false".
+          </p>
+<pre> <code>&lt;a href="#somePage" data-mini="false"&gtAcknowlege<&lt/a&gt;</code> </pre>
+
+          <h3>Field Containers</h3>
+          <p>
+            <code>data-role="ui-field-contain"</code> creates faint horizontal lines between content.<br>
+            Note: data-role="fieldcontain" has been deprecated in 1.4<br>
+            Use class="ui-field-contain" to a wrapper of a form widget and its label.<br>
+            You wrap a form in a "ui-field-contain" as well as each of the form controls<br>
+<pre> <code>&lt;div data-role="ui-field-contain"&gt;
+  &lt;div class="ui-field-contain"&gt;
+    &lt;label for="textinput"&gt;Text Box&lt/label&gt;
+    &lt;input type="text" name="textinput" id="textinput"&gt;
+  &lt;/div&gt;
+  &lt;div class="ui-field-contain"&gt;
+    &lt;label for="numberinput"&gt;Number Input&lt/label&gt;
+    &lt;input type="number" name="numberinput" id="numberinput"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code> </pre>
+          </p>
+
+          <h3>Tables to Display Records</h3>
+          <p>
+            Add the class="ui-responsive" to break at specific break points.<br>
+            You should use your own media queries, but jQuery has 6 built-in break points.<br>
+            Add "table-stroke" to class in order to see a faint grey line between rows.<br>
+          </p>
+<pre> <code>&lt;div data-role="fieldcontain"&gt;
+  &lt;table id="tableRecords" class="ui-responsive table-stroke"&gt;&lt;/table&gt;
+&lt;/div&gt;</code> </pre>
+
+          <h3>Bootstrap</h3>
+          <p>
+            Developed by Twitter developers Mark Otto and Jacob Thornton.<br>
+            Open source collection of tools: "Powerful, extensible, and feature-packed frontend toolkit. Build and customize with Sass, utilize prebuilt grid system and components, and bring projects to life with powerful JavaScript plugins."<br>
+            <br>
+            Using CDN:<br>
+            &lt;!-- CSS only --&gt;<br>
+            &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"&gt;<br>
+            &lt;!-- JavaScript Bundle with Popper --&gt;<br>
+            &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"&gt;&lt;/script&gt;
+            <br>
+            <strong>Bootstrap 4 and above have dropped panels in favor of cards</strong><br>
+            <strong>Bootstrap 5 has dropped jQuery in favor of JavaScript</strong><br>
+            Provides beautiful panels<br>
+            Puts content in a box with a border and padding around content.<br>
+            We surround the canvas tag with divs that have the attribute <code>class="panel panel-success"</code> which styles the div as a panel with a green border (success).<br>
+            The first inner div has attribut <code>class="panel-heading"</code>, which is pretty self explanatory, styling the heading 3, which has it's own attribute <code>class="panel-title"</code>.<br>
+            The next inner div has the attribute <code>class="panel-body"</code>, which styles the body of the panel.<br>
+            All of these <code>panel-*</code> classes are defined in Bootstrap.
+          </p>
+<pre> <code>&lt;div class="panel panel-success"&gt;
+  &lt;div class="panel-heading"&gt;
+    &lt;h3 class="panel-title"&gt;TSH vs Date&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="panel-body"&gt;
+    &lt;canvas id="GraphCanvas" width="500" height="500" style="border:1px solid #000000;"&gt;
+    &lt;/canvas&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code> </pre>
+          <p><strong>Bootstrap Panel Types</strong></p>
+          <ul>
+            <li>class=""</li>
+            <li>class="primary-panel": Basic. Uses dark blue theme.</li>
+            <li>class="panel-info": Possibly useful information to user. Uses light blue theme.</li>
+            <li>class="panel-success": Green theme.</li>
+            <li>class="panel-warning": Orange theme.</li>
+            <li>class="panel-danger": Red theme.</li>
+          </ul>
+
+          <h3>Design Patterns / Notes</h3>
+          <p>
+            The user should be taken to the most used function of the app first thing<br>
+            After authentication, the page should redirect to this content<br>
+            There may be one-time events after a user first signs up that should be taken care of first, so you should redirect them immediately to this content on their first log in or maybe on subsequent log ins until it is taken care of.<br>
+            Example: create profile<br>
+            Returning users will be taken to the main page.<br>
+            Apps that do not have a most-used page should probably have a page with links to the rest of the site. This page should be as intuitive as possible, with perhaps more detailed instructions on how to use the site below the intuitive content for those who want to dive deeper.<br>
+            Responsiveness is key, if a user clicks something they should get feedback. If an element is disabled this should be clear and hopefully there should be a clear way to inform the user what makes the element enabled. Pop up alerts are one way to respond to actions.<br>
+            Sometimes you must force a user to acknowlege something. You can force this using jQuery. Add the attribute data-close-btn="none" to the div containing the data-role="page".<br>
+          </p>
+<pre> <code>&lt;div data-role="page" id="legalNotice" data-close-btn="none"&gt;
+  &lt;-- Add legal notice here --&gt;
+  &lt;a href="#somePage" id="noticeAcknowlege" data-role="button"&gt;Acknowlege&lt;/a&gt;</code> </pre>
+
+          <h3>Selects - jQuery</h3>
+          <p>
+            Usually a select uses the default of the operating system.<br>
+            To disable that and use jQuery add the attribute data-native-menu="false" in the select tag.<br>
+            The attribute "required" indicates that the user must select a value before submitting.
+          </p>
+<pre> <code>&lt;select data-native-menu="false" name="..." id="..." required&gt;</code> </pre>
+
+          <h3>HTML</h3>
+          <h4>HTML Class Attribute</h4>
+          <p>
+            You can assign multiple values to the class by separating each class with a space. Ex: <code>class="city test"</code><br>
+            Each of the classes will be applied if used in CSS.<br>
+            In JavaScript you can search for an element by class for either of the values. Both of the following will return the element with the class above.<br>
+            <code>var x = document.getElementByClassName("test");</code><br>
+            <code>var x = document.getElementByClassName("city");</code>
+          </p>
+
+          <h4>Tag: &lt;abbr ...&gt;</h4>
+          <p>
+            The abbreviation tag defines what an abbreviation stands for and will display a dotted line under the abbreviation, which when moused over will display the title.<br>
+            Use the attribute <code>title="Hypertext Markup Language"</code> to define what the abbreviation <abbr title="Hypertext Markup Language">HTML</abbr> stands for.
+          </p>
+<pre> <code>&lt;p&gt;I use &lt;abbr title="Hypertext Markup Language"&gt;HTML&lt;/abbr&gt; daily.&lt;/p&gt;</code> </pre>
+
+          <h4>&lt;canvas ...&gt; HTML 5 Element</h4>
+          <p>
+            Displays graphics<br>
+            Has width and height attributes like "img" tag<br>
+            You can style it with a border, defining the width and color<br>
+          </p>
+<pre> <code>&lt;canvas id="..." width="500" height="500" style="border:1px solid #000;"&gt;&lt;/canvas&gt;</code> </pre>
+
+        </section>
+
+        <button type="button" class="collapse-button">Storing Data Locally</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>jQuery Syntax</h3>
+          <p>
+            The jQuery scripts referenced in the head of your HTML document allows you to use jQuery Syntax.<br>
+            This allows you to select an element and perform an action on it in one line of code.<br>
+            The $(selector) uses CSS selector syntax. '.' for class, # for id, "tag-name" for tag names<br>
+            $(selector).action() - $(#someElementId).val(): returns the value of the element with id="someElementId"<br>
+            $("table").hide() - hides all tables.<br>
+            $(".someClassName").hover(function()) {...} - Runs the function when mouse hovers over element with class="someClassName"<br>
+            $(this).hide() - Hides the current element - The 'this' keyword works when you have previously retrieved an element from the DOM and you are within the scope of that call.<br>
+            Using the this keyword improves performance, since it does not retrieve the element again from the DOM.
+          </p>
+<pre> <code>$(".className").on("click", function(event) {
+  $(this).hide();
+  ...
+});</code> </pre>
+          <p>
+            All jQuery methods should be placed inside a Document Ready Event to ensure the DOM is done being refreshed before executing.
+          </p>
+<pre> <code>$(document).ready(function() {
+  // jQuery methods
+});
+
+// An even shorter method that is equivalent to the above:
+$(function(){
+  // jQuery methods
+});</code> </pre>
+          <p>
+            Functions that are a parameter to the action() of an element are called anonymous functions since they do not have a name and cannot be called from anywhere else.
+          </p>
+<pre> <code>$(document).ready(function(){
+  $("#someButton").click(function(){
+    // perform some action
+  });
+});</code> </pre>
+          <p>
+            Submitting forms by associating an event (submit) to a function.<br>
+            <code>$("#someFormId").submit(function(){ ... })</code>
+          </p>
+          <p>
+            Remove all contents of a div using the following removes all elements in the div. Then you can repopulate as you desire.<br>
+            <code>$("#someDivId").empty();</code>
+          </p>
+          <p>
+            Add elements to the end of a container:<br>
+            <code>$("#someDiv").append("&lt;p&gt;Add a bunch of text and HTML here&lt;/p&gt;")</code><br>
+            <code>.prepend()</code> add to beginning<br>
+          </p>
+          <p>
+            Add a button in two steps
+          </p>
+<pre><code>// Add the button HTML
+$("#someDivId").append("&lt;br&gt;&lt;a href='#someOtherDivId' data-role='button'&gt;Button Name&lt;/a&gt;");
+
+// Refresh the button to style it.
+$('#someDivId [data-role="button"]').button();</code></pre>
+          <p>
+            Dynamically change the value of a button<br>
+            <strong>The book claims that changing the value of a button and refreshing the button will take you to that page in a multi-page app, but I cannot get that to work.</strong><br>
+            The book also talks about refeshing the button only if the btn-ui-hidden class has been added to the button, but the example code looks like the following.
+          </p>
+<pre><code>$("#someButtonId").click(function (){
+  $("#someOtherButton").val("Button Text").button("refresh");
+})</code></pre>
+          <p>
+            Use the value of a submit button in a function to determine the action performed.<br>
+            This allows you to use the same form for multiple functions (add or edit for example)
+          </p>
+<pre><code>$("#formId").submit(function(){
+  var buttonValue = $("#buttonId").val();
+
+  if (buttonValue == "Add") {
+    // do this
+  } else if (buttonValue == "Edit") {
+    // do that
+  }
+
+  // Return false to prevent the page from reloading (default behaviour of a submit)
+  // When doing your own navigation in a custom function return false.
+  return false;
+});</code></pre>
+          <p>
+            jQuery .html() is used to populate or read the innerHTML of an element.<br>
+            Create table using jQuery .html()<br>
+            Then appending additional records to the body
+          </p>
+<pre><code>$("#someTableId").html("&tl;thead&gt;
+  ...
+&lt;/thead&gt;
+&lt;tbody&gt;
+  ...
+&lt;/tbody&gt;")
+
+// append records
+for (...) {
+  var record = ...
+  $("#tableId tbody").append("&lt;tr&gt;" +
+    " $gt;td&gt;" + record.someField + "&lt;/td&gt" +
+      ...
+    "&lt;/tr&gt;");
+}</code></pre>
+          <p>
+            Add some buttons for editing or deleting data in the row.<br>
+            Question: Do I need the href in the second button? Find out.
+          </p>
+<pre><code>// append records
+for (var i = 0; i < records.length; i++) {
+  var record = records[i];
+  $("#tableId tbody").append("&lt;tr&gt;" +
+    "$gt;td&gt;" + record.someField + "&lt;/td&gt" +
+      ...
+    "&lt;td&gt;" +
+      "&lt;a data-inline='true' data-role='button' href='#newRecordFormPage' onclick='callEdit(" + i + ")' data-icon='edit' data-iconpos='notext'&gt;&lt;/a&gt;" +
+      "&lt;a data-inline='true' data-role='button' href='#' onclick='callDelete(" + i + ")' data-icon='delete' data-iconpos='notext'&gt;&lt;/a&gt;" +
+    "&lt;/td&gt;&lt;/tr&gt;");
+}
+
+// This insures the buttons are 'refreshed' so they appear on the page.
+$('#tableId [data-role="button"]').button();</code></pre>
+          <p>
+            The callEdit(index) function creates an attribute on the submit button of the newRecordFormPage, which contains the index of the record to edit.<br>
+            It also changes the value to "Edit" and refreshes the button<br>
+            The code says to only refresh the button if it hasClass("btn-ui-hidden"), but I don't know why you wouldn't just refresh regardless. I can't find a lot of information about class="btn-ui-hidden", instead all searches take me to .hide() method.
+          </p>
+<pre><code>function callEdit(index) {
+  $("#submitButton").attr("indexToEdit", index);
+  $("#submitButton").val("Edit");
+  if ($("#submitButton").hasClass("btn-ui-hidden")) {
+    $("#submitButton").button("refresh");
+  }
+}</code></pre>
+          <p>
+            The following function runs after clicking the edit button because the href takes you to the "newRecordFormPage" and it will either display an empty form to add a new record or pull the data for the record stored in the attribute of the button.
+          </p>
+<pre><code>$("#newRecordFormPage").on("pageshow", function () {
+  // Use the value of the button to drive the logic.
+  var operation = $("#btnSubmitRecord").val();
+
+  if (operation == "Add") {
+    clearRecordForm();
+  } else if (operation == "Edit") {
+    //If we are editing a record we load the stored data in the form
+    showRecordForm($("#submitButton").attr("indexToEdit"));
+  }
+});</code></pre>
+          <p>
+            We can use the attribute on the button to edit the correct record <code>editRecord($("#submitButton").attr("indexToEdit"));</code><br>
+            After editing the record we want to remove the attribute <code>$("#submitButton").removeAttr("indexToEdit");</code>
+          </p>
+          <p>
+            Deleting a record
+          </p>
+<pre><code>function deleteRecord(index) {
+  try {
+    var records = JSON.parse(localStorage.getItem("records"));
+
+    records.splice(index, 1);
+
+    if (records.length == 0) {
+      localStorage.removeItem(records);
+    } else {
+      localStorage.setItem("records", JSON.stringify(records));
+    }
+  }
+  catch (e) {
+    ...
+  }
+}</code></pre>
+
+          <h4>Equivalencies jQuery to Javascript</h4>
+          <p>
+            <code>var x = $("#id").val();</code> = <code>var x = document.getElementById("id").value;</code><br>
+            Given: <code>var y = JSON.parse(...);</code><br>
+            <code>$("#id").html(y);</code> = <code>document.getElementById("id").innerHTML = y;</code>
+          </p>
+
+          <h3>Local Storage</h3>
+          <p>
+            Local Storage is part of the Window Object<br>
+            It stores data with no expiration date.<br>
+            The data is not deleted when the browser is closed, and is available for future sessions unlike session storage which is deleted on window close.<br>
+            Storage Limit: 5MB (much larger than cookies)<br>
+            Consider using local storage to avoid latency when calling an api.<br>
+            Security: data is not sent, so is not exposed to data sniffers.<br>
+            Each site has it's own storage area, which guarantees that a website can access only data stored by itself.<br>
+            The user can change browser settings to never store anything locally, in which case a SecurityException will be thrown.
+          </p>
+
+          <h4>JavaScript for Local Storage</h4>
+          <p>
+            All modern browsers should support local storage, but you can check by using: <code>if (typeof(Storage)=="undefined") { // no web storage }</code><br>
+            <code>window.localStorage.setItem("key", "value");</code> - window is optional and I just include it to show it is part of the window object.<br>
+            <code>localStorage.getItem("key");</code> if it is not in local storage getItem() returns null.<br>
+            <code>localStorage.removeItem("key");</code><br>
+            <code>localStorage.clear();</code> - Remove All<br>
+            You can view the contents of local storage on your browser through dev tools.
+          </p>
+<pre><code>var agreedToDisclosure = localStorage.getItem('agreedToDisclosure');
+if (agreedToDisclosure == null) {
+  // Go to disclosure page and get them to agree to the T&C's
+  $("#submitButton").attr("href", "#disclosure").button();
+} else if (agreedToDisclosure == "true") {
+  // do something
+} else {
+  // do something related to them not agreeing.
+}</code></pre>
+
+          <h4>Local Storage JSON</h4>
+          <p>
+            <code>var x = JSON.parse(localStorage.getItem("Key")).JsonNode</code> retrieves one node from a JSON object.<br>
+            .mobile object is part of jQuery Mobile. Do a search to find other useful methods in this object<br>
+            <code>$.mobile.changePage("#somePage");</code> is used to navigate to the div with page id="somePage"<br>
+            Note: the book is pretty out-of-date so you should probably search for Using the Web Storage API. The one I saw on MDN web docs looked pretty good.
+          </p>
+<pre><code>// Note the way to get the selected option of dropdown.
+var json = {
+  "FirstNode" : $("#someId").val(),
+  "SecondNode" : $("#someOtherId").val(),
+  "SelectNode" : $("#someSelect option:selected").val()
+}
+try {
+  localStorage.setItem("keyName", JSON.stringify(json));
+  alert("Saved Information");
+  $.mobile.changePage("#somePage");
+}
+catch(e)
+{
+  /* Google browsers use different error
+   * constant
+   */
+  if (window.navigator.vendor === "Google Inc.") {
+    if (e == DOMException.QUOTA_EXCEEDED_ERR) {
+      alert("Error: Local Storage limit exceeds.");
+    }
+  } else if (e == QUOTA_EXCEEDED_ERR) {
+    alert("Error: Saving to local storage.");
+  }
+
+  console.log(e);
+}
+
+// From MDN Web docs
+
+function storageAvailable(type) {
+    let storage;
+    try {
+        storage = window[type];
+        const x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch (e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
+    }
+}
+
+if (storageAvailable('localStorage')) {
+  // Yippee! We can use localStorage awesomeness
+}
+else {
+  // Too bad, no localStorage for us
+}
+</code></pre>
+          <h4>Retrieve JSON and Display by Setting the Value of Elements</h4>
+          <ol>
+            <li>Retrieve JSON form local storage complete with error handling.</li>
+            <li>Parse JSON: <code>var json = JSON.parse(localStorage.getItem("keyName"));</code></li>
+            <li>Update the values of form fields and update attributes of selects.</li>
+          </ol>
+          <p>
+            .attr("attributeName", "attributeValue") is used to set attributes of an element.<br>
+            To get the UI to update the select you need to refresh it.<br>
+            To get an attribute value: <code>var attributeValue = $("#someId").attr("keyName");</code>
+          </p>
+<pre><code>try {
+  var json = JSON.parse(localStorage.getItem("keyName"));
+} catch (e) {
+  ...
+}
+
+if (json != null) {
+  // Update values of text boxes.
+  $("#someId").val(json.FirstNode);
+  ...
+  // Update select dropdowns
+  $("#selectId option[value=" + json.SomeNode + "]").attr("selected", "selected");
+  $("#selectId option:selected").val(json.SomeNode);
+  $("#selectId").selectMenu('refresh'), true);
+  ...
+}</code></pre>
+            <p>
+              Add JSON array to local storage
+            </p>
+<pre><code>var newRecord = {"key":"value", ...};
+try {
+  var records = JSON.parse(localStorage.getItem("someRecords"));
+  if (records == null) {
+    records = [];
+  }
+  records.push(newRecord);
+  localStorage.setItem("someRecords", JSON.stringify(records));
+} catch (e) {
+  ...
+}</code></pre>
+            <p>
+              JSON with both single values and arrays
+            </p>
+<pre><code>var arrayName = someText.split(',');
+var newRecord = {
+  "key":"value",
+  "anotherKey": arrayName
+};
+try {
+  var records = JSON.parse(localStorage.getItem("someRecords"));
+  if (records == null) {
+    records = [];
+  }
+    records.push(newRecord);
+    localStorage.setItem("someRecords", JSON.stringify(records));
+  } catch (e) {
+    ...
+}</code></pre>
+
+          <h3>JavaScript</h3>
+          <h4>Custom Scripts</h4>
+          <p>
+            I do not know why, but when I place scripts with jQuery syntax in them in the head, the events for clicking buttons did not work.<br>
+            If I moved the scrips to the bottom of the body, they started to work.<br>
+            After searching for a reason why I mived them back to the top and added the defer attribute to the script tag and they worked.<br>
+            My search said this improved performance, but said nothing about the non-functioning events (clicks). I need to do more research.
+          </p>
+          <h4>Dates</h4>
+          <p>
+            <code>var date = new Date(); // instantiates date with the computers current date and time.</code><br>
+            <code>var month = date.getMonth(); // Returns month in 0-11 format</code><br>
+            <code>var month = date.getMonth() + 1; // More friendly. </code><br>
+            <code>var day = date.getDate(); // Returns day of month in friendly 1-31 format</code><br>
+            <code>var year = date.getFullYear(); // Returns the year in #### format</code><br>
+            <code>var dateString = year + '/' + (('' + month.length) < 2 ? '0' : '') + month + '/' + (('' + day.length) < 2 ? '0' : day) + day;</code>
+            <code>var instantiatedDate = new Date("A Valid Date Format");</code> Valid date formats are various but good examples are: <br>
+            YYYY-MM-DDTHH:MM:SS (ISO80861)<br>
+            YYYY, MM, DD (0-indexed)<br>
+            YYYY, MM, DD, HH, MM, SS<br>
+            ########### (epoch timestamp)<br>
+            Calculating Age: <code>Math.floor((new Date() - new Date("YYYY-MM-DD") / 365.25 * 24 * 60 * 60 * 1000));</code>
+          </p>
+
+          <h3>Display Dynamic Data on Page on Load</h3>
+          <p>
+            On a multi-page app, to display dynamic data on a page you want to define a JavaScript function that will run another method each time the page is navigated to.<br>
+            Use <code>$(document).on("pageshow", function(){...})</code><br>
+            <code>$('.ui-page-active').attr('id')</code> finds out which page is active and add conditional logic to display pages appropriately.
+          </p>
+<pre><code>/*
+  Runs the function to display a page every time their div is shown
+ */
+$(document).on("pageshow", function () {
+  if ($('.ui-page-active').attr('id') == "somePageId") {
+    runThisFunction();
+  } else if ($('.ui-page-active').attr('id') == "anotherPageId") {
+    runThisOtherFunction();
+    andThisOne();
+  } else if (...)
+  ...
+});</code></pre>
+          <h4>Arrays</h4>
+          <p>
+            <strong>Sorting</strong>
+            You can pass a function into the sort funcion. <code>someArray.sort(customSortFunction)</code>
+          </p>
+<pre><code>// a and b are two objects with a property called Date.
+// When this function is passed into the arrayName.sort(compareDates)
+// it sorts the objects by Date.
+function compareDates(a, b) {
+  var x = new Date(a.Date);
+  var y = new Date(b.Date);
+
+  if (x > y) {
+    return 1;
+  } else {
+    return -1;
+  }
+}</code></pre>
+        <p>
+          <strong>Splice</strong><br>
+          .splice() adds or removes elements from an array<br>
+          <code>arrayName.splice(index, numberOfElements)</code> will delete elements starting at the index and delete the number of elements requested<br>
+          <code>arrayName.splice(5,1);</code> deletes the element at index 5 and no others<br>
+          <code>arrayName.splice(index, 0, "Optional Add", "Optional Add Two")</code> adds two new elements and you could keep adding.<br>
+          <code>arrayName.splice(index, 1, "optional add")</code> deletes the item at the index and adds the new element.
+        </p>
+        <p>
+          <strong>Join</strong><br>
+          .join() combines array elements into a string.<br>
+          .join(", ") combines array elements and adds the separater between each element. (" ", " and ", etc..)
+        </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Graphics on HTML5 Canvas</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>The Canvas Element</h3>
+          <p>
+            The canvas is metaphorically your artist's canvas waiting to be painted on.<br>
+            &lt;canvas id="someId" width="250" height="250" style="border:1px solid #000;"&gt;&lt;/canvas&gt;<br>
+            The size is attributes you should define smartly.<br>
+            The style can be modified quite a bit to define any border (frame)<br>
+            You then use JavaScript to fill in the canvas always using the id attribute to identify where to paint.
+          </p>
+<pre><code>var canvas = document.getElementById("someId");
+
+// Call the getContext method with the 2d parameter.
+// I have not seen a different parameter, but hopefully...
+var context = canvas.getContext("2d");
+
+// Execute functions on the "context" object to draw.
+
+// Draw line across the 250 x 250 canvas.
+context.moveTo(250,0);
+context.lineTo(0, 250);
+
+// .stroke() is used to actually draw what you defined.
+context.stroke();
+
+/*
+Function to draw a circle
+*/
+function drawCircle(context, centerX, centerY, radius) {
+  // Book says always start with .beginPath(), but w3schools showed it was not neccessary for the line above.
+  // I will need to read more documentation to figure out when it is needed or not.
+  context.beginPath();
+
+  // .arc() takes five parameters. The first three are self documented.
+  // The last two are the beginning arc in radians and the final arc in radians.
+  // For a circle 0 is the beginning arc and 2&#960; (360&deg;) the final.
+  context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+  context.stroke();
+}
+
+// Basic set up function for canvas
+function setupCanvas() {
+
+  var canvas = document.getElementById("canvasId");
+  var context = canvas.getContext("2d");
+
+  // Fills a 750 x 750 px canvas with white
+  context.fillStyle = "#FFF";
+  context.fillRect(0, 0, 750, 750);
+}
+
+// Draw text
+context.font = "11px Georgia";
+context.fillStyle = "red";
+// Coordinates are relative to the canvas
+context.fillText("Very Profound Statement", xCoordinate, yCoordinate);
+
+// Draw text vertically
+
+// Put the number of radians to rotate clockwise
+// Below we rotate Math.PI / 2 (90&deg;) counter clockwise
+// This is applied when we call fillText()
+context.rotate(-Math.PI/2);
+context.textAlign = "center";
+context.fillText("Good for labeling Y axis", xCoordinate, yCoordinate);</code></pre>
+          <p>Properties for setting colors, styles, and shadows.</p>
+          <ul>
+            <li>fillStyle: color, gradient, or pattern used to fill</li>
+            <li>strokeStyle: color, gradient, or pattern used for stroke</li>
+            <li>shadowColor: color for shadows</li>
+            <li>shadowBlur: blur level for shadows</li>
+            <li>shadowOffsetX - shadowOffsetY: horizontal / veritical distance of shadow from the shape</li>
+          </ul>
+          <p>Methods related to setting colors, styles, and shadows</p>
+          <ul>
+            <li>createLinearGradient(): self explanatory</li>
+            <li>createPattern(): Repeats a specified element in the specified direction</li>
+            <li>createRadialGradient(): Creates a circular gradient</li>
+            <li>addColorStop(): Specifies the colors and stop positions in a gradient object</li>
+          </ul>
+          <p>Properties for line styles</p>
+          <ul>
+            <li>lineCap: style the end caps for a line</li>
+            <li>lineJoin: type of corner created when two lines meet</li>
+            <li>lineWidth: ...</li>
+            <li>miterLimit: maximum miter length (the distance between the inner corner and the outer corner where two lines meet) makes &lt; with narrowing distance between the lines</li>
+          </ul>
+          <p>Methods for rectangles</p>
+          <ul>
+            <li>rect(): creates a rectangle</li>
+            <li>...</li>
+          </ul>
+          <p>Methods for drawing lines and curves using path</p>
+          <ul>
+            <li>fill(): Fills the current drawing (path)</li>
+            <li>...</li>
+          </ul>
+          <p>Methods for transforming drawing in a canvas element</p>
+          <ul>
+            <li>scale(): scales the current drawing bigger or smaller</li>
+            <li>...</li>
+          </ul>
+          <p>Properties related to text</p>
+          <ul>
+            <li>font: current font</li>
+            <li>textAlign: current alignment</li>
+            <li>...</li>
+          </ul>
+          <p>Methods related to text in canvas</p>
+          <ul>
+            <li>fillText(): Draws filled text on canvas</li>
+            <li>...</li>
+          </ul>
+          <p>
+            To draw several shapes on the same canvas employ the save() and restore() methods.
+          </p>
+<pre><code>function drawSomething(context) {
+  // Save default context before changing properties that only apply to this drawing.
+  context.save();
+
+  // Change properties and draw something.
+  // Enclose the drawing in the begin and close path methods.
+  context.beginPath();
+  ...
+  // Close creates a path from the current point back to the starging point.
+  context.closePath();
+
+  // Restore the saved context
+  context.restore();
+}</code></pre>
+          <p><code>context.fillStyle = "green";</code> is used in conjunction with the <code>context.fill();</code> method<br>
+          </p>
+          <p>Controling the width of the canvas by checking the device width</p>
+<pre><code>function resizeGraph() {
+  if ($(window).width() < 700) {
+    $("#canvasIdOne").css({ "width": $(window).width() - 50) });
+  }
+}</code></pre>
+
+          <h4>JavaScript Window Location Object</h4>
+          <p>The <code>window.location</code> object holds the current page address and can be used to redirect to another page<br>
+          <code>var currentLocation = window.location;</code><br>
+          <code>window.location = "https://..."</code><br>
+          <code>$(location).attr("href", "#pageId");</code> on multi-page app
+        </p>
+
+        <h4>Create Launch Icon for Mobile Site</h4>
+        <p>
+          If we want to simulate the look and feel of a native app, we want to create an icon on the home screen of the device that will open a browser and take them to our URL<br>
+          This is done by the user and the instructions will be based on the browser and OS.<br>
+          Safari and iOS will let you click the share button and add to Home Screen button.
+        </p>
+
+        <h4>Running App Locally without Internet</h4>
+        <p>
+          Add the manifest attribute to the html tag in order to have each page cached on the local device for use later when the device is not connected to the internet<br>
+          The value is the file to save each page to. It ensures we save all the dependent files such as images, css, videos, etc..<br>
+          appchache file extension is the recommended extension.<br>
+          <code>&lt;html lang=en manifest="manifest.appcache"&gt;</code><br>
+          The web server should be configured to return manifest files with the MIME-type "text/cache-manifest"<br>
+          The manifest should be in the same directory as the web page and contain all the files that should be downloaded to run the app locally.
+        </p>
+<pre><code>CACHE manifest
+#version 1
+
+index.html
+
+css/bootstrap.css
+...
+
+scripts/someScript.js
+...
+</code></pre>
+
+          <h4>RGraph is a Library used to draw pretty graphs</h4>
+        </section>
+
+      </section> <!-- End of Expandable Notes section -->
 
         <button type="button" class="collapse-button">Title of Note</button>
         <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
@@ -852,11 +1816,11 @@ cell2.innerHTML = "Value two";</code></pre>
           </ul>
           <p>
             Introduction to code...<br>
-<pre><code>&lt;tag&gt;
-  &lt;tag"&gt;
+        <pre><code>&lt;tag&gt;
+        &lt;tag"&gt;
 
-  &lt;/tag&gt;
-&lt;/tag&gt;</code></pre>
+        &lt;/tag&gt;
+        &lt;/tag&gt;</code></pre>
           </p>
         </section>
 
