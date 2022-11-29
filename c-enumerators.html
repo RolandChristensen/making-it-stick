@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!--
+Use this template to create new "flashcard/notes" pages.
+
+Replace the template text on the fronts and backs of cards with the question and answer.
+
+To create a bunch of cards, copy and paste the flashcard-frame section over and over again. To avoid the need to copy the flashcard-frame section from the original template, always keep at least one flashcard-frame section template.
+
+For the notes section replace the
+
+- Roland Christensen 2022-06-10
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>C, C++, C# Enumerators Flash Cards</title>
+
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/notes-section.css">
+    <link rel="stylesheet" href="css/code.css">
+
+    <script src="js/notes.js"></script>
+  </head>
+
+  <body onload="OnBodyLoad();">
+    <header>
+
+    </header>
+
+    <main>
+      <h1>Enumerators Flashcards</h1>
+
+      <div class="flashcards-grid">
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is the default value of an enumerator?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The default value is the first value in the list.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>How would you use an enumerator to check if a variable has been set or not?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Use the default value and set it to &quot;Undefined&quot; to indicate it has not been set. Use switch statements in code and have a &quot;case&quot; statement for &quot;Undefined&quot; for error checking.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What exception should you use in a switch &quot;default&quot; section to indicate the value passed was not handled in the &quot;case&quot;.</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Use a ArgumentOutOfRangeException to indicate the value is out of the range of values in the &quot;case.&quot;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>How would you create an enumerator to use in place of a boolean value.</p>
+
+                  <p>Why would you do this?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>
+<pre><code>public enum IsGoodIdea
+{
+    Undefined,
+    False,
+    True
+}
+</code></pre>
+                    Use this so you know if the variable has been set or not.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Write a switch to handle the enumerator from the previous flashcard. Use a switch statement.</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>
+<pre><code>switch (isGoodIdea)
+{
+    case IsGoodIdeaEnum.False:
+        return DoThis();
+    case IsGoodIdeaEnum.True:
+        return DoThat();
+    case IsGoodIdeaEnum.Undefined:
+        throw new ArgumentException("Parameter not set.");
+    default:
+        throw new ArgumentOutOfRangeException(
+          "The switch did not have a case for the value.");
+}</code></pre>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Write a switch to handle the enumerator from the previous flashcard. Use a switch expression.</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>
+<pre><code>return isGoodIdea switch
+{
+    IsGoodIdeaEnum.False => DoThis(),
+    IsGoodIdeaEnum.True => DoThat(),
+    IsGoodIdeaEnum.Undefined => throw new ArgumentException(
+      "Parameter not set."),
+    _ => throw new ArgumentOutOfRangeException(
+      "The switch did not have a case for the value.")
+};
+</code></pre>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+      </div> <!-- End of Flash Cards Grid section -->
+
+      <section class="notes-section">
+        <h2>Notes On Flashcard Topics</h2>
+
+        <button type="button" class="collapse-button">Enumerators</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Enumerators</h3>
+
+          <p>Use enumerators to outline a list of known values for a variable. For example a list of chairs: recliner, office, folding, etc.. Rather than using a string, which could introduce errors use an enumerator to enforce valid values. A good example I use professionally, is an enumerator for the environments code goes through before making it into production.
+<pre><code>public enum EnvironmentEnum
+{
+  Undefined,
+  Dev,
+  Test,
+  Prod
+}
+</code></pre>
+          Start each enumerator with the default value. If the variable is not set, it will default to the first in the list. In this case it will be &quot;Undefined&quot; and we can throw errors if it should be set but was not. This is a good argument for using an enumerator instead of the default bool. Boolean in lots of languages only has two values true or false and most of them default to false. You cannot tell if the variable has never been set if you get a false, you have to assume the value is an actual false. If you use an enumerator, however, you will know if it has not been set or if the value is meant to be false.
+<pre><code>public enum IsChairEnum
+{
+  Undefined,
+  True,
+  False
+}
+</code></pre>
+          It is usually a good idea to use enumerators in conjunction with switch statements that hold all of the possible values of the switch. The switch helps to identify any errors in the future if you add or subtract values from the enumerator. The compiler will throw errors if you remove a value from an enumerator and you will flag errors at runtime if you add a value to the enumerator and forget to check all the places it is used. The &quot;default&quot; of the &quot;case&quot; will throw an exception if none of the &quot;case&quot; statements match the value passed.
+<pre><code>switch (environment)
+{
+    case EnvironmentEnum.Dev:
+        return new Uri("https://authservice.dev.com/");
+    case EnvironmentEnum.Test:
+        return new Uri("https://authservice.test.com/");
+    case EnvironmentEnum.Prod:
+        return new Uri("https://authservice.Prod.com/");
+    case EnvironmentEnum.Undefined:
+        throw new ArgumentException(
+            "The parameter was not set before the switch.");
+    default:
+        throw new ArgumentOutOfRangeException(
+            "The switch did not have a case for the value.");
+}</code></pre>
+          C# Switch Expression
+          </p>
+<pre><code>return environment switch
+{
+    EnvironmentEnum.Beta => new Uri("https://service.beta.com/"),
+    EnvironmentEnum.Test => new Uri("https://service.test.com/"),
+    EnvironmentEnum.Prod => new Uri("https://service.Prod.com/"),
+    EnvironmentEnum.Undefined => throw new ArgumentException(
+        "The parameter was not set before the switch."),
+    _ => throw new ArgumentOutOfRangeException(
+        "The switch did not have a case for the value.")
+};
+</code></pre>
+
+
+        </section>
+
+        <button type="button" class="collapse-button">Title of Note</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Below are notes on ...</h3>
+          <p>Take notes and drop in here...</p>
+          <ul>
+            <li>A quick note.</li>
+            <li>Another quick note.</li>
+          </ul>
+        </section>
+
+      </section> <!-- End of Expandable Notes section -->
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+  </body>
+</html>
