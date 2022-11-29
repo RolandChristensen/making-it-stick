@@ -40,7 +40,7 @@ Notes on asynchronous programming based on MSDN documentation dated 08/04/2022.
                 </div>
 
                 <div class="center-left">
-                  <p>Why is the sky blue in the day?</p>
+                  <p>What is the Task Asynchronous Programming Model?</p>
                 </div>
               </div>
 
@@ -51,7 +51,7 @@ Notes on asynchronous programming based on MSDN documentation dated 08/04/2022.
                 </div>
 
                 <div class="center-left">
-                  <p>Because black was already taken!</p>
+                  <p>It is an abstraction that makes asynchronous code look synchronous. This is intended to make programming asynchronous code easier.</p>
                 </div>
               </div>
             </div>
@@ -69,7 +69,7 @@ Notes on asynchronous programming based on MSDN documentation dated 08/04/2022.
                 </div>
 
                 <div class="center-left">
-                  <p>What is your question?</p>
+                  <p>What is a Task in C#?</p>
                 </div>
               </div>
 
@@ -80,7 +80,7 @@ Notes on asynchronous programming based on MSDN documentation dated 08/04/2022.
                 </div>
 
                 <div class="center-left">
-                  <p>The answer to the question.</p>
+                  <p>A Task is code to be executed asynchronously representing ongoing work. The task is started and runs in the background while the code continues.</p>
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@ Notes on asynchronous programming based on MSDN documentation dated 08/04/2022.
           <h3>Overview</h3>
           <p>
             <ul>
-              <li>Task asynchronous programming model (TAP): an abstraction that makes asynchronous code look synchronous for ease of reading.</li>
+              <li>Task Asynchronous Programming model (TAP): an abstraction that makes asynchronous code look synchronous for ease of reading.</li>
               <li>Some code returns a "Task" representing ongoing work.</li>
               <li>Asynchronous programming enables tasks to continue in the background while you start something else.</li>
               <li>I am going to use the example of an average work day. Starting my day I will do several tasks. Check email, attend meeting, and run automated regression tests.</li>
@@ -177,7 +177,7 @@ Notes on asynchronous programming based on MSDN documentation dated 08/04/2022.
             </ul>
           </p>
           <p>
-            Write asynchronous code by default adding "async" to methods, return "Task&lt;TResult&gt;." Put an "await" in front of the method calls. Once you get in the habit it is nothing. Finally, start to notice when you can lose the "await" to speed things up.<br>
+            Write asynchronous code whenever possible, adding "async" to methods and return "Task&lt;TResult&gt;." There is overhead so, do not use "async" unless you know you can run code asynchronously.<br>
             Convention says you should append Async to the end of asynchronous methods. (Example: public Task&lt;Email&gt; CheckEmailAsync() {...})
           </p>
           <p>
@@ -376,6 +376,18 @@ public static async Task<User[]> GetUsersAsync(IEnumerable<int> userIds)
                   <td>Thread.Sleep</td>
                 </tr>
               </table>
+            </li>
+            <li>Consider returning ValueTask instead of Task. Task is a reference type, which allocates an object with overhead. If the results of a method are cached or run synchronously, the additional overhead is wasteful especially if within a tight loop.</li>
+            <li>Consider using ConfigureAwait(false). Make sure you know what you are doing and then consider configuring the awaiter on your Task instance.</li>
+            <li>Write less stateful code: Don't rely on the state of global objects or execution of certain methods. Use return values of methods.<br>
+              <ul>
+                <li>Code will be easier to reason about.</li>
+                <li>Code will be easier to unit test.</li>
+                <li>Mixing async with synch code is easier.</li>
+                <li>Race conditions can be easily avoided.</li>
+                <li>Coorination of async code is easier.</li>
+              </ul><br>
+            This helps to achieve <strong>Referential Transparency</strong> in your code.
             </li>
           </ul>
         </section>
