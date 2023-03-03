@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Docuement and test yourself on cloud technologies using the following flashcards and notes.
+Document and test yourself on cloud technologies using the following flashcards and notes.
 
 - Roland Christensen 2022-11-21
 -->
@@ -155,7 +155,7 @@ Docuement and test yourself on cloud technologies using the following flashcards
         <section class="collapsible-section">
           <h3>The Cloud</h3>
           <p>
-            A metaphore for the internet often represented by an image of a cloud.<br>
+            A metaphor for the internet often represented by an image of a cloud.<br>
             <br>
             <strong>Cloud Computing</strong>: using remote services to accomplish what used to be done on a single computer. Applications, networks, servers, services, storage, etc, in cyberspace where anybody can access them from any computer (if authorized).<br>
             They can be provisioned quickly and released when done using, with little to no interaction.<br>
@@ -169,7 +169,7 @@ Docuement and test yourself on cloud technologies using the following flashcards
             Recently, many new models have cropped up:
             <ul>
               <li>Analytics as a Service (AnaaS)</li>
-              <li>API as a Seervice (AaaS)</li>
+              <li>API as a Service (AaaS)</li>
               <li>Big Data as a Service (BDaaS)</li>
               <li>Business Process as a Service (BPaaS)</li>
               <li>Code as a Service (CaaS)</li>
@@ -189,7 +189,7 @@ Docuement and test yourself on cloud technologies using the following flashcards
             <li>Cost: Upfront costs are eliminated, so you can focus on the return on investment. Look for a cost estimator on your cloud provider.</li>
             <li>Easy Access: access anywhere with an internet connection.</li>
             <li>Maintenance: Infrastructure maintenance is not your problem, unless they fail to do their job well.</li>
-            <li>Multitenancy: You share the cost with other tenants using the resources.</li>
+            <li>Multi-tenancy: You share the cost with other tenants using the resources.</li>
             <li>Reliability: redundancy across multiple locations ensures you are up and never lose data.</li>
             <li>Scalability and Elasticity: You can scale upwards (increase the size of provisioned resources) and scale outwards (replication) dynamically to meet your demands. Scaling down, during slow periods for example, is also automated.</li>
             <li>Security: Cloud service providers handle the difficulties of security instead of you.</li>
@@ -198,7 +198,7 @@ Docuement and test yourself on cloud technologies using the following flashcards
           <h3>Cloud Deployment Models</h3>
           <ul>
             <li>Private Cloud: designated and operated solely for one organization. Hosted internally or externally and managed by internal teams. Search for OpenStack.</li>
-            <li>Public Cloud: Open to the public after swipping your credit card, of course. AWS, Google Cloud, Azure, etc..</li>
+            <li>Public Cloud: Open to the public after swiping your credit card, of course. AWS, Google Cloud, Azure, etc..</li>
             <li>Hybrid Cloud: Both public and private cloud combined. You can host private info in your private cloud and offer public services on that information from the public cloud. You could also use the public clouds to scale up during demanding times.</li>
           </ul>
           <p>
@@ -207,9 +207,16 @@ Docuement and test yourself on cloud technologies using the following flashcards
           <ul>
             <li>Community Cloud: Formed by multiple organizations sharing a the same infrastructure.</li>
             <li>Distributed Cloud: Connecting distributed systems in a single network.</li>
-            <li>Multicloud: A single organization using multiple cloud providers. A means of avoiding vendor lock-in (vendor dependence).</li>
+            <li>Multi-cloud: A single organization using multiple cloud providers. A means of avoiding vendor lock-in (vendor dependence).</li>
             <li>Poly Cloud: A single organization uses multiple cloud providers to leverage specific resources from each.</li>
           </ul>
+
+          
+        </section>
+
+        <button type="button" class="collapse-button">Virtualization</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
 
           <h3>Virtualization</h3>
           <p>
@@ -218,33 +225,2226 @@ Docuement and test yourself on cloud technologies using the following flashcards
             Hypervisor: the host machine runs this to create multiple VMs isolated from each other, with virtual resources.<br>
             Two main categories of hypervisors:
             <ol>
-              <li>Type 1 hypervisor (native or bare-netal): Runs directly on top of the host machine's hardware, without the need of a host OS. Enterprise settings use this type: AWS Nitro, IBM z/VM, Microsoft Hyper-V, Nutanix AHV, Oracle VM Server for SPARC, Oracle VM Server for x86, Red Hat Virtualization, VMware ESXi, Xen.</li>
+              <li>Type 1 hypervisor (native or bare-metal): Runs directly on top of the host machine's hardware, without the need of a host OS. Enterprise settings use this type: AWS Nitro, IBM z/VM, Microsoft Hyper-V, Nutanix AHV, Oracle VM Server for SPARC, Oracle VM Server for x86, Red Hat Virtualization, VMware ESXi, Xen.</li>
               <li>Type-2 Hypervisor (hosted): Runs on top of the host's OS. End-user is the typical consumer: Parallels Desktop for Mac, VirtualBox, Virtual Player, VMware Workstation.</li>
-              <li>Hybrid type-1 and type-2: Linux kernal modules that act as both type-1 and type-2 hypervisors at the same time: KVM, bhyve.</li>
+              <li>Hybrid type-1 and type-2: Linux kernel modules that act as both type-1 and type-2 hypervisors at the same time: KVM, bhyve (BSD Hypervisor).</li>
             </ol>
             Most modern CPUs allow hypervisors to virtualize physical hardware and <strong>nested virtualization</strong>, which enables VMs inside VMs.<br>
             <br>
-            Emulators: allow software to run that was developed for different hardware. Quick EMUlator (QEMU) is one such emulator that allows you to run any OS on any archetecture, or for programs to run on originally unsupported systems.<br>
+            Emulators: allow software to run that was developed for different hardware. Quick EMUlator (QEMU) is one such emulator that allows you to run any OS on any architecture, or for programs to run on originally unsupported systems.<br>
             Combining QEMU with KVM allows for amazing flexibility.
           </p>
 
-          <h3>Kernal-based Virtual Machine (KVM)</h3>
+          <h3>Kernel-based Virtual Machine (KVM)</h3>
           <p>
             A virtualization solution for Linux on x86 (It has been ported to FreeBSD, S/390, PowerPC, IA-64, and ARM). Converts the kernel into a hypervisor capable of managing guest VMs. Modern processors such as Intel VT and AMD-V need hardware virtualization extensions available and enabled for processors to support KVM.<br>
             Hardware emulation (QEMU) runs on a single thread to handle I/O requests to the host on behalf of the guest.<br>
             The KVM guest has virtual CPUs etc.. (kvm.ko runs in the kernel and handles requests by the guest)<br>
-            Allows for device abstraction of NIC, disk, but not the processor. It exposes /dev/kvm interface that can be used by an external userspace host for emulation instead. (QEMU for example)<br>
+            Allows for device abstraction of NIC, disk, but not the processor. It exposes /dev/kvm interface that can be used by an external user-space host for emulation instead. (QEMU for example)<br>
             KVM supports nested hosts.<br>
             Supports hot pluggable devices such as CPUs and PCI devices.<br>
-            Overcommitting is possible with KVM. This is handled by dynamically swapping unavailable resources needed from another guest that is not using the type of resource allocated. You can allocate more resources than are available on the system. Any VM is not going to run at 100% of allocated resources all the time, so we can share amoung many VMs.<br>
+            Over-committing is possible with KVM. This is handled by dynamically swapping unavailable resources needed from another guest that is not using the type of resource allocated. You can allocate more resources than are available on the system. Any VM is not going to run at 100% of allocated resources all the time, so we can share among many VMs.<br>
+            <br>
+            <strong>virt-manager (Virtual Machine Manager)</strong>: GUI used to manage virtual machines on linux. <br>
+            Search for virt-manager to find their documentation. There is not a lot there.<br>
+            <strong>Install</strong><br>
+            <ol>
+              <li>Search for "virt-manager" or "Virtual Machine Manager" in snap store</li>
+              <li>Install</li>
+              <li>It expects a daemon to be running, so you will not be able to use this immediately.</li>
+              <li>Restart and the daemon will launch. (alternatively: start-stop-daemon (something new to research))</li>
+            </ol>
+            You can use virt-manager to create new VMs with ISO, network install, PXE, or import an existing disk image.<br>
+            <br>
+            This is open source, so you can modify it if that makes you happy.<br>
+            It is cheaper than VMware or the other VM managers you may want to use.<br>
+            It can host Linux, BSD, Solaris, Windows, Mac OS, ReactOS, and Haiku.<br>
+            It provides para-virtualization of Ethernet cards, disk I/O controllers, and graphical interfaces. Para-virtualization is designed to improve performance.<br>
+            It is highly scalable<br>
+            It employs advanced security features.
+          </p>
+
+          <h3>VirtualBox</h3>
+          <p>
+            Useful for hosting on Windows, Linux, Mac OS X and Solaris. Hosts Windows, Linux, Solaris, FreeBSD, and DOS. Officially, only a select few of the most common guest OSes are supported and optimized to run on VirtualBox.<br>
+            <br>
+            It is open source and free to use.<br>
+            It provides two virtualization choices: software-based virtualization and hardware-assisted virtualization.<br>
+            Easy to use multi-platform type-2 hypervisor.<br>
+            It provides the ability to run virtualized applications side-by-side with normal applications.<br>
+            It provides teleportation - live migration (Migrate a windows installation to new hardware)
+          </p>
+
+          <h3>Vagrant</h3>
+          <p>
+            Virtual Machines in a development environment allows us to use a reproducible environment, isolate projects from each other, share the environment, keeping dev and prod in sync, and consistently use the same VM on multiple dev operating systems.<br>
+            Vagrant helps to manage multiple VMs build and configuration.<br>
+            Runs on Linux, Mac, and Windows.<br>
+            It is open source and extensible.<br>
+            Supports Docker, so you can use it for VMs and containers.<br>
+            <br>
+            <strong>Vagrantfile</strong><br>
+            Configuration file indicating how VMs are configured and provisioned (creation of resources for use). It uses Ruby syntax. For use with a set of VMs, with Machine type, image, networking, provider-specific information, and provisioner details.<br>
+            There should be a single vagrantfile per project, but it is portable.<br>
+            <br>
+            <strong>Example File:</strong><br>
+<code><pre>  # -*- mode: ruby -*-
+  # vi: set ft=ruby :
+   
+  Vagrant.configure("2") do |config|
+        # Every Vagrant development environment requires a box. 
+        # You can search for boxes at 
+        # https://app.vagrantup.com/boxes/search
+        config.vm.box = "ubuntu/focal64"
+   
+        # Set the HOSTNAME of the guest VM, the name if you where to SSH into the box
+        config.vm.hostname = "vagrant-host"
+   
+        # Create a private network, which allows host-only access 
+        # to the machine using a specific IP
+        config.vm.network "private_network", ip: "192.168.56.100"
+   
+        # Vagrant VirtualBox provider specific VM properties
+        config.vm.provider "virtualbox" do |vb|
+             # Set VM name to be displayed in the VirtualBox VM Manager window
+             vb.name = "vagrant-vm"
+             # Customize the amount of CPUs on the VM
+             vb.cpus = 2
+             # Customize the amount of memory (2GB RAM) on the VM
+             vb.memory = 2048
+        end
+   
+        # Share an additional folder to the guest VM. The first argument is
+        # the path on the host to the actual folder. The second argument is
+        # the path on the guest to mount the folder. And the optional third
+        # argument is a set of non-required options.
+        # config.vm.synced_folder "../data", "/vagrant_data"
+   
+        # Vagrant shell provisioner to automatically
+        # install packages 'vim', 'curl', 'podman' 
+        config.vm.provision "shell", inline: &lt;&lt;-SCRIPT
+             sudo apt update
+             sudo apt install -y vim curl
+             . /etc/os-release
+             echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
+             curl -L "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key" | sudo apt-key add -
+             sudo apt update
+             sudo apt -y upgrade
+             sudo apt install -y podman
+             echo NGINX PODMAN CONTAINER RUNNING ON VIRTUALBOX VM &gt; /vagrant-demo
+             echo Provisioned at: &gt;&gt; /vagrant-demo
+             date &gt;&gt; /vagrant-demo
+        SCRIPT
+   
+        # Vagrant Podman provisioner automatically installs Podman
+        # and then runs the 'nginx' image in a container
+        # (We have pre-installed Podman because of provisioner bugs), the install is in the shell provisioner above.
+        config.vm.provision "podman" do |p|
+             p.run "nginx"
+        end
+  end</pre></code>
+            The vagrant command reads the config file and other things like <strong>up, ssh, destroy</strong>. Sub commands like <strong>box and rdp</strong> allow you to work with box images and connect via RDP. Go to their docs for a full listing.<br>
+            <br>
+            <strong>Boxes</strong><br>
+            The package format for the Vagrant environment. An image is used to instantiate VMs and is indicated in the vagrantfile. If it is not available locally, you can choose to download it from the central image repository. Vagrant Cloud box repository, provided by HashiCorp is a public provider.<br>
+            <br>
+            <strong>Providers</strong><br>
+            The underlying hypervisors used to provision VMs or containers. The default Vagrant provider is VirtualBox, but it supports Hyper-V, VMware, and Docker out of the box. You can customize providers such as AWS as well.<br>
+            <br>
+            <strong>Synced Folders</strong><br>
+            Allows the syncing of folders on the host with the guest. The line in the config, # config.vm.synced_folder "../data", "/vagrant_data", syncs ../data folder on the host with the /vagrant_data on the guest.<br>
+            <br>
+            <strong>Provisioning</strong><br>
+            Provisioners allow us to automate the install of software and make configuration changes after boot, as part of the <code>vagrant up</code>. There are many types of provisioners available, such as File, Shell, Ansible, Puppet, Chef, Docker, Podman, and Salt.<br>
+            The following will use the "shell" provisioner to install vim and curl.<br>
+<pre><code>config.vm.provision "shell", inline: &lt;&lt;-SCRIPT
+  sudo apt update
+  sudo apt install -y vim curl
+SCRIPT</code></pre>
+            <br>
+            <strong>Plugins</strong><br>
+            Vagrant has a large number of plugins to add functionality using an API.<br>
+            <br>
+            <strong>Networking</strong><br>
+            Provides lots of networking options for port forwarding, network connectivity, and network creation. Enables cross-platform portability, so you can use the same vagrantfile to provision a VirtualBox VM and a VMware VM.<br>
+            <br>
+            <strong>Multi-Machine</strong><br>
+            A vagrantfile can describe multiple VMs in a "multi-machine" environment, intended to work together or linked between themselves.<br>
+            <br>
+            <strong>vagrant up</strong><br>
+            Command to execute the vagrantfile in the current directory.<br>
+            <br>
+            <strong>vagrant status</strong><br>
+            A little information about what is currently running.<br>
+            <br>
+            <strong>vagrant ssh</strong><br>
+            Used to ssh into a machine. The command prompt will change to reflect the vagrant user on the host (vagrant@vagrant-host:~:).<br>
+            Verify the linux image requested is being used: <code>cat /etc/os-release</code><br>
+            Verify podman container is running: <code>sudo podman container ls</code>. Podman: A daemonless, open source, Linux native tool designed to make it easy to find, run, build, share, and deploy applications using Open Containers Initiative (OCI) containers and container images.<br>
+            nginx (engine x): is an HTTP server, reverse proxy server, mail proxy server, and a generic TCP/UDP proxy server.<br>
+            Check web server running by podman in container: First get the ip address - <code>sudo podman container inspect ??? | grep -i ipaddr</code> (??? is the first three letters of the container id)<br>
+            <code>curl {ip address}</code> will return HTML for the nginx web server.<br>
+            <code>exit</code> to get back the host.<br>
+            <br>
+            <strong>vagrant destroy</strong><br>
+            Forces the machine to stop running and end its life.<br>
+            <br>
+            In short, vagrant is very useful in multi-developer teams.
+          </p>
+        </section>
+
+        <button type="button" class="collapse-button">Infrastructure as a Service (IaaS)</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Intro</h3>
+          <p>
+            A cloud service model that provides on-demand physical and virtual computing resources, storage, network, firewall, and load balancers. IaaS uses hypervisors, such as Xen, KVM, VMware, ESXi, VMware ESXi, Hyper-V, or Nitro (a newer KVM-based lightweight hypervisor that is almost as fast as bare metal).<br>
+            This is the backbone of all other cloud services.
+          </p>
+
+          <h3>Amazon EC2</h3>
+          <p>
+            Amazon Web Services (AWS) has Amazon Elastic Compute Cloud (Amazon EC2) as part of its IaaS. It allows you to build reliable, flexible, and secure cloud infrastructure for applications and workloads. EC2 instances are VMs, provisioned on top of hypervisors that run directly on Amazon's physical infrastructure. You can manage resources via a console web interface or a command line interface for scripting. You can use the free tier of services for a limited time. EC2 uses type-1 hypervisors, such as Xen, KVM, and Nitro.<br>
+            <br>
+            When provisioning a Amazon EC2 instance, you are able to manage hardware profile, operating system image and software package, additional storage, the network attached to the instance, and firewall rules.<br>
+            Amazon Machine Images (AMI): pre-configured images with info needed to launch EC2 instances. Default images maintained by AWS, the user community, or custom images we create.<br>
+            Instance types determine the virtual hardware and is pre-configured with different compute, memory, and storage capabilities. The categories are:
+            <ul>
+              <li>General Purpose Instances</li>
+              <li>Optimized Instances</li>
+              <ul>
+                <li>Compute (CPU): CPU intensive apps (High-Performance computing (HPC), Machine Learning (ML), batch workloads, media transcoding)</li>
+                <li>Accelerated Computing (GPU): Graphically intensive, scientific, and engineering applications, and ML</li>
+                <li>Memory (RAM): in memory databases, in-memory caches, and real-time data processing</li>
+                <li>Storage (SSD): data-intensive workloads and distributed file systems (file systems spread across multiple machines (Shares))</li>
+              </ul>
+            </ul>
+            Other options include:
+            <ul>
+              <li>Virtual Private Cloud (VPC) for network isolation</li>
+              <li>Security Groups for VPC networks to control EC2 inbound/outbound traffic</li>
+              <li>Amazon Elastic Block Store (EBS) for persistent storage attachment</li>
+              <li>Dedicated hosts to provision instances on a physical machine reserved for our use</li>
+              <li>Elastic IP to remap a Static IP address automatically</li>
+              <li>CloudWatch for monitoring resources and applications</li>
+              <li>Auto Scaling to dynamically resize resources</li>
+            </ul>
+            <br>
+            <strong>AWS Management Console</strong><br>
+            <ol>
+              <li>Navigate to <code>Services > Compute > EC2</code> to configure and manage EC2 instances.</li>
+              <li>Find and click the "Launch instance" menu</li>
+              <li>Select "Launch Instance" from the menu</li>
+              <li>Find and click "Select" button on an AMI from the choices displayed (Find latest Ubuntu using the search or other means for this tutorial)</li>
+              <li>Choose the instance type. Look through list to find the desired number of processors, ram, etc.. (The inexpensive ones are in the General Purpose Family)</li>
+              <li>You can further customize by pushing the "Next: Configure Instance Details" or simply run the instance with the "Review and Launch Instance" button (Lets configure it for this tutorial)</li>
+              <li>After modifying anything here you can again click "Review and Launch" or further modify by clicking the "Next: Add Storage" button. (Click Next)</li>
+              <li>You can change the size of a disk or add another volume here</li>
+              <li>Click the "Next: Add Tags" button</li>
+              <li>Tags are key value pairs you may want to use to organize your instances</li>
+              <li>Click the "Next: Configure Security Group" button</li>
+              <li>Define firewall rules here to restrict access or allow in case of a web server you want publically accessible
+                <ul>
+                  <li>Click "Add Rule" button</li>
+                  <li>Protocol: All</li>
+                  <li>Port Range: 0-65535 (all)</li>
+                  <li>Source: Custom 0.0.0.0/0 (all)</li>
+                </ul>
+              </li>
+              <li>Finally, click the "Review and Launch" button</li>
+              <li>Review the page and then click the "Launch" button</li>
+              <li>
+                The "Select an existing key pair or create a new key pair" pop up appears. These will be the public and private keys used to secure access to the EC2 instance without a password
+                <ol>
+                  <li>Select "Create a new key pair"</li>
+                  <li>Enter a name (something like "company-app-ec2")</li>
+                  <li>Click "Download Key Pair" button. This is critical because this is your only opportunity to download it and without it you can't get into the instance. Save the *.pem file to a place you will not forget.</li>
+                  <li>Click the "Launch Instances" button. It will take a while for the instance to be provisioned.</li>
+                </ol>
+              </li>
+              <li>Click the "View Instances" button. This takes you to the "Instances" page</li>
+              <li>Click "Connect" button. The "Connect to your instance" pop up appears. This has the connection methods and information about connecting.</li>
+              <li>Click "EC2 Instance Connect" radio button</li>
+              <li>Using the default username, click the "Connect" button</li>
+              <li>You will be connected via SSH. A few things to do:</li>
+              <ul>
+                <li>Test the correct OS was selected: cat /etc/os-release</li>
+                <li>Test the resources asked for were delivered</li>
+                <li>Check the storage size</li>
+              </ul>
+              <li>Type "Exit" to leave the SSH session</li>
+              <li>
+                The "Actions" menu has other actions you can do:
+                <ul>
+                  <li>You can change the state: Stop, Reboot, Terminate (delete the instance, all of its data and associated volumes, so terminate with caution)</li>
+                </ul>
+                Select "Instance state > Terminate"
+              </li>
+            </ol>
+            <br>
+            Creating a single instance or set of instances this way is not very efficient, so we also have Launch Templates.<br>
+            <br>
+            <strong>Launch Templates</strong><br>
+            A launch template is an instance configuration that can be saved, modified, reused, or shared with others.<br>
+            <ol>
+              <li>Go the the console</li>
+              <li>On the left hand pane select <code>Instances > Launch Templates</code></li>
+              <li>Click "Create launch template" button. The configuration options resemble what you saw in the EC2 instance properties</li>
+            </ol>
+            You will see the template in your console and you can run it like an instance.
+          </p>
+
+          <h3>Azure</h3>
+          <p>
+            Another cloud service provider by Microsoft. Provides products in many domains, such as compute, web and mobile, data and storage, Internet of Things (IoT), and many others.<br>
+            The Azure Virtual Machine service provisions and manages compute resources, from a portal or the Azure Cloud Shell for scripting.<br>
+            Uses Azure Hypervisor, a customized version of Microsoft Hyper-V type-1 hypervisor, promising performance gains over the others.<br>
+            There are free options available to allow you to test Azure out.<br>
+            <br>
+            Of course, you have the same options for images and resources you have with AWS.<br>
+            Azure Marketplace has pre-configured images for use.<br>
+            There are general purpose VMs and specialized VMs for use.<br>
+            <br>
+            They are in competition with AWS, so the offerings are pretty much the same.<br>
+            <br>
+            <strong>Creating a VM in Azure</strong><br>
+            <ol>
+              <li>From the portal at azure.microsoft.com dashboard click on the Virtual Machines icon under Azure services heading or from the right pane, select the All Services icon > Compute > Virtual Machines.</li>
+              <li>Push buttons to see your options</li>
+              <li>Notice the prices populate as you choose resources. Prices are based on a full month of running 24 x 7. You can shut it down when not in use to save money.</li>
+              <li>Use SSH public key for security.</li>
+              <li>Open ports for http and https for web server</li>
+              <li>Navigate through the disk tab to edit type and encryption and add any data disks</li>
+              <li>The networking tab allows us to configure VPN and public IP of the machine</li>
+              <li>Management tab allows us to configure monitoring, shutdown behavior, and backup policy</li>
+              <li>Advanced tab lets us set up a startup script, manage physical hosts, and region</li>
+              <li>You can add tags to manage a lot of VMs</li>
+              <li>You will need to download the private key for authentication. Take care to put this in a safe place where you will remember it.</li>
+              <li>Once provisioned, click the "Go to the resource" button</li>
+              <li>The management dashboard for the VM appears with tons of useful information and options</li>
+              <li>At the top of the dashboard click the "Connect" dropdown and "SSH" from the options. It will give you instructions on how to connect via ssh</li>
+              <li>Run tests to verify OS and any other options you selected</li>
+              <li>Make sure to go back to the dashboard and delete the VM to save yourself from being charged</li>
+            </ol>
+            This is fine for a single VM, but is not ideal for enterprise solutions needing scalability and replication. For this Azure provides "scale sets"<br>
+            <strong>Virtual Machine Scale Sets</strong><br>
+            <ol>
+              <li>Select "All Services" from the left hand pane</li>
+              <li>Select "Compute" from the Categories list</li>
+              <li>Click "Virtual machine scale sets" icon</li>
+              <li>These allow you to scale up dynamically or manually as needed. The set up is similar to the instance configuration</li>
+            </ol>
+          </p>
+
+          <h3>DigitalOcean Droplet</h3>
+          <p>
+            Another cloud service provider for both individuals and enterprises. Available worldwide with application deployments and scaling. Boasts the same things as the others as far as I can tell.<br>
+            <strong>Droplets</strong>: what DigitalOcean calls virtual compute instances. Uses KVM type-1 hypervisor, with SSD as primary storage.<br>
+            You can sign up for free for a limited time.<br>
+            The droplets are all Linux based OSs from all the major distributions and can be configured to run applications such as Docker, LAMP, MongoDB, MySQL, and Node.js.<br>
+            <strong>Services and Features</strong>
+            <ul>
+              <li>Monitoring</li>
+              <li>Cloud Firewalls</li>
+              <li>Backups</li>
+              <li>Snapshots used as restore points</li>
+              <li>Team management for collaboration</li>
+              <li>Scalable secure storage</li>
+              <li>Load balancers</li>
+              <li>Floating IPs used when assigning IPs to Droplets to release when no longer needed</li>
+              <li>APIs for programmatic Droplet launching</li>
+              <li>Networking features such as DNS, IPv6, Private Networking</li>
+            </ul>
+            <br>
+            <strong>Provision a VM on DigitalOcean</strong><br>
+            <ol>
+              <li>From the DigitalOcean console, click the "Create" dropdown button</li>
+              <li>Select the "Droplets" menu item. The Create Droplets page will appear with server options and price plans. There are reasonable priced plans hidden that will require you to hit the left arrow to find.</li>
+              <li>Choose OS, price, region, etc.. You can choose to enable a VPC to give it a private IP for communication along the same private network on the cloud.</li>
+              <li>Create a root password for authentication, since you don't have a SSH key.</li>
+              <li>You can add automatic backups, if desired.</li>
+              <li>Click the "Create" button and wait for it to complete</li>
+              <li>Click the newly created VM to see its dashboard. There is a toggle to switch it on and off as well as a lot of other useful things.</li>
+              <li>Click the Console link to open a terminal</li>
+              <li>Log in as root</li>
+              <li>Test it by checking configured OS and anything else you want to check</li>
+              <li>Exit and close console window</li>
+              <li>Explore the options in the dashboard before finding the "Destroy" page and destroying your new toy. Make sure you check all the boxes for the VM and any associated volumes you may have added.</li>
+            </ol>
+            <br>
+            There are one-click options to install application stacks such as CloudBees, Jenkins, LAMP, Docker, Kubernetes, NGINX, and Wordpress.
+          </p>
+
+          <h3>Google Compute Engine (GCE)</h3>
+          <p>
+            Google Cloud Platform (GPC) is the foundational platform for all Google cloud services including Google Compute Engine (GCE). GCE instances are VMs on top of hypervisors (KVM type-1) that run on Googles physical infrastructure. You can use the "Google console" (web interface) or a CLI to scriptically manage resources.<br>
+            You can provision both Linux and Windows VMs on GCE.<br>
+            There is a free trial for initial testing.<br>
+            <br>
+            GCE offers different "Machine Types" that allow you to configure VMs for specific tasks, much like the other IaaS solutions presented here. The general categories being: general purpose, memory-optimized, compute optimized, accelerator-optimized (ML, HPC, GPU-dependent), and shared-core for cost-effective light-weight applications.<br>
+            There are public images as well as the ability to create your own images.<br>
+            Additional services include additional storage, network VPC and firewalls for isolation, snapshots, cloud security scanner, health checks, sole-tenant nodes for dedicated physical compute engines, network endpoint group representing collections of IP addresses for load balancing, firewalls, and logging purposes.<br>
+            <br>
+            <strong>Provisioning a VM on Google Cloud</strong><br>
+            <ol>
+              <li>After logging into Google Cloud we find ourselves in the dashboard of the console</li>
+              <li>Click the navigation menu from the top left corner</li>
+              <li>In the "Compute" section hover over "Compute Engine" and click "VM Instances"</li>
+              <li>On the resulting page you can create or import VMs. Click "Create"</li>
+              <li>You are presented with many options to create a machine, from scratch, from a template, from an image, or from the marketplace. Click "New VM Instance</li>
+              <li>You will see many of the same options as you do in the other IaaS providers discussed here. Pick a name, choose a region near you or the client, decide what resources are needed, boot disk for OS, etc.. Note that the price automatically updates as you choose.</li>
+              <li>Click "Create"</li>
+              <li>There is a web terminal you can use to connect via ssh on the page you land on after the provisioning is done</li>
+              <li>You can test for the resources desired and exit on the command line</li>
+              <li>Close the ssh window (exit)</li>
+              <li>You can stop, pause, reboot, and delete the machine all on the same page, by selecting the VM and using the controls on the top of the page.</li>
+              <li>Go ahead and delete it</li>
+            </ol>
+            This is all good for a single VM, but you can also use Instance Groups and Instance Templates to create multiple VMs for reusability, shareability, scalability, and replication.<br>
+            <strong>Instance Template</strong>: useful for reuse of a pre-configured VM.<br>
+            <strong>Instance Group</strong>: create one or multiple VMs from one template and supports auto-scaling.
+          </p>
+
+          <h3>IBM Cloud</h3>
+          <p>
+            Similar to all the others. IBM Cloud Virtual Servers (VMs). While IBM cloud uses IBM z/VM and IBM PowerVM hypervisors, the users are allowed to choose between XenServer, VMware, and Hyper-V hypervisors when managing bare-metal instances. This kind of flexibility is unique to IBM Cloud.<br>
+            There is a free tier for trial period.<br>
+            There are four types of virtual servers:<br>
+            <ol>
+              <li>Public for multi-tenants</li>
+              <li>Dedicated for singe-tenants</li>
+              <li>Transient for ephemeral multi-tenants</li>
+              <li>Reserved for multi-tenants committed for a pre-specified term</li>
+            </ol>
+            Profiles specify the size and resources of the virtual server. There are general profiles and ones optimized for specific tasks like the other IaaS providers.<br>
+            Images are provided in Linux and Windows varieties and with different software packages.<br>
+            <br>
+            <strong>Create a VM (Virtual Server) on IBM Cloud</strong><br>
+            <ol>
+              <li>After logging in click "Create Resource" button</li>
+              <li>You will be taken to the catalog page, with options and a search box to find the ones not listed</li>
+              <li>Select "Services" from the right hand pane</li>
+              <li>Check the box "Compute" in the category list</li>
+              <li>Click the "Virtual Server" card on the page</li>
+              <li>Here is where you choose options and the summary and price will be displayed on the right hand pane. Select "Public Multi-tenant" type.</li>
+              <li>Continue to select host name, domain, placement group, location, resources, OS, add additional disks, and set network interface.</li>
+              <li>When you get to security groups, you will want to allow all inbound traffic on the private security group and allow all http and https on the public side for a web server and ssh if you want to administer via ssh.</li>
+              <li>Agree to agreement and click "Create"</li>
+              <li>You will be taken to the Devices page, where you will see your Virtual Server.</li>
+              <li>Expand the VM to see the properties</li>
+              <li>To administrate, you will need to do a few things. First, navigate ot the Passwords page via the left hand panel</li>
+              <li>You will see a root user and password. Hit the eyeball to see the password. You can add users on the same page using the "Add Credentials" button</li>
+              <li>Get the public IP address as well as the password so you can log in via SSH</li>
+              <li>In the upper right corner you will see an icon that represents a terminal (IBM Cloud Shell). Click it</li>
+              <li>At the prompt: "ssh root@{ip}</li>
+              <li>Type yes at the prompt</li>
+              <li>Type in your password for root at the next prompt. You should be logged in</li>
+              <li>Do any verification you wish once inside</li>
+              <li>Exit the VM and console</li>
+              <li>The Actions menu on the device page has a lot of options including the ability to delete the VM. Delete it</li>
+            </ol>
+          </p>
+
+          <h3>Oracle Cloud Infrastructure Technologies</h3>
+          <p>
+            Provides IaaS services similar to all the above. The Oracle Cloud Infrastructure Compute Virtual Machines are offered with Oracle Compute Units (OCPUs) to support many different needs. Supports nested virtualization using KVM on their servers.<br>
+            You will find a free tier for trial purposes<br>
+            <br>
+            They offer many options for general purpose to specialized hardware for different types of computing.<br>
+            You have choices of Linux and Windows as well as custom images.<br>
+            Low latency block storage for boot volumes<br>
+            High availability by distributing deployments in multi-regions, multi-availability domains or multi-fault domains, ensuring fault isolation, and low latency.<br>
+            <br>
+            <strong>Oracle Cloud Virtual Machine</strong><br>
+            <ol>
+              <li>Log into Oracle. You will end up on the Cloud Console page</li>
+              <li>Click the "Create a VM instance" card</li>
+              <li>You are taken to the Create Compute Instance page, where you can choose options much like the others.</li>
+              <li>To change the cpu and memory to a cheaper version, click the "Change Shape" button.</li>
+              <li>Choose an economical virtual machine</li>
+              <li>Oracle generates ssh keys for you so select the "Generate SSH Keys" radio button</li>
+              <li>Click the "Save Private Key" button and save the *.key file.</li>
+              <li>Saving the public key is optional, but save it anyways</li>
+              <li>Click the "Create" button. The Work Request page will open and as the VM is provisioned you will see information populate on the page. Once provisioned, you will see buttons at the top of the page for actions such as Stop, Reboot, Edit, and more. You will also see the IP and username that was created</li>
+              <li>To log in you will need your own software. On Linux, open a terminal</li>
+              <li>The key file downloaded needs to have more restrictive permissions. $chmod 400 *.key</li>
+              <li>If you list it with $ll you should see only a single "r" meaning readonly</li>
+              <li>To log in: $ssh -i {path to file}{filename}.key {username}@{ip}</li>
+              <li>Do your verifications</li>
+              <li>Exit</li>
+              <li>To delete the instance: Select More Actions > Terminate</li>
+            </ol>
+          </p>
+
+          <h3>OpenStack</h3>
+          <p>
+            To become your own cloud service provider, use OpenStack to build a cloud computing platform for both public and private clouds.<br>
+            The major components of Openstack are:
+            <ul>
+              <li>Nova: Compute service for resources bare metal, virtual, and containers.</li>
+              <li>Ironic: Bare metal provisioning service.</li>
+              <li>Cyborg</li>
+              <li>Swift</li>
+              <li>Cinder</li>
+              <li>Manila</li>
+              <li>Neutron: Networking service delivering Networking as a service (NaaS)</li>
+              <li>Octavia: Load balancer</li>
+              <li>Designate: DNS-as-a-service</li>
+              <li>Keystone: Identity service part of Shared Services, providing authentication, service discovery, and authorization. Supports LDAP, OAuth, OpenID Connect, SAML, and SQL.</li>
+              <li>Glance: Image service part of Shared Services, provides VM Image discovery, registration, and retrieval.</li>
+              <li>Heat</li>
+              <li>Senlin</li>
+              <li>Magnum: Container orchestration engine provisioning service. Part of Workload provisioning services provisions Docker Swarm, Kubernetes or Apache Mesos to run on a cluster of VMs or bare metal.</li>
+              <li>Sahara</li>
+              <li>Freezer: Backup, Restore, and Disaster Recovery service.</li>
+              <li>Horizon: Dashboard service for front end</li>
+              <li>Ceilometer: Metering and data collection service</li>
+              <li>Monasca: Monitoring service</li>
+              <li>Cloudkitty: Billing and chargeback service</li>
+              <li>Rally: Benchmarking and performance analysis</li>
+              <li>Kuryr</li>
+            </ul>
+            <br>
+            <strong>Provisioning a VM on OpenStack</strong><br>
+            <ol>
+              <li>Log into OpenStack and navigate to the project you want to add the VM to.</li>
+              <li>Expand the "Compute" section in the right hand pane</li>
+              <li>Click on the Instances section</li>
+              <li>Click the "Launch Instance" button</li>
+              <li>Select an instance name, zone, and count</li>
+              <li>Select the image and flavor (the resources). That is all you need to launch the instance, but there are a lot of other options to explore</li>
+              <li>Click the "Launch Instance" button</li>
+              <li>Once it is running click the name of the instance to get more information about the instance</li>
+              <li>Click on the console tab to open a console, which will open the VM with VNC to display the desktop</li>
+              <li>Select the instance and then the "Delete Instances" button</li>
+              <br>
+              <strong>Benefits of OpenStack</strong><br>
+              <ul>
+                <li>It is open source</li>
+                <li>Cost-effective by not paying for system management</li>
+                <li>Avoids vendor lock-in</li>
+              </ul>
+            </ol>
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Platform as a Service (PaaS)</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>General Overview</h3>
+          <p>
+            PaaS allows users to develop, run, and manage applications while concealing the tasks involved in the management of the underlying infrastructure. You are able to concentrate on building your applications rather than the infrastructure.<br>
+            Managed solutions such as AWS, Azure, Google Cloud Platform, and IBM Cloud exist for you to pay for the ease of use.<br>
+            Self-Managed solutions, such as Red Hat OpenShift, exist if you want to learn and maintain.<br>
+            PaaS can be deployed on top of IaaS, or independently on VMs, bare-metal servers, and containers.
+          </p>
+
+          <h3>Cloud Foundry</h3>
+          <ul>
+            <li>Aimed at developers in a lot of languages</li>
+            <li>Portable to any cloud</li>
+            <li>Integrates easily with many cloud and on-prem tools.</li>
+            <li>Supports any type of application</li>
+            <li>Provides means for these applications to access external resources through application services gateway</li>
+            <li>Can be deployed on-prem or on IaaS (AWS, Azure, Google Cloud, IBM Cloud, OpenStack, VMware vSphere)</li>
+            <li>Available through many distributions as well, Atos Cloud Foundry, Cloud.gov, IBM Cloud, etc</li>
+            <li>Aims to address challenges faced by developers through a set of customized technologies.</li>
+          </ul>
+          <p><strong>Key Characteristics</strong></p>
+          <ul>
+            <li>Application portability</li>
+            <li>Application auto-scaling</li>
+            <li>Application isolation</li>
+            <li>Centralized platform management</li>
+            <li>Centralized logging</li>
+            <li>Dynamic routing</li>
+            <li>Application health management</li>
+            <li>Role-based application deployment</li>
+            <li>Horizontal and vertical scaling</li>
+            <li>Security</li>
+            <li>Support for different IaaS platforms</li>
+          </ul>
+          <p>
+            <strong>Cloud Foundry BOSH</strong><br>
+            An open source tool for release engineering, deployment, lifecycle management, and monitoring of complex distributed systems. Enables version, package and deploy software in a reproducible manner.<br>
+            Used to ease the process of consistently building and administering to similar environments (dev, stage, production). Solves versioning, packaging, and reproducible software deployments as a whole, replacing Chef, Puppet, and Docker in various non-standard approaches.<br>
+            Follows the four principles of release management: <br>
+            <ol>
+              <li>Identifiability: of all components of a release</li>
+              <li>Reproducibility: of integration that guarantees operational stability</li>
+              <li>Consistency: through a stable framework of development, deployment, audit, and software components accountability</li>
+              <li>Agility: for software release automation according to software engineering best practices for Continuous Integration and Continuous Delivery</li>
+            </ol>
+            <strong>Cloud Foundry Application Runtime (CFAR)</strong><br>
+            A collection of core components that enable developers to run applications written in any language or framework on the cloud of their choice.<br>
+            Includes a command line tool that enables the interaction with the Application Runtime. Uses buildpacks to provide framework and runtime support for applications in many different programming languages and include information about how to download dependencies and configure specific applications. Common buildpacks: Java, Python, Go, Ruby, .Net, Node.js, PHP.<br>
+            You can build a custom buildpack or modify an existing one to suit your needs.<br>
+            CFAR is responsible for the build and running phases of the application, together with the incoming network traffic routing, identity management, monitoring, logging, and integration with external services.<br>
+            <br>
+            CFAR manages the entire workflow and lifecycle of an application from routing to logging. In addition, by using the Open Service Broker API, the application may be connected with external services like databases or third party SaaS providers.<br>
+            <br>
+            <strong>CFAR Application Runtime Platform Architecture</strong>
+            <ul>
+              <li>Routing: Router</li>
+              <li>Authentication: OAuth2 Server, Login Server</li>
+              <li>App Lifecycle: Cloud Controller, nsync, Diego Brain, Cell Reps</li>
+              <li>App Storage & Execution: Blob Store, App Execution (Diego Cell) [Garden]</li>
+              <li>Services: Service Brokers</li>
+              <li>Messaging: BBS (HTTP/S), Consul, NATS Message Bus</li>
+              <li>Metrics & Logging: Metrics Collector, App Log Aggregator</li>
+            </ul>
+            <strong>Running Applications with cf push</strong><br>
+            The Cloud Foundry CLI is the way to interact with various components and manage infrastructure and application deployments<br>
+            <code>$cf push </code> is one of many commands. It is highly customizable, but default settings allow novices to deploy with ease.<br>
+            <br>
+            <strong>Cloud Foundry Container Runtime (CFCR)</strong><br>
+            CFCR allows users to deploy developer-built, pre-packaged applications in containers. Manages containers on a Kubernetes cluster, which is managed by Cloud Foundry BOSH (formerly kubo). Kubernetes is a container orchestrator that operates in conjunction with a container runtime and automates deployment, scaling, and management of containerized applications. CF BOSH adds high availability, scaling, VM healing, and upgrades support to Kubernetes cluster.<br>
+            <br>
+            <strong>KubeCF (Korifi)</strong><br>
+            A distribution of the Cloud Foundry Application Runtime (CFAR) optimized for Kubernetes. Bridges classic features of CF available through CFAR with emerging cloud native workload and infrastructure management offered by Kubernetes.<br>
+            Works in conjunction with two projects: Project Quarks and Project Eirini<br>
+            Project Quarks deploys and manages built releases. Packages CFAR as containers rather than VMs.<br>
+            Project Eirini allows the use of Kubernetes as the underlying container scheduler for users of CFAR.<br>
+            <br>
+            <strong>Running Applications on Kubernetes with cf-for-k8s</strong><br>
+            Speeds up and simplifies the setup and configuration of popular cloud native technologies like Kubernetes, Envoy, Istio, and Fluentd. Extends <code>cf push</code> by enabling Cloud Foundry framework and the developers custom application to run as Kubernetes applications, which leads to leaner footprint.<br>
+            Allows for a reproducible environment, taking advantage of Kubernetes.<br>
+            <br>
+            <strong>Deploying an Application on Cloud Foundry</strong><br>
+            Using Pivotal Cloud Foundry (PCF) Dev
+            <ol>
+              <li>Install PCF Dev</li>
+              <li>Log in <code>$ cf login -a https://api.local.pcfdev.io --skip-ssl-validation</code></li>
+              <li>It will ask for your email and password. Enter "admin" for both email and password</li>
+              <li>It will then ask for the org to use. Enter "1" for pcfdev-org. You are now in the pcfdev-space. Under the current working directory, there is a folder called myapp, which contains all the files to deploy the example application. This directory contains a hello world app with three files: 1) Procfile; 2) hello.py; 3) requirements.txt. The requirements file has one line with "Flask" on it. Flask is a dependency to run hello.py. The Procfile has a single line: "web: python hello.py" to run the application.</li>
+              <li>To push the application enter <code>$ cf push myapp</code>. You will see the application being built using the python buildpack. It will install any packages indicated in the requirements.txt file, Flask in this case. At the end you will see output indicating that the app is running with information about the app. It will display the route (myapp.local.pcfdev.io), which is what we will use to access the application.</li>
+              <li>Enter: <code>$ curl myapp.local.pcfdev.io</code>. This will display the output of our hello world application.</li>
+              <li>Delete the application using <code>$ cf delete myapp</code></li>
+            </ol> 
+            Benefits of using Cloud Foundry<br>
+            <ul>
+              <li>It is open source, but there are a lot of commercial providers using Cloud Foundry</li>
+              <li>It offers centralized platform management</li>
+              <li>It enables horizontal and vertical scaling (Vertical: increasing resources of single machine. Horizontal (AKA: Scale-out): increasing the number of machines.</li>
+              <li>It offers support for multiple IaaS providers</li>
+              <li>It supports the full lifecycle: development, testing, and deployment, enabling continuous delivery strategy. Provides CI/CD tools.</li>
+              <li>Allows for virtualization using containers for application isolation</li>
+              <li>It leverages Kubernetes' workload management to optimize container deployments.</li>
+              <li>It reduces the chance of human error.</li>
+              <li>Cost effective</li>
+            </ul>
+          </p>
+
+          <h3>Red Hat OpenShift</h3>
+          <p>
+            An open source PaaS solution using the Kubernetes container technologies. OpenShift is deployed in the cloud as a public or private managed service or self-managed service. The following products are offered by OpenShift.
+            <ul>
+              <li>Red Hat OpenShift - Managed: AWS, IBM Cloud, and Azure all have this service.</li>
+              <li>Red Hat OpenShift Dedicated - Managed: Use a OpenShift cluster hosted service on AWS or Google Cloud.</li>
+              <li>Red Hat OpenShift Platform Plus - Self Managed: Create your own private, secure, Kubernetes multi-cluster PaaS.</li>
+              <li>Red Hat OpenShift Container Plus - Self Managed: Create your own consistent hybrid cloud PaaS to build and scale containerized apps.</li>
+              <li>Red Hat OpenShift Kubernetes Engine - Self Managed: Entry level solution promoting OpenShift over Kubernetes</li>
+            </ul>
+            OpenShift allows developers to quickly deploy containerized applications using Kubernetes allowing for CI/CD pipelines. You can use web UI, CLI, and IDE for OpenShift.<br>
+            <br>
+            <strong>Install</strong>:<br>
+            minishift for your local workstation.<br>
+            minikube for OpenShift 3.x<br>
+            Red Hat CodeReady Containers for OpenShift 4.x<br>
+            <br>
+            <strong>Deploying an Application on OpenShift</strong><br>
+            <ol>
+              <li>Log into OpenShift Environment</li>
+              <li>Click "Create Project" button</li>
+              <li>Type in name, display name, and a description and hit the "create" button</li>
+              <li>Click the link that is now displayed on the right pane corresponding to the name you chose.</li>
+              <li>Click the "browse catalog" button. Many applications are available as seen</li>
+              <li>Click Apache HTTP Server (httpd). A wizard will appear. It has a link to the GitHub repository that will be used to build the container (Using s2i)</li>
+              <li>Click the next button to proceed to the Configuration page.</li>
+              <li>Select the project you created in the beginning</li>
+              <li>Type a name for the application</li>
+              <li>Enter the Git Repo to use. For this demo use the link to use a sample repo.</li>
+              <li>Click the "Create" button. The application will be deployed if everything is successful</li>
+              <li>Click the "Close" button</li>
+              <li>Click the link to the project you created in the right pane. Information about the project is displayed about the image and the route created that will take you to the application</li>
+              <li>Click the route link. You will see a page for the sample repo static web site</li>
+              <li>Go back to the application. On the right side you will see a icon with a number 1 and two arrows pointing up and down. Click the up arrow. This will scale up to two pods</li>
+              <li>Click the down arrow to scale back down to a single pod</li>
+              <li>Click the hamburger menu and then click Applications > deployments. You should see the deployment you just initiated here.</li>
+              <li>Click the Actions drop down > delete. This will delete the deployment</li>
+            </ol>
+            <strong>Benefits of OpenShift</strong><br>
+            <ul>
+              <li>Open source</li>
+              <li>Scale applications easily and quickly</li>
+              <li>Integration with CI/CD tools</li>
+              <li>There is an active group of developers working on it</li>
+              <li>Highly portable to any platform that supports Kubernetes</li>
+              <li>Applications built with integrated service discovery and persistent storage</li>
+              <li>Integrates Quay registry, automatic edge load balancing, cluster logging, and integrated metrics</li>
+            </ul>
+          </p>
+
+          <h3>Heroku</h3>
+          <p>
+            Fully managed container based cloud platform. Heroku Platform is a PaaS used to deploy and run applications.<br>
+            It supports a bunch of languages and frameworks and can be extended to use others through <em>buildpacks</em>.<br>
+            <br>
+            Heroku has its own unique workflow, so if you go the Heroku route you are locked in. It is a good developer-friendly workflow however:
+            <ul>
+              <li>Applications should contain source code, dependency information, and the list of named commands to be executed in its <em>Procfile</em></li>
+              <li>Each language has a pre-built image with a compiler for that language called a <em>Buildpack</em>. Multiple buildpacks can be used together and we can create our own.</li>
+              <li>When deploying, we send the application content to Heroku, via Git, GitHub, or API. Heroku selects the buildpack based on the language of preference.</li>
+              <li>The runtime is created after fetching dependencies and configuration variables on the buildpack. The runtime is called a <em>slug</em></li>
+              <li>Third-party add-ons can be added like logging, caching, monitoring, etc.</li>
+              <li>The slug, configuration variables, and add-ons are referred to as a <em>release</em>, on which you can perform upgrade or rollback.</li>
+              <li>Depending on the process-type declaration in the Procfile, a virtualized UNIX container is created in an isolated environment, which can be scaled. Each UNIX container is called a <em>dyno</em>, with its own ephemeral storage.</li>
+              <li><em>Dyno manager</em> manages dynos across all applications running on Heroku</li>
+            </ul>
+            Configuration is separate from source, so you can configure each environment separately using <em>config vars</em>.<br>
+            You can use the <em>Elements Marketplace</em> to find add-ons that will improve your experience.<br>
+            Heroku is easily integrated with Salesforce.<br>
+            <br>
+            Heroku has a free account you can sign up for to try it out<br>
+            <ol>
+              <li>Log in to the web page</li>
+              <li>Click "Create New App" button</li>
+              <li>Choose name and region</li>
+              <li>
+                Next choose a deployment method. You can create a CI/CD pipeline, choose source control (Heroku Git, GitHub, Dropbox). You use the Heroku Toolbelt or the Heroku Command Line to work with Heroku.
+                <ol>
+                  <li><code>$ heroku login</code> - Type in user and pass</li>
+                  <li><code>$ cd {app-name}</code></li>
+                  <li>Assuming there is source code already written, with a Procfile. <code>$ git init</code></li>
+                  <li><code>$ heroku git:remote -a {app-name}</code></li>
+                  <li><code>$ git add .</code></li>
+                  <li><code>$ git commit -am "message"</code></li>
+                  <li><code>$ git push heroku main</code></li>
+                </ol>
+              </li>
+              <li>Heroku then builds and deploys the app to the domain listed</li>
+              <li>Check the settings tab for useful information</li>
+              <li>You can delete the app from the settings tab</li>
+            </ol>
+            Heroku allows you to automate backups
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Containers</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Isolating Multiple Apps on the same Machine</h3>
+          <p>
+            Applications often have conflicting dependencies, so we use Operating System-level Virtualization to run multiple isolated user-space instances in parallel. The instances (containers) have the source, required libraries, and runtime without the need for any external dependencies.<br>
+            <br>
+            Docker or Podman will solve the problems with portability.<br>
+            The metaphor of Docker is the shipping container. The application and all of it's dependencies are bundled together in the container.<br>
+            <strong>Image</strong>: the non-running application, dependencies, and the user-space libraries. The user-space libraries like glibc enable switching between the user-space and kernel-space. The image does not contain any kernel-space components.<br>
+            <strong>Container</strong>: the running image. Runs as a process on the host's kernel. The kernel provides the resources needed by the container and keep it isolated from the rest of the system.
+            <br>
+            <strong>Benefits</strong>
+            <ul>
+              <li>Light footprint on the server</li>
+              <li>Fast deployment (seconds)</li>
+              <li>Can be run on any platform</li>
+              <li>Scaled up or down easily</li>
+              <li>Problem containers can be isolated easily to troubleshoot</li>
+              <li>Increased productivity with reduced overhead</li>
+            </ul>
+          </p>
+
+          <h3>Linux - Build your own container</h3>
+          <p>
+            The Linux kernel provides the following tools for creating a container:<br>
+            <strong>Namespaces</strong><br>
+            A namespace wraps a particular global system resource such as network, process IDs in an abstraction. The processes within the namespace appear to have their own isolated instance of the global resource and know nothing about other containers or the kernel. The following global resources are namespaced:
+            <ul>
+              <li><strong>pid</strong> provides each namespace the same PIDs. Each have a PID 1</li>
+              <li><strong>net</strong> allows each namespace its own network stack with a unique IP</li>
+              <li><strong>mnt</strong> provides each namespace its own view of the filesystem hierarchy</li>
+              <li><strong>ipc</strong> provides namespace its own inter-process communication</li>
+              <li><strong>uts</strong> each namespace has its own hostname and domain name</li>
+              <li><strong>user</strong> gives each namespace its own user and group IDs. Root in the container is just the root of the container, not the host.</li>
+            </ul>
+            <strong>cgroups</strong> Control groups are used to organize processes hierarchically and distribute resources in a controlled and configurable manner.<br>
+            blkio, cpu, cpuacct, cpuset, devices, freezer, and memory are all available in Linux.<br>
+            <strong>Union filesystem</strong> allows files and directories of separate filesystems, known as layers, to be transparently overlaid on top of each other, to create a new virtual filesystem. At runtime a container is made of multiple layers merged to create a read-only filesystem. On top of a read-only filesystem, a container gets a read-write layer, which is an ephemeral layer local to the container.<br>
+            <br>
+            <strong>Container Runtimes</strong><br>
+            <strong>chroot</strong> enabled the first steps towards containerization back in 1979.<br>
+            <strong>Linux Containers (LXC)</strong> in 2008 was the next step.<br>
+            Docker was the breakthrough everyone was waiting for in 2013.<br>
+            Docker with Kubernetes as the container orchestrator was standard in 2014.<br>
+            ... App Container (appc) ... Application Container Image (ACI) format ... Open Container Initiative (OCI) Shopeo, Buildah, and Podman ... Kaniko ... CRI-O Container Runtime Interface (CRI)<br>
+            <br>
+            <strong>runc</strong><br>
+            To try to prevent cloud providers from monopolizing a single technology the OCI created standards and specifications for runtime and image. The CLI <strong>runc</strong>, built using Go, creates and starts container processes. Forks a second process and exec immediately.<br>
+            <br>
+            <strong>crun</strong><br>
+            Much faster and lower memory footprint than OCI compliant runtime. Written in C, compiled, so much faster than Go, interpreted.<br>
+            <strong>containerd</strong><br>
+            OCI-compliant, is a high level runtime running as a daemon, and manages the entire lifecycle of containers. Available on Linux and Windows. Docker, another daemon, uses containerd as a runtime to manage runc containers.<br>
+            <br>
+            <strong>CRI-O</strong><br>
+            OCI-compliant runtime, which is an implementation of the Kubernetes CRI. Lightweight, high-level runtime alternative to Docker.
+          </p>
+
+          <h3>Containers Vs. VMs</h3>
+          <p>
+            VMs run on top of a Hypervisor (overhead), installs its own OS (takes space and more resources), and has its own filesystem of binaries and libraries (more space and resources).<br>
+            Containers share the Host OS and any libraries and binaries it can to create a very light footprint compared to a VM.<br>
+            Being dependent on the Host OS, the container has to be compatible with the host.
+          </p>
+
+          <h3>Docker</h3>
+          <p>
+            You can sign up for a free personal Docker.<br>
+            <br>
+            Basic Docker management features using CLI or Docker Desktop UI (Look up the actual commands or directions):
+            <ul>
+              <li>List images available in local cache</li>
+              <li>Pull images from the registry into the local cache</li>
+              <li>Run a container image (pulls from registry, creates the image and starts it</li>
+              <li>Run container in the background</li>
+              <li>List running containers</li>
+              <li>List all containers</li>
+              <li>Inject a process inside a running container (A bash shell in interactive mode)</li>
+              <li>Stop a running container</li>
+              <li>Delete a stopped container</li>
+            </ul>
+          </p>
+
+          <h3>Podman (Pod Manager)</h3>
+          <p>
+            Alternative to Docker. Open source, daemonless tool for searching, running, building, sharing, and deploying applications using the Open Containers Initiative (OCI) containers and container images.<br>
+            The Podman CLI is similar to the Docker CLI.<br>
+            Podman uses a Containerfile similar to Dockerfile.<br>
+            <br>
+            <strong>Buildah</strong> is a tool built by Redhat to build container images one step at a time interactively.<br>
+            <br>
+            <strong>Skopeo</strong> is a tool designed to work with container images in both local and remote repositories.<br>
+            <br>
+            The big difference between Docker and Podman is that Podman does not use a Daemon. Docker CLI tells the Docker Daemon what it wants done and the Daemon does the work. Podman can run the runc runtime without intermediaries such as containerd.
+            <br>
+            The basic management features are identical to Docker. So much so, that I copied and pasted the above list here 
+            
+            <ul>
+              <li>List images available in local cache</li>
+              <li>Pull images from the registry into the local cache</li>
+              <li>Run a container image (pulls from registry, creates the image and starts it</li>
+              <li>Run container in the background</li>
+              <li>List running containers</li>
+              <li>List all containers</li>
+              <li>Inject a process inside a running container (A bash shell in interactive mode)</li>
+              <li>Stop a running container</li>
+              <li>Delete a stopped container</li>
+            </ul>
+          </p>
+
+          <h3>Project Moby (Not the techno hippy:)</h3>
+          <p>
+            An open source alternative to the Docker platform. This is for the hobbyist who wants to build their own container-based system. You could also patch an existing Docker build. <br>
+            Not recommended for those looking for an easy to use container system (Docker already exists).
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Containers: Micro OSes for Containers</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Micro OS</h3>
+          <p>
+            With the goal of reducing the footprint of running applications, we further want to reduce the size of the OS to only contain what is needed to run the containers Micro OSes:
+            <ul>
+              <li>Alpine Linux: Designed with security as primary concern.</li>
+              <li>Busybox: Tiny environment for embedded systems</li>
+              <li>Fedora CoreOS</li>
+              <li>Flatcar Container Linux</li>
+              <li>openSUSE MicroOS</li>
+              <li>RancherOS</li>
+              <li>Rancher k30S</li>
+              <li>Ubuntu Core</li>
+              <li>VMware Photon OS</li>
+            </ul>
+            They are way smaller than regular images. Ex: Alpine:NGINX = 21.6MB and Debian:NGINX = 132MB.
+          </p>
+
+          <h3>Alpine Linux</h3>
+          <p>
+            Independent, non-commercial, Linux distro for security, simplicity, and resource efficiency. Designed with security as primary concern.<br>
+            You can boot in three modes:
+            <ol>
+              <li>Diskless mode: runs entirely in RAM</li>
+              <li>Data mode: Mostly from RAM, but mounts /var as a writable partition</li>
+              <li>Sys mode: Typical hard-disk install that mounts /boot, swap, and /</li>
+            </ol>
+            There are many available types specially built for the task at hand.<br>
+            <br>
+            Advantages of Alpine Linux:<br>
+            <ul>
+              <li>Requires 5MB to 8 MB as a container</li>
+              <li>Requires 130 MB as a standalone minimal OS installation</li>
+              <li>Provides increased security by compiling binaries as Position Independent Executables (PIE) with smash stack protection</li>
+              <li>It can be installed as a container on bare metal or VMs as well</li>
+              <li>Offers flavors for Xen and Raspberry Pi</li>
+            </ul>
+          </p>
+
+          <h3>BusyBox (The Swiss Army Knife of Embedded Linux)</h3>
+          <p>
+            Container images between 1 MB and 5 MB, BusyBox can pack a complete environment for embedded systems. Although not an OS in itself, BusyBox was designed to run on Linux and to enhance a lightweight OS with tools needed to help developers troubleshoot and debug their containerized applications.<br>
+            Can be ported to FreeBSD, Solaris, and Mac OS X.<br>
+            Available in Fedora, CentOS and Red Hat.
+          </p>
+
+          <h3>Fedora CoreOS (FCOS)</h3>
+          <p>
+            CoreOS is operable in both clusters and standalone instances.<br>
+            Optimized to work with Kubernetes.<br>
+            Components of CoreOS:
+            <ul>
+              <li>Ignition: A provisioning utility that allows you to manipulate disks during early boot (partitioning, etc..), writing files, and configuring users. Runs early in boot (in the initramfs) and runs configuration before the user-space boot, providing advanced features to admins.</li>
+              <li>rpm-ostree: used to add packages in a lightweight way.</li>
+              <li>SELinux hardening: Close-to-VM isolation, secure containers.</li>
+            </ul>
+            Installation methods:
+            <ul>
+              <li>Cloud launchable: Launch on AWS</li>
+              <li>Bare metal and virtualized: ISO, Preboot Execution Environment (PXE) or Raw, and virtualized installs on OpenStack, QEMU, Raspberry Pi 4, VirtualBox, or VMware.</li>
+              <li>For cloud operators: Optimized for Alibaba Cloud, AWS, Azure, DigitalOcean, etc...</li>
+            </ul>
+            Benefits:
+            <ul>
+              <li>Designed to run containerized applications, in both clusters or as stand-alone.</li>
+              <li>Enables quick updates and rollbacks</li>
+              <li>SELinux security</li>
+              <li>Installed on bare metal, virtual environments, and cloud</li>
+              <li>Works well with Kubernetes</li>
+              <li>Ignition for early provisioning configuration</li>
+            </ul>
+          </p>
+
+          <h3>Flatcar Container OS</h3>
+          <p>
+            A replacement for Red Hat CoreOS, not to be confused with Fedora CoreOS, once Red Hat CoreOS was end-of-life.<br>
+            Its greatest strength is its immutable (read-only) filesystem (more secure) and automated atomic updates.<br>
+            It also uses the Ignition provisioning utility.<br>
+            Supports containerd and Docker container runtimes for Kubernetes clusters.
+          </p>
+
+          <h3>RancherOS and k3OS (Kubernetes Operating System)</h3>
+          <p>
+            A lightweight Linux distro made of containers to manage other containers. It only contains the software needed to run Docker, while all other OS features are pulled dynamically through Docker for a small footprint. Uses Docker and Kubernetes to run containers at scale. Very useful to manage a container-ready environment.<br>
+            RancherOS is a product of Rancher a Kubernetes-as-a-Service (KaaS) provider.<br>
+            RancherOS runs two separate instances of Docker. The first is for System Docker, with PID 1 to run system containers such as console, dhcp, ntpd, syslog, and udev. The second Docker (User Docker) for user level containers.<br>
+            <strong>ros</strong>: the command line utility used to configure and control RancherOS system.<br>
+            <br>
+            Command Examples:
+            <ul>
+              <li><code>ps aux | grep dockerd</code> displays two docker instances running system-dockerd and dockerd.</li>
+              <li><code>sudo docker -H unix:///var/run/system-docker.sock container ls</code> lists all the system containers</li>
+              <li><code>sudo docker container ls</code> lists all the application containers</li>
+              <li><code>sudo docker container run -d --name web nginx</code> runs the container named web from the nginx image</li>
+              <li><code>sudo ros service list</code> lists all the services using the ros util</li>
+              <li><code>sudo ros os list</code> lists all the available versions of RancherOS</li>
+              <li><code>sudo ros os upgrade</code> upgrades to the latest version</li>
+            </ul>
+            <strong>Benefits</strong>:<br>
+            <ul>
+              <li>Secure do to small code base and decreased attach surface</li>
+              <li>Isolates user-level containers from system containers.</li>
+              <li>Updates and rollbacks are simple</li>
+              <li>Kubernetes compatible</li>
+              <li>Boots containers quickly</li>
+              <li>Automates OS configuration with <strong>cloud-init</strong></li>
+              <li>Can be customized to add custom system Docker containers using the <strong>cloud-init</strong> file or Docker Compose</li>
+            </ul>
+            <br>
+            k3OS is designed to work with Rancher's K3s Kubernetes distribution.<br>
+            k3OS speeds up k3s cluster boot time.<br>
+            The k3OS image takes full control of the cluster, so you don't need to log in individually for maintenance.<br>
+            <br>
+            <strong>Benefits</strong>
+            <ul>
+              <li>Secure due to small code base and decreased attach surface</li>
+              <li>Integrates with Rancher's K3s Kubernetes distribution</li>
+              <li>Updates and OS maintenance is performed within K3s Kubernetes cluster</li>
+              <li>OS configuration through <strong>cloud-init</strong></li>
+            </ul>
+          </p>
+
+          <h3>Ubuntu Core</h3>
+          <p>
+            Larger footprint than a lot of the others, but not the heaviest. Mostly used for IoT, but also found in large container deployments.<br>
+            <strong>Security</strong>: Immutable packages with persistent digital signatures. Application isolation. Reduced attack surface. Automatic vulnerability scanning. Security provided by AppArmour and Seccomp.<br>
+            <strong>Reliability</strong>: Transactional updates that increase OS and data resiliency by allowing automated rollbacks when errors are encountered. Automated restore points to allow returns to the last working boot in the case of unsuccessful kernel update. Consistent application data snapshots.<br>
+            <br>
+            Uses snap for package management. (snap, snapd, snapcraft, and Snap Store)<br>
+            Snaps used in Ubuntu core include kernel (defines the Linux kernel), gadget (defines the specific system properties), core (the execution environment), app (including application, daemons such as snapd, and various tools)
+          </p>
+
+          <h3>Photon OS</h3>
+          <p>
+            Provided by VMware and optimized for cloud-native applications on VMware Sphere and public cloud computing platforms. Supports a variety of container formats as a container host or as a Kubernetes node.<br>
+            Comes in two flavors: minimal for container host runtime and full version that includes packages of tools for the development, testing, and deployment of containerized applications.<br>
+            It uses Tiny DNF for package management.<br>
+            It boasts security provided by the Kernel Self-Protection Project (KSPP).<br>
+            Provides support for persistent volumes to store data of cloud-native apps on VMware vSAN.<br>
+            <br>
+            <strong>rmp-ostree</strong>: the command line tool to manage Photon OS<br>
+            Example commands:
+            <ul>
+              <li><code>rpm-ostree --help</code> for documentation</li>
+              <li><code>rpm-ostree remote list</code> for a list of locations to get upgrades from</li>
+              <li><code>rpm-ostree status</code> to list info about the OS</li>
+              <li><code>rpm-ostree upgrade</code> checks for upgrades and if found installs it. If you run the <code>rpm-ostree status</code> command again you will see two OSs installed and the one with the asterisk in front is the currently running OS (The old one).</li>
+              <li>Reboot using <code>systemctl reboot</code></li>
+              <li><code>rpm-ostree status</code> and you will see the new OS is now running and the old version is still installed.</li>
+              <li><code>systemctl start docker</code> to fire up your Docker</li>
+              <li><code>cat /etc/os-release</code> to verify upgrade</li>
+            </ul>
+            Its kernel is tuned to run faster on VMware platforms.<br>
 
           </p>
 
         </section>
 
+        <button type="button" class="collapse-button">Container Orchestration</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Multi-host Environments and Container Orchestration</h3>
+          <p>
+            Running containers in a multi-host environment at scale with high availability and fault tolerance is key in an enterprise.
+            Things to Consider:
+            <ul>
+              <li>Grouping multiple hosts to form a cluster and manage it as a single compute unit</li>
+              <li>Scheduling containers to run specific hosts</li>
+              <li>Multiple hosts with multiple containers will need to communicate with each other</li>
+              <li>Providing a container with dependent storage when it is scheduled on a specific host</li>
+              <li>Accessing containers over a service name, instead of accessing via IP</li>
+            </ul>
+            <br>
+            Container orchestration addresses these consideration by managing container scheduling and cluster management.<br>
+            Tools include: Kubernetes, Docker Swarm, Nomad, and Amazon ECS.<br>
+            Kubernetes is hosted on many services: AWS Elastic Kubernetes Service (EKS), Azure Kubernetes (AKS), and Google Kubernetes Engine (GKE)
+          </p>
+
+          <h3>Kubernetes</h3>
+          <p>
+            Started by Google, but transferred to Cloud Native Computing Foundation (CNCF) a nonprofit dedicated to advancing the development of cloud-native applications and services. Currently supported runtimes include: containerd, CRI-O, and Docker.<br>
+            <strong>Architecture Components</strong>
+            <ul>
+              <li>Cluster: A collection of systems (bare-metal or virtual) and other infrastructure resources used by Kubernetes to run containerized apps</li>
+              <li>Control-Plane Node: Handles scheduling, manages worker nodes, enforces access control, and reconciles changes in the state of the cluster. Main components: kube-apiserver, etcd, kube-scheduler, and kube-controller-manager. You may find multiple control-plane nodes to ensure high availability.</li>
+              <li>Worker Node: A system where containers are scheduled to run in workload management units called <strong>Pods</strong>. The worker node runs a daemon called <strong>kubelet</strong> that receives calls from the <strong>kube-apiserver</strong> for deployment and management. It also runs health checks, manages resource limits, and reports status back to <strong>kube-apiserver</strong>. The network proxy is called <strong>kube-proxy</strong> allowing communication with the world.</li>
+              <li>Namespace: Allows us to logically partition the cluster into virtual sub-clusters, addressing the multi-tenancy requirements for isolation of projects, applications, users, and teams.</li>
+              <li>Pod: A logical workload management unit, enabling the co-location of a group of containers with shared dependencies such as storage <strong>Volumes</strong>. It could manage only one single container such as <strong>Secrets</strong> or <strong>ConfigMaps</strong>. It is the smallest deployment unit in Kubernetes. An independent pod does not have self-healing, scaling, and seamless update capabilities, so controller programs, or operators, such as ReplicaSet, Deployment, DaemonSet, or StatefulSet are recommended to manage pods. Deployment and config is handled through *.yaml files.</li>
+              <li>ReplicaSet: a mid-level controller to manage pods. Manages pod replicas, uses state reconciliation to ensure the number of pods needed is running at all times, and self-heals an application if a pod replica is lost.</li>
+              <li>Deployment: a top level controller to provide declarative updates for pods and ReplicaSets. We can define Deployments to create new resources, or replace existing ones with new ones. Again, they are handled with *.yaml files. Typical Deployment use cases:
+                <ol>
+                  <li>Create a Deployment to roll out a desired amount of pods with a ReplicaSet</li>
+                  <li>Check the status of a Deployment to see if rollout was successful</li>
+                  <li>Update the Deployment to recreate pods with a new image - Rolling Update</li>
+                  <li>Roll back to an earlier Deployment revision if the current one is problematic</li>
+                  <li>Scale, pause, and resume a Deployment</li>
+                </ol>
+              </li>
+              <li>DaemonSet: Manages the lifecycle of node agent pods. Rolls out the desired number of pod replicas ensuring each cluster node will run exactly one application pod replica. Also ensures the number of pods is maintained at all times.</li>
+              <li>Service: A traffic routing unit implemented by <strong>kube-proxy</strong> providing a load-balancing access interface to a logical group of pods, typically managed by the same operator. Enables applications with DNS name registration, name resolution to a private/cluster internal static IP. It can reference a single pod or a set of pods managed by ReplicaSets, Deployments, DaemonSets, or StatefulSets.</li>
+              <li>Label: A key-value pair attached to resources. Examples in *.yaml files would be <strong>run</strong>, <strong>app</strong>, and <strong>tier</strong>. Typically used to tag resources of a particular application, such as Pods of a Deployment, to logically group them for management purposes - for updates, scaling, or traffic routing.</li>
+              <li>Selector: Allow controllers to search for resources or groups of resources described by a desired set of key-value pair labels. Example: In a service *.yaml you would place a key called <code>selector:</code> underneath you would have two selectors, <code>app: nginx-deployment</code> and <code>tier: frontend</code> to indicate what pods should get traffic.</li>
+              <li>Volume: An abstraction layer to mount local host storage, network storage, distributed storage clusters, and cloud storage services.</li>
+            </ul>
+            <strong>Features</strong><br>
+            <ul>
+              <li>Automatically populates containers on a cluster based on rules and resources provided.</li>
+              <li>Supports horizontal scaling (Increasing the number of containers) via CLI or UI as well as automated scaling based on resources.</li>
+              <li>Rolling updates and rollbacks</li>
+              <li>Volume plugins via tons of cloud providers and plugins for shared storage among containers in pods.</li>
+              <li>Self-healing, by restarting containers, rescheduling from failed nodes, and health checks.</li>
+              <li>Manages sensitive data without rebuilding the image</li>
+              <li>Supports batch execution</li>
+              <li>High availability of control-plane node for resiliency</li>
+              <li>Eliminates infrastructure lock-in providing core capabilities without restrictions</li>
+              <li>Deployments and updates at scale</li>
+              <li>Supports cluster topology aware routing of traffic to services</li>
+            </ul>
+            <strong>Deploying PHP Guestbook with Redis demo (found on Kubernetes.io site)</strong><br>
+            Note: use CRI-O runtime for containers due to the smaller size compared to Docker.<br>
+            Redis backend will be managed through two separate operators, one for the leader database, the other managing the follower (read replica Redis instances)<br>
+            The frontend will be managed by its own operator<br>
+            Searching for Kubernetes Example Deploying PHP Guestbook application with Redis, will find this tutorial among many others to get you up and running.<br>
+            <br>
+            <strong>Benefits</strong><br>
+            Open source that gives you container orchestration, service discovery, and load balancing.<br>
+            Automates deployment, scaling, and operations of application containers.<br>
+            Provides consistency across dev, test, and prod, on-premises or cloud.<br>
+            <br>
+            <strong>Hosted Solutions</strong><br>
+            We can manage our own on-premises Kubernetes or find ourselves a public cloud solution by any of many cloud providers. The cloud providers can provide hosted solutions where the provider handles all the management tasks.<br>
+            <ul>
+              <li>Amazon Elastic Kubernetes Service (Amazon EKS): Automatically handles unhealthy control-plane nodes and cluster auto-scaling as well as access control for a cost. Saves you the need to manage the control plane.</li>
+              <li>Azure Kubernetes Service (AKS): Handles cluster management, health monitoring, upgrades, and scaling as well as access control.</li>
+              <li>Google Kubernetes Engine (GKE): Can be integrated with all GCP services for diagnostics, logging, monitoring, access, etc.. It also runs on a container-optimized OS built by Google. Private storage of containers is private container registry. Supports Hybrid Networking to reserve an IP address range for a cluster. Auto-repair of unhealthy nodes.</li>
+              <li>IBM Cloud Kubernetes Service</li>
+              <li>NetApp Project Astra (Fusion between NetApp and Stackpoint.io) - Optimized for stateful application data lifecycle management.</li>
+              <li>Oracle Container Engine for Kubernetes - Runs on Oracle Cloud Infrastructure</li>
+              <li>Red Hat OpenShift - Managed Kubernetes clusters on various cloud infrastructures such as AWS, GCP, Azure, and IBM Cloud.</li>
+              <li>VMware Tanzu Kubernetes Grid (TKG): Multi-cloud Kubernetes service that runs both on-premises in vSphere and public cloud.</li>
+            </ul>
+            <strong>Managed Kubernetes Solutions</strong><br>
+            We can choose to avoid vendor lock-in by managing our own Kubernetes platform solution. Vendors provide a Kubernetes environment flexible enough to be deployed on any public cloud, multi-cloud, or on premises/private cloud.
+            <ul>
+              <li>Managed Kubernetes by Canonical - Kubernetes as a service optimized for multi-cloud deployment.</li>
+              <li>D2iQ Enterprise Kubernetes Platform (DKP) - Incorporates features of Distributed Cloud Operating System (DC/OS)</li>
+              <li>Kubermatic Kubernetes Platform</li>
+              <li>Mirantis Kubernetes Engine</li>
+              <li>Platform9 Managed Kubernetes (PMK)</li>
+              <li>Rackspace Managed Platform for Kubernetes (MPK)</li>
+            </ul>
+          </p>
+
+          <h3>Docker Swarm</h3>
+          <p>
+            Docker orchestration solution. Logically groups Docker Engines into a swarm (cluster) allowing scaled applications.<br>
+            Swarm Manager Nodes: accepts commands on behalf of the swarm and makes scheduling decisions. Uses the "Raft" (raft.github.io) consensus algorithm to maintain cluster state.<br>
+            Swarm Worker Nodes: Runs the container workload dispatched by the manager nodes.<br>
+            It is compatible with Docker tools and API<br>
+            Supports rolling updates and rollbacks.<br>
+            Mirantis Kubernetes Engine bought Docker Swarm, but promised to continue support and development.<br>
+            Docker Engine supports Swarm Mode, which enables clusters for the subscription products.<br>
+            Mirantis has enterprise products Mirantis Container Cloud which runs on any public cloud, private cloud, or bare metal and Mirantis Kubernetes Engine.<br>
+            <br>
+            <strong>Deploying a Microservice with Docker Swarm</strong>
+          </p>
+
+          <h3>HashiCorp Nomad</h3>
+          <p>
+            HashiCorp cluster manager and resource scheduler. It is an alternative to Kubernetes and can run in conjunction with Kubernetes in a multi-orchestrator pattern, useful in large enterprises with many diverse needs.<br>
+            Distributed in a single binary with all dependencies which runs in a server and client mode.<br>
+            Uses its own HashiCorp Configuration Language (HCL) to declare and submit jobs.<br>
+            Job files are written to define the requirements of the job.<br>
+            You can run Docker containers, VMs, unikernels, and individual Java applications<br>
+            Multi-datacenter and multi-region support. Nomad client/servers running if different public clouds can be part of the same logical Nomad cluster.<br>
+            Built-in dry run execution facility to see how the scheduling actions are going to take place.<br>
+            Supports long running services, batch jobs, and cron jobs.<br>
+            Integrates with Terraform, Consul, and Vault for provisioning, networking, and sensitive data management.<br>
+            Blue-green and canary deployments supported through job file.<br>
+            Zero downtime during maintenance to datacenter and services.
+            <br>
+            <strong>Deploying a Microservice using Nomad</strong>
+          </p>
+
+          <h3>Amazon Elastic Container Service (ECS)</h3>
+          <p>
+            <strong>Launch Modes</strong>
+            <ul>
+              <li>Fargate Launch Type: Allows us to run containers without managing servers and clusters. We package our applications in containers and don't have to provision, configure, and scale clusters. AWS does all that.</li>
+              <li>EC2 Launch Type: We can provision, patch, and scale ECS cluster giving us more control.</li>
+              <li>External Launch Type: Run containers on-premises using Amazon ECS Anywhere service. On-prem infrastructure can be used with our public cloud infrastructure.</li>
+            </ul>
+            Compatible with Docker and Windows Containers<br>
+            Integrates with AWS services for load balancing, Virtual Private Clouds (VPC), Identity and Access Management (IAM), Amazon ECR, AWS Batch, Amazon CloudWatch, AWS CloudFormation, AWS CodeStar, AWS CloudTrail, etc..
+          </p>
+
+          <h3>Azure Container Instances (ACI)</h3>
+          <p>
+            Used where container isolation is desired for simple applications, automated tasks, or jobs. It provides only basic scheduling capabilities. Use AKS for advanced services like service discovery and auto-scaling. ACI can be used in conjunction with AKS in a layered approach to schedule and manage single containers while orchestrator manages the multi-container groups.<br>
+            <br>
+            Exposes containers directly to the internet through an IP address or Fully Qualified Domain Name (FQDN)<br>
+            VM-like application isolation in the container.<br>
+            Allowed to mount Azure File shares to persist state data.<br>
+            Linux and Windows available.<br>
+            Support scheduling of single and multi-container groups, allowing patterns like the sidecar pattern.
+          </p>
+        </section>
+
+        <button type="button" class="collapse-button">Unikernels</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Basics of Unikernels</h3>
+          <p>
+            Developers use containers to package the application under development with its dependencies and libraries into an image that can be moved to any environment with ease. Goal one is to reduce the size of these containers and only include what is absolutely necessary to run the application. Goal two is to reduce the attack surface improving security.<br>
+            <strong>unikernels</strong> select the part of the kernel needed to run the specific application. The unikernel becomes a single address space executable, including both application and kernel components. It can be deployed on VMs or bare metal.<br>
+            The unikernel only contains the following:<br>
+            <ul>
+              <li>The application code</li>
+              <li>The configuration files of the application</li>
+              <li>The user-space libraries needed by the application</li>
+              <li>The application runtime (Ex: JVM)</li>
+              <li>The system libraries of the unikernel, allowing communication with the hypervisor</li>
+            </ul>
+            Using the <strong>protection ring</strong> model, the kernel runs in <strong>ring 0</strong> and the application runs in <strong>ring 3</strong>. The kernel has the most privileges and the application the least. The unikernel is a combined binary of application and kernel and runs on <strong>ring 0</strong>, so runs directly on the hypervisor or bare metal depending on the type of unikernel.<br>
+            <br>
+            <strong>Benefits</strong><br>
+            <ul>
+              <li>Small size allows us to run more applications per host</li>
+              <li>Faster boot time</li>
+              <li>Efficient resource utilization</li>
+              <li>Development and management are simplified</li>
+              <li>More secure due to smaller attack surface</li>
+              <li>Managed through source control, so you can reproduce environments through the environments</li>
+            </ul>
+            <br>
+            <strong>Unikernel Implementations</strong><br>
+            <ul>
+              <li>Specialized and purpose-built unikernels: utilize all modern features, disregarding backward compatibility. Examples include HaLVM, MirageOS, and Clive.</li>
+              <li>Generalized 'fat' unikernels: run unmodified applications. Examples: Rumprun, OSv, Drawbridge.</li>
+            </ul>
+            Unikernels are used by Docker to further lighten containers, by shrinking the kernel size. MirageOS is able to produce a library OS that is flexible, secure, reusable, and stripped of unnecessary drivers, daemons, and libraries. Docker Engine runs on top of Alpine Linux on Mac and Windows with their default hypervisors, xhyve VM and Hyper-V VM respectively.<br>
+            <br>
+            <strong>Creating a Unikernel with UniK</strong><br>
+            Follow documentation on UniK Github site.
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Microservices</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Microservices</h3>
+          <p>
+            Small, independent processes that communicate with each other to form complex applications which utilize language agnostic APIs. Small building blocks that are highly decoupled and focused on doing small tasks, facilitating a modular approach to system building.<br>
+            With cloud services and tools like Heroku and Vagrant, we can more easily move away from monolithic applications that are hard to manage and scale.<br>
+            The monolith vs. microservices: The monolith has all of the code in one code base and to scale we replicate it across several servers. The microservice approach is to create several small services and we replicate only the ones that are needed across servers and communicate via lightweight APIs.<br>
+            <br>
+            <strong>Refactoring a Monolith into Microservices</strong>
+            <ul>
+              <li>Carve out small pieces and convert to microservices. The microservices should be used in the monolith instead of trying to maintain two code bases with the same functionality (I am living this now).</li>
+              <li>Split monoliths based on business logic, front-end, and data-access. Each service should have its own local database. If it needs data from another service, implement an event-driven communication between these services.</li>
+              <li>The monolith should shrink every time you replace code with a microservice. The only things that should be added to the monolith is modifications to old functionality that is not in a microservice.</li>
+              <li>Any new functionality should be added to a microservice instead of added to the monolith.</li>
+            </ul>
+            <br>
+            <strong>Benefits of Microservices</strong>:<br>
+            <ul>
+              <li>There is no language or technology lock-in. We can use whatever we want as long as the API is the line of communication</li>
+              <li>All services can be deployed and maintained independently</li>
+              <li>We can scale and upgrade a component independently of the rest of the application</li>
+              <li>A failing service does not have a cascading effect. Debugging is easier if you do not need to dig through a giant stack to find a failure as well</li>
+              <li>Reusability of the service is a breeze</li>
+              <li>Enables continuous delivery</li>
+              <li>Components can be deployed across multiple servers and multiple data centers.</li>
+              <li>Work well with container orchestration tools like kubernetes, Nomad, and Swarm</li>
+            </ul>
+            <br>
+            <strong>Challenges and Drawbacks of Microservices</strong>
+            <ul>
+              <li>Choosing the right service size: carving out too small of pieces makes things too complex. Too large and we have a different kind of monolith.</li>
+              <li>Deployment: monoliths can be easily deployed, but tools such as Kubernetes are needed to deploy microservices in a distributed environment.</li>
+              <li>Testing: end-to-end testing is difficult when the dependencies are numerous and on different services</li>
+              <li>Inter-service communication: can be costly if not implemented correctly. There are options such as message passing, or RPC, and we need to choose the one with the least overhead.</li>
+              <li>Managing databases: local databases are simple, but we may need to update other databases or synchronize other databases. This is added dependencies and complexity (partitioned databases)</li>
+              <li>Monitoring and logging: monitoring individual services can be challenging. Specialized tools are needed such as Elastic, Sysdig, or Datadog.</li>
+            </ul>
+
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Software-Defined Networking and Networking for Containers</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Software-Defined Networks (SDN)</h3>
+          <p>
+            Virtualized networks designed to keep up with the increasing demands of connected devices.<br>
+            SDNs decouple the network control layer from the traffic forwarding layer. This allows SDNs to program the control layer to create custom rules in order to meet new networking requirements.<br>
+            Container to container communication is handled by the SDN.<br>
+            <br>
+            In networking there are three distinct planes:
+            <ul>
+              <li>Data Plane (aka the Forwarding Plane): responsible for handling data packets and apply actions to them based on rules which we program into lookup-tables.</li>
+              <li>Control Plane: calculates and programs teh actions for the data plane. This is where the forwarding decisions are made and where services such as Quality of Service (QoS) and VLANs are implemented.</li>
+              <li>Management Plane: where we configure, monitor, and manage the network devices.</li>
+            </ul>
+            <br>
+            Network devices perform three distinct activities:
+            <ul>
+              <li>Ingress and egress packets: activities performed at the lowest layer, decides what to do with ingress packets and which packets to forward, based on forwarding tables. Data plane activities. Routers, switches, modem, etc are part of this plane.</li>
+              <li>Collect, process, and manage the network information: the network device makes forwarding decisions, which the data plane follows. These activities are mapped by the control plane. Some of the protocols which run on the control plane are routing and adjacent device discovery.</li>
+              <li>Monitor and manage the network: the management plane tools allow us to interact with the network device to configure it and monitor it with tools like Simple Network Management Protocol (SNMP)</li>
+            </ul>
+            In Software-Defined Networking (Search It) we decouple the Control Plane from the Data Plane. The Control Plane has a centralized view of the overall network, which allows it to create forwarding tables of interest. These tables are submitted to the Data Plane to manage network traffic.<br>
+            The Control Plane has well-defined APIs that receive requests from applications to configure the network. After preparing the desired state of the network, it communicates that to the Data Plane (Forwarding Plane), using a well-defined protocol like OpenFlow (Search It).<br>
+            Configuration tools like Ansible or Chef can configure SDN, adding lots of flexibility and agility on the operations side.<br>
+            <br>
+            Containers use the <strong>network namespace</strong> feature of Linux kernel to isolate the network from one container to another on the host system. Network namespaces can be shared between containers and is used by orchestration tools extensively.<br>
+            Using <strong>Virtual Ethernet (vEth)</strong> with Linux bridging, we give a virtual network interface to each container with its own IP address. With <strong>Macvlan</strong> and <strong>IPVlan</strong> we can configure each container to have a unique world-wide routable IP address.<br>
+            Multi-host networking with containers is achieved by using a Overlay network driver, which encapsulates the Layer 2 traffic to a higher layer (Examples: Docker Overlay Driver, Flannel, and Weave. Another approach is Project Calico, which allows multi-host networking on Layer 3 using Border Gateway Protocol (BGP))<br>
+            <br>
+            <strong>Container Networking Standards: Two Models</strong><br>
+            <ol>
+              <li>Container Network Model (CNM): Docker networking model, implemented using libnetwork project used in the following modes:
+                <ul>
+                  <li>Null: NOOP implementation of the driver. When no networking is required.</li>
+                  <li>Bridge: Provides Linux-specific bridging.</li>
+                  <li>Overlay: Provides multi-host communication over VXLAN</li>
+                  <li>Remote: provides means of supporting drivers over a remote transport, so we can write drivers.</li>
+                </ul>
+              </li>
+              <li>Container Networking Interface (CNI): Cloud Native Computing Foundation (CNCF) project, providing specifications and libraries for writing plugins to configure network interfaces in Linux containers, along with a number of supported plugins. Used by projects like Kubernetes, OpenShift, and Cloud Foundry.</li>
+            </ol>
+            <br>
+            <strong>Service Discovery</strong>: allows processes and services to find each other automatically in a multi-host situation. With containers, it is used to map a container name to an IP, so dynamic IPs won't get lost. Service discovery has two steps:<br>
+            <ol>
+              <li>Registration: When a container starts, the scheduler registers the container name to the container IP in a key value store such as etcd or Consul. If the container restarts or stops the entry is updated.</li>
+              <li>Lookup: Services and applications use Lookup to retrieve the IP address of a container. Generally, supported by a local DNS (Domain Name Server).  Consul, CoreDNS, SkyDNS, and Mesos-DNS are examples of DNS services.</li>
+            </ol>
+            <br>
+            <strong>Single-Host Networking</strong><br>
+            <code>$ docker network ls</code> will display three drivers bridge, host, and null.<br>
+            <strong>Bridge Driver</strong><br>
+            Software bridge emulators on a Linux host can forward traffic between two networks based on MAC addresses. By default, Docker creates a <strong>docker0</strong> Linux bridge network. Each container running on a host gets its own IP address from this bridge network. We can specify a different network if needed. Docker uses <strong>vEth</strong> feature of Linux to create a pair of two virtual interfaces connecting the bridge network <strong>docker0</strong> to each container.<br>
+            <br>
+            <code>$ ifconfig</code> displays the network configuration on Linux.<br>
+            <code># ip a</code> displays information about a running containers network configuration using the docker command line on a container.<br>
+            <code>$ docker network inspect bridge</code> shows detailed information about the network.<br>
+            <code>$ docker network create --driver bridge bridge_name</code> to create our own custom bridge network.<br>
+            <code>$ docker container run --net=bridge_name -itd --name=c2 busybox</code> would start a new container using the network created above.<br>
+            You can also connect a running container to another network using the <code>docker network connect</code> command.<br>
+            A bridge network does not support automatic service discovery, but there is the legacy --link option.<br>
+            <br>
+            <strong>Null Driver</strong><br>
+            No networking. This would get the loopback interface and would not be accessible from any network.<br>
+            <code>$ docker container run -it --name=c3 --net=none busybox /bin/sh</code> would start a container with no networking.<br>
+            <br>
+            <strong>Host Driver</strong><br>
+            <code>$ docker container run -it --name=c4 --net=host busybox /bin/sh</code> shares the host network with the container. Not a good idea in most situations due to security implications.<br>
+            <code># ifconfig</code> in the container will display the interfaces of the host.<br>
+            <br>
+            <strong>Sharing Container Network Namespaces</strong><br>
+            We can share network namespaces among containers, so two or more containers can share the same network stack and reach each other through <strong>localhost</strong><br>
+            <code>$ docker container run -it --name=c1 busybox /bin/sh</code><br>
+            <code># ip a</code> take note of the ip<br>
+            <code>$ docker container run -it --name=c2 --net=container:c1 busybox /bin/sh</code> in a new shell<br>
+            <code>ip a</code> the ip info is the same<br>
+            This is what Kubernetes uses to share the same network namespaces among multiple containers.<br>
+            <br>
+            <strong>Multi-Host Networking</strong><br>
+            Docker supports multi-host networking allowing containers from one Docker host to communicate with containers from another Docker host when they are a part of the same swarm.<br>
+            Two drivers for multi-host networking<br>
+            <ol>
+              <li><strong>Docker Overlay Driver</strong>: encapsulates containers IP packet inside a host's packet while sending it over the wire. When receiving Docker decapsulates the whole packet and forwards the containers packet to the receiving container. This uses <strong>libnetwork</strong>.</li>
+              <li><strong>Macvlan Driver</strong>: Docker assigns a MAC to each container, making it seem like a real device. It assigns IPs to each container as if it were a device, so container to container communication is possible between hosts. Container to host communication is also possible. We need hardware support for this to work. </li>
+            </ol>
+            <br>
+            <strong>Third-Party Network Plugins</strong><br>
+            There are a lot of plugins to extend Docker including:<br>
+            <ul>
+              <li><strong>Contiv Networking Plugin</strong>: provides infrastructure and security policies for multi-tenant deployments.</li>
+              <li><strong>Kuryr Network Plugin</strong>: part of OpenStack</li>
+              <li><strong>Weave Net Network Plugin</strong>: provides multi-host container networking for Docker. Also provides service discovery and does not require external cluster store to save networking configuration.</li>
+            </ul>
+            Of course, this means we can write our own driver with Docker remote driver APIs.<br>
+            <br>
+            <strong>Podman Network Drivers</strong><br>
+            Allows us to list networks, create custom networks, inspect them, attach containers to them, and finally remove them. Supports the creation of CNI-compliant container networks. Supports <strong>bridge</strong> driver in both rootless and rooted modes. In rooted mode, you can also use <strong>macvlan</strong> and <strong>ipvlan</strong>.<br>
+            <br>
+            <strong>Kubernetes Networking</strong><br>
+            A pod is assigned a unique IP. Multiple containers in a pod share the same IP and can refer to each other via localhost. Containers in a pod can expose unique ports, and become accessible through the same Pod IP.<br>
+            Kubernetes assumes pods should be able to communicate with each other. All pods on a node can communicate with all pods on all nodes without NAT. Agents on a node can communicate with all pods on the node. Pods in the host network of a node can communicate with all pods on all nodes without NAT.<br>
+            There are also a bunch of networking plugins for Kubernetes for AWS, Azure, Calico, Cilium, Flannel, NSX-T, OpenVSwitch, and Weave Net.<br>
+            We can use the <code>kubectl</code> command for pod to pod communication.<br>
+            Note that the IPs of pods are ephemeral, so they will change over time. Kubernetes provides another IP for the cluster which is less ephemeral, but allows us pod to pod communication.<br>
+            The best way to enable pod to pod communication is to use Kubernetes DNS service <strong>coredns</strong>, so we can use service names instead of IP.<br>
+            <br>
+            <strong>Cloud Foundry: Container to Container Networking</strong><br>
+            <strong>Gorouter</strong> is the default way to route traffic to Cloud Foundry (CF) components.<br>
+            <strong>Container-to-container networking</strong> is a feature of CF, but when disabled we use Gorouter for application to application traffic<br>
+            CF architecture for container-to-container networking:
+            <ul>
+              <li><strong>Policy Server</strong>: a management node hosting a database of app traffic policies.</li>
+              <li><strong>Garden External Networker</strong>: Sets up networking for each app through the CNI plugin. Exposes apps to the outside, by allowing traffic from Gorouter, TCP router, and SSH proxy.</li>
+              <li><strong>Silk CNI plugin</strong>: IP management through a shared VXLAN overlay network that assigns each container a unique IP. The overlay network is not externally routable preventing container-to-container traffic from escaping the overlay.</li>
+              <li><strong>VXLAN Policy Agent</strong>: Enforces network policies between apps. When creating routing rules for network policies, we include the source app, destination app, protocol, and ports, without going through Gorouter, a load balancer, or a firewall.</li>
+            </ul>
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Software Defined Storage (SDS) and Storage Management for Containers</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Software-Defined Storage (SDS)</h3>
+          <p>
+            Storage virtualization abstracts actual hardware from the software that manages and provisions it. You can combine and manage various sources of hardware as a single pool of storage. SDS may provide resiliency features such as replication, erasure coding, and snapshots of pooled resources. Pooled resources are configured to form a storage cluster. SDS allows File, Block, and Object access methods.<br>
+            SDS implementations include: Ceph, Gluster, LINBIT, MinIO, Nexenta, OpenEBS, Soda Dock, TrueNAS, VMware vSAN.<br>
+          </p>
+ 
+          <h3>Ceph</h3>
+          <p>
+            Open source distributed storage system in a single storage cluster using object, block, and filesystem. Everything in Ceph is stored as objects. Uses CRUSH (Controlled Replication Under Scalable Hashing) algorithm to deterministically, find, write, and read the location of objects.<br>
+            <strong>Reliable Autonomic Distributed Object Store (RADOS)</strong>: Object store which stores the objects. This layer ensures the data is always in a consistent and reliable state. It performs operations like replication, failure detection, recovery, data migration, and rebalancing. This layer has the following three components:
+            <ol>
+              <li>Object Storage Device (OSD): Actual user content is written and retrieved. Ons OSD daemon is typically tied to one physical disk in the cluster.</li>
+              <li>Ceph Monitors (MON): Monitor state of cluster and maps the cluster state through the OSD, Place Groups (PG), CRUSH, and Monitor maps.</li>
+              <li>Ceph Metadata Server (MDS): only needed by CephFS, to store file hierarchy and metadata for files.</li>
+            </ol>
+            <strong>Librados</strong>: A library that allows direct access to RADOS using C, C++, Python, Java, PHP, etc..<br>
+            <strong>Ceph Block Device (RBD)</strong>: Block interface for Ceph built using Librados. Works like a block device and has enterprise features like thin provisioning and snapshots.<br>
+            <strong>RADOS Gateway (RADOSGW)</strong>: REST API for Ceph using Librados. Compatible with AWS and OpenStack Swift.<br>
+            <strong>Ceph File System (CephFS)</strong>: provides a POSIX-compliant distributed filesystem on top of Ceph using Librados. It relies on Ceph MDS to track file hierarchy.<br>
+            You can use a shell to create and mount storage.
+            <br>
+            <strong>Benefits</strong>
+            <ul>
+              <li>Open source, supporting object, block, and file system</li>
+              <li>Runs on any commodity hardware, without and vendor lock-in</li>
+              <li>Provides data safety for mission-critical apps</li>
+              <li>Provides automatic balance of filesystems for performance</li>
+              <li>Scalable and highly available</li>
+              <li>High throughput by stripping files/data across multiple nodes</li>
+              <li>Adaptive load-balancing. Replicates frequently accessed objects over multiple nodes</li>
+            </ul>
+          </p>
+
+          <h3>GlusterFS</h3>
+          <p>
+            Utilizes off-the-shelf hardware to create large, distributed storage solutions for bandwidth intensive tasks.<br>
+            Create shared storage by grouping machines in a trusted pool. Group directories (bricks) from those machines in a GlusterFS volume using FUSE (Filesystem in Userspace)<br>
+            GlusterFS uses an elastic hashing algorithm to store files on bricks instead of a centralized metadata server.<br>
+            GlusterFS volumes can be accessed using Native FUSE mount, NFS (Network File System), and CIFS (Common Internet File System)<br>
+            You can use the command line to create file shares and mount on clients.<br>
+            <br>
+            <strong>New Benefits</strong>
+            <ul>
+              <li>Scales to several petabytes</li>
+              <li>Does not have a metadata server</li>
+              <li>Provides replication, quotas, geo-location, snapshots, and BitRot detection</li>
+            </ul>
+          </p>
+
+          <h3>Storage Management for Docker Containers</h3>
+          <p>
+            The ephemeral nature of containers means we need to persist data elsewhere and ensure that datas availability.<br>
+            Docker Volume plugins allow vendors to supply storage. Docker supports several storage drivers that enable the storage of container images, containers and other types of metadata.<br>
+            Docker uses <strong>copy-on-write</strong> mechanism when containers are started from images, protecting the image from edits. All changes are saved on a writeable filesystem layer of the container, leaving the image on read-only storage. You can choose a storage driver: AUFS (Another Union File System), BtrFS, Device Mapper, Fuse-OverlayFS, Overlay2, VFS (Virtual File System), and ZFS.<br>
+            Storing files on a host system:
+            <ul>
+              <li><strong>Volumes</strong>: Linux volumes are stored under /var/lib/docker/volumes and managed by Docker. This is the recommended way to store persistent data in Docker on a host.</li>
+              <li><strong>Bind Mounts</strong>Allow Docker to mount any file or directory from the host system in a container</li>
+              <li><strong>Tmpfs</strong>: Stored in the host's memory only but not persisted on its filesystem</li>
+              <li><strong>Named Pipes (npipe)</strong>: Commonly used for direct communication between container and Docker host</li>
+            </ul>
+            Volumes and Bind Mounts bypass the Union Filesystem by using the copy-on-write mechanism. The writes happen directly on the host directory.<br>
+            <br>
+            <code>$ docker container run -d --name web -v webvol:/webdata thisapp:latest</code> - creates a volume inside the Docker working directory /var/lib/docker/volumes/webvol/_data on the host.<br>
+            <code>$ docker container inspect web</code> - shows the mount point<br>
+            <code>$ docker container run -d --name web -v /mnt/webvol:/webdata thisapp:latest</code> - mounts the host's /mnt/webvol directory to the /webdata mount point on the container as it is started.<br>
+            <code>$ docker volume create --name named-volume</code> - creates a volume we name for use with different operations.<br>
+            <code>$ docker volume create --driver local my-named-volume</code> - creates a local volume (on the host).<br>
+            <code>$ docker volume ls</code> - lists volumes on the host.
+            <code>$ docker container run -it -v my-named-volume:/data --name datac alpine sh</code> - creates a container and mounts the local volume at /data. After exiting and removing the container, any files created will still exist locally. We can then reuse for another container later.<br>
+            <br>
+            <strong>Docker Volume Plugins</strong><br>
+            There are a bunch of plugins from third party vendors. This is especially useful when migrating data of a stateful container, like a database, on a multi-host environment.<br>
+            GlusterFS is one useful plugin for persisting data<br>
+          </p>
+
+          <h3>Podman Storage Management for Containers</h3>
+          <p>
+            Podman is capable of using the copy-on-write mechanism when containers are run.<br>
+            <strong>Volumes</strong> are stored in /var/lib/containers/storage/volumes directory for root and under $HOME/.local/share/containers/storage/volumes for regular users. Recommended for storing persistent data with Podman.<br>
+            <strong>Bind</strong> Podman can mount a named volume from the host.<br>
+            <strong>Tmpfs</strong> is stored in memory only and not persisted.<br>
+            <strong>Ignore</strong>: all volumes are ignored<br>
+            <code>$ podman container run -d --name=web -v webvol:/webdata myapp:latest</code><br>
+            etc..
+          </p>
+
+          <h3>Volume Management in Kubernetes</h3>
+          <p>
+            Kubernetes uses volumes to attach to external storage. A volume is a directory, backed by a storage medium. The storage medium and contents are determined by the volume type. A volume is linked to a Pod and can be shared among containers. The volume remains intact until the Pod is deleted. A container restart does not delete the volume.<br>
+            The volume types are numerous: awsElasticBlockStore, azureDisk, azureFile, cephfs, configMap, emptyDir, gcePersistentDisk (Google), glusterfs, hostPath, nfs, persistentVolumeClaim, rbd (Rados Block Device), secret (encoded secrets), vsphereVolume, etc..<br>
+            <br>
+            <strong>Persistent Volume Subsystem</strong>: Kubernetes API to manage and consume storage<br>
+            <strong>PersistentVolume (PV)</strong>: resource type to manage volume<br>
+            <strong>PersistentVolumeClaim (PVC)</strong>: resource type to consume volume<br>
+            We can provision static volumes or dynamic volumes.<br>
+            Dynamic volume provisioning uses the Kubernetes StorageClass resource, which contains provisioners for PV creation. PCC requests dynamic PV creation, which is wired to the StorageClass resource.<br>
+            There are many volume types that support managing storage using Persistent Volumes<br>
+            <br>
+            <strong>Persistent Volumes Claim</strong>: a request for storage by a user. The request is based on size, access modes, and volume type. Once a suitable PV is found, it is bound to PVC. After a successful bind, the PVC can be used in a Pod, allowing the container access to the PV.<br>
+            Once the user completes tasks and the Pod is deleted, the PVC may be detached from the PV releasing it for future use. Once released, the PV can be deleted, retained, or recycled for future use, based on the reclaim policy.<br>
+            <br>
+            We can create storage using <strong>minikube</strong> and ssh into it.<br>
+            After creating a storage pod yaml file with a volume for storage and a path defined such as <code>path: /tmp/data-volume</code> and volume mount with a mount path of <code>mountPath: /data</code><br>
+            <code>$ kubectl apply -f storage-pod.yaml</code> used to create storage in a pod<br>
+            <code>$ kubectl pod storage-pod</code> shows info about the storage provisioned<br>
+            <code>$ kubectl exec storage-pod -- bash -c 'ls -la /data'</code> to show the volume contents<br>
+            Any files added to the storage or container are seen in both.<br>
+            <br>
+            <strong>Distributed Storage Management</strong><br>
+            At enterprise scale, managing storage can be challenging and we are at risk of vendor lock-in. Kubernetes best practices recommend we aim for decoupling as much as possible. Adding an abstraction layer between storage resource definitions and infrastructure such as Rook, Longhorn,an open source interface.<br>
+            Rook simplifies and automates deployment, scalability, self-healing, disaster recovery, management, and monitoring of distributed storage.<br>
+            Longhorn offers managing of cloud-native storage at reduced costs and built-in incremental backups and snapshots.
+          </p>
+
+          <h3>Cloud Foundry Volume Service</h3>
+          <p>
+            Mechanisms exist to easily share NFS shares and SMB shares using the service marketplace. Using the <code>volume bind</code> command you can mount a virtual device to a service using Diego, the scheduler.<br>
+            <br>
+            Set up PCF Dev (Pivotal Cloud Foundry) on your local workstation and create a volume and use it in an application.
+          </p>
+
+          <h3>Container Storage Interface (CSI)</h3>
+          <p>
+            An attempt to standardize and the volume interface to avoid duplicate work. The same volume plugin would work with different container orchestrators out of the box. The goal is to define APIs for dynamic provisioning, attaching, mounting, consumptions, and snapshot management of volumes and defines plugin configuration steps taken by the orchestrator with deployment configuration options.
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">DevOps and CI/CD (Continuous Integration / Continuous Delivery - Continuous Deployment)</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Better Quality and Faster Innovation</h3>
+          <ul>
+            <li>Faster idea to production time</li>
+            <li>Lower failure rate for new releases</li>
+            <li>Shorter lead time between fixes</li>
+            <li>Faster mean time to recovery</li>
+          </ul>
+          <p>
+            <strong>DevOps</strong>: collaboration between Developers and Operations.<br>
+            <strong>Continuous Integration (CI)</strong>: flow of code merge, build, and automated testing operations.<br>
+            <strong>Continuous Delivery (CD)</strong>: flow follows CI and automates the code deployment to staging environments, expecting a manual deployment for production.<br>
+            <strong>Continuous Deployment</strong>: same as continuous delivery, but with automated production deployment. Frequent smaller releases triggering faster customer feedback for faster bug fixes<br>
+            Software includes: Jenkins, Travis CI, Concourse, Argo, Flux, Tekton, and GitLab.
+          </p>
+
+          <h3>Jenkins</h3>
+          <p>
+            Jenkins as a service is a CI/CD (continuous delivery) using cloud hosted solutions such as: Cloudbees, Servana, DigitalOceans Onjection Jenkins, AWS, Azure, Google Cloud, Kamatera, etc.. It is open source, easy to use, and extensible using plugins.<br>
+            <br>
+            Jenkins can build Freestyle, Apache Ant, and Apache Maven based projects. It is also extendable using plugins for more than 1800 categories like Source Code Management, Administration, Build Management, User Interface, and Platforms. Basically the entire pipeline is managed by plugins to ensure CI/CD.<br>
+            The UI is huge and feature packed. There is a new model of the UI called Blue Ocean which is an improvement without all the features.<br>
+            It is very easy to set up unit tests using the Jenkins dashboard.
+          </p>
+
+          <h3>Travis CI</h3>
+          <p>
+            Works with projects hosted on GitHub, BitBucket, etc..<br>
+            Link the repo and add a .travis.yml file to the repo and define how the build should be executed step by step in the file. Basic steps are install and script (to run the build). There are a lot of optional steps we can include in the yml file.<br>
+            Supports many databases, containers, languages, and cloud service providers for deployment.<br>
+            It supports different versions of the same runtime.
+          </p>
+
+          <h3>Concourse</h3>
+          <p>
+            An opensource CI/CD system, written in Go, using Docker and Docker-Compose to run a series of containerized tasks to perform desired operations. Uses configuration files, driven by the <strong>fly</strong> CLI and a web UI.<br>
+            You can set it up on-premises or in the cloud.<br>
+            The web UI has good visualization for pipeline and tasks<br>
+            Scalable across multiple servers.<br>
+            The necessary data to run the pipeline can be provided by resources. These resources never affect the performance of a worker.
+          </p>
+
+          <h3>DevOps - GitOps - DevSecOps</h3>
+          <p>
+            <strong>DevOps</strong>: focusing on CI/CD processes such as code merges, application builds, testing, and delivery. Infrastructure, application configuration, rules and policy management are all managed using source control, "Everything as Code."<br>
+            <strong>GitOps</strong>: combining DevOps concepts with tools for infrastructure configuration code management. Git being the single source of truth for code commits, now extends to the entire system. Git is the single source of truth for infrastructure configuration code, application, source code, deployment configuration, and monitoring rules.<br>
+            <strong>DevSecOps</strong>: adding security into the CI/CD processes.
+          </p>
+
+          <h3>Cloud Native CI/CD Tools with Kubernetes</h3>
+          <p>
+            <strong>Helm</strong>: package manager<br>
+            <strong>Skaffold</strong>: supports Helm to build, push, and deploy.<br>
+            <strong>Argo</strong>: workflow management on Kubernetes clusters for orchestrating multi-step task sequences in CI/CD.<br>
+            <strong>Flux</strong>: enables GitOps and continuous deployment on Kubernetes.<br>
+            <strong>GitLab</strong>: provides continuous integration, automated delivery pipelines, GitOps and DevSecOps. Has built-in vulnerability scans, dynamic and static security testing, and implementing supply chain security.<br>
+            <strong>JFrog Pipelines</strong>: highly optimized CI/CD offered free with limitations or paid for enterprises.<br>
+            <strong>CircleCI</strong>: CI/CD tool for Kubernetes. Integrates with Docker and a host of paid for cloud providers. Free with limitations and paid for options.<br>
+            <strong>Jenkins X</strong>: cloud native version of Jenkins.<br>
+            <strong>Spinnaker</strong>: open source multi-cloud continuous delivery platform for releasing software changes with high velocity. Supports all major cloud providers.
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Tools for Cloud Infrastructure (Configuration Management)</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Infrastructure as Code</h3>
+          <p>
+            To ensure consistent environments we control the configuration just like we would source code. Infrastructure resources are defined in a declarative fashion in config files. These are reusable for provisioning reproducibe systems across environments.<br>
+            <strong>Infrastructure as Code</strong>: the process of treating config files for infrastructure as source.<br>
+            With some tooling around environments, we can create the same environments on different cloud providers.<br>
+            Ansible, Chef, Puppet, and Salt provide Configuration Management (CM).<br>
+            Terraform, CloudFormation, and BOSH provide reproducible build and release environments
+          </p>
+
+          <h3>Ansible</h3>
+          <p>
+            Automate infrastructure provisioning through agentless tool working through SSH. Agentless is its advantage. Maintenance is restricted to a single management node and not to every managed instance on the cluster. All updates are pushed via SSH to lists of nodes managed in inventory files. Dynamic inventory files are usable for cloud providers such as AWS and OpenStack.<br>
+            <strong>Playbooks</strong> are Ansible's configuration, deployment, and orchestration language. A <strong>playbook</strong> is the file containing the script that performs tasks based on roles. (Of course it is a *.yml file)<br>
+            The Ansible management node is installed on a *nix based system and connects to nodes listed in the inventory file to run tasks set out in the playbook. It can manage any node that supports SSH and Python.<br>
+            <strong>Ansible Galaxy</strong> is a free site for finding and sharing community developed Ansible roles.<br>
+            <strong>Ansible Automation Platform</strong> is the enterprise product, which introduces a UI interface, access control, and central management.<br>
+            <strong>Benefits</strong><br>
+            <ul>
+              <li>Open Source</li>
+              <li>Agentless</li>
+              <li>Supported by a large community</li>
+              <li>Low learning curve</li>
+              <li>Role-based access control</li>
+              <li>Available for all major OS</li>
+            </ul>
+          </p>
+        
+          <h3>Puppet</h3>
+          <p>
+            Open source agent/server model configuration tool. The agent is called Puppet Agent and the server is Puppet Server. There is also an enterprise solution called Puppet Enterprise.<br>
+            Install Puppet Agent on each system to configure and manage. The agents connect to Puppet Server to get instructions from the Catalog file, perform operations found there, and send back the status to Puppet Server. The agent can be installed on Linux, Mac, and Windows.<br>
+            Puppet Server can only be installed on Unix-based systems. It compiles the Catalog file, sends it to Agents when queried, stores information about the environment, and gathers reports from each Agent.<br>
+            The Catalog file is based on a <strong>manifest</strong> file. The manifest is created using Puppet Code.<br>
+            <strong>PuppetDB</strong> handles centralized reporting.<br>
+            <strong>Puppet Forge</strong> has ready to use modules for manifest files from the community.<br>
+            <strong>Puppet Master</strong> is used to manage packages on nodes.
+          </p>
+
+          <h3>Chef</h3>
+          <p>
+            A client/server model based configuration tool. The Chef Client is installed on each host. The server is called Chef Server. There is also a Chef Workstation used to develop <strong>cookbooks</strong> and <strong>recipes</strong>, synchronize <strong>chef-repo</strong> with version control, run commands, configure policy & roles etc.., and interact with nodes to perform one-off configuration.<br>
+            <strong>Chef Cookbook</strong> is the basic confifuration unit that defines a scenario. It uses <strong>recipes</strong> which lists resources and actions to perform on those resources and <strong>attributes</strong> that help define the state of the node. After each <strong>chef-client</strong> run the nodes state is updated on Chef Server.<br>
+            <strong>Knife</strong> is an interface between a local <strong>chef-repo</strong> and the Chef Server.<br>
+            Clients can be installed on most major OSes and the server can be installed on major Linux distros.<br>
+            You can find cookbooks and download them from <strong>Supermarket</strong> created by the community.<br>
+            We then upload them to our server, so we can execute them on various hosts.<br>
+            <strong>Chef Automate</strong> can be used to provide real-time visibility, audits, and compliance.
+          </p>
+
+          <h3>Salt</h3>
+          <p>
+            Open source tool for configuration. Can be used agentless or as a client/server. Agentless uses SSH.<br>
+            VMware drives Salt development. They also have an enterprise product <strong>VMware Aria Automation</strong><br>
+            <strong>Salt minion</strong> is the managed client and can be installed on Unix, Windows, and MacOS.<br>
+            <strong>Salt master</strong> is the serer. Multi-master configuration is also supported.<br>
+            Master and minions communicate over a high speed data bus <strong>ZeroMQ</strong>, which requires an agent on each minion.
+          </p>
+
+          <h3>Terraform</h3>
+          <p>
+            Infrastructure as code on any cloud is their promise. It also works on bare metal and VMs. Configuration is written in HashiCorp Configuration Language (HCL).<br>
+            <strong>Terraform Providers</strong>: machines (physical and virtual), network switches, or containers are called providers.<br>
+            You can create custom providers through plugins. The provider is responsible for understanding the API, so Terraform is agnostic to the platform. Providers come in stacks for IaaS (AWS, Azure, etc..), PaaS (Heroku, Cloud Foundry, etc..), and SaaS (DNSimple, etc..)<br>
+            Infrastructure is stored in a *.tf file. Example: main.tf file that will log into AWS and build a web server with security to allow HTTP and SSH access.<br>
+            By running <code>$ terraform plan ...</code> you can see what would change if it were to actually run before commiting to the change and then using the <code>$ terraform apply ...</code>.<br>
+          </p>
+
+          <h3>CloudFormation</h3>
+          <p>
+            AWS tool to use JSON or YAML as source for infrastructure. You can also use the front-end.<br>
+            <strong>CloudFormation Registry</strong>: a third party app resource for monitoring, incident management, and version control.<br>
+            <strong>AWS Cloud Development Kit (AWS CDK)</strong>: supports TypeScript, Python, Java, and .Net to model cloud applications for infrastructure provisioning.<br>
+            Rollback is easily managed.<br>
+            Preview of changes before deployment.<br>
+            Cross account and cross region management is possible through StackSet.
+          </p>
+          <p>
+            To get up and running on the command line (UI is easier, but we like scripting)
+          </p>
+          <ul>
+            <li>AWS account</li>
+            <li>Install AWS CLI</li>
+            <li>Configure your profile with account's access key</li>
+            <li>Create key pair for easy access via SSH</li>
+            <li>Add nodes in JSON for the key pair for access</li>
+            <li>Define the instance type of container to run</li>
+            <li>Define the instance image to use</li>
+            <li>Define the IP range allowed for SSH for use in the firewall rules</li>
+            <li>Add default mappings for instances to architechture and mappings to regions</li>
+            <li>Add definition for resources to be created based on the earlier settings, security group settings to use, and a start-up script to get the ball rolling</li>
+            <li>Add security group settings to allow things like http and ssh</li>
+            <li>Validate the JSON using <code>$ aws cloudformation validate-template ...</code></li>
+            <li><code>$ aws cloudformation create-stack ...</code></li>
+            <li>Verify using the UI or <code>$ aws cloudformation list-exports</code> and grab the IP</li>
+            <li>Go to the IP in the browser</li>
+            <li><code>$ aws cloudformation delete-stack ...</code></li>
+          </ul>
+
+          <h3>BOSH</h3>
+          <p>
+            Open source tool for release engineering, deployment, lifecycle management, and monitoring of distributed systems. Creates VMs on top of IaaS, configures them to suit the requirements, and deploys applications on them. Supports IaaS on AWS, OpenStack, VMware vSphere, and vCloud Director and through the Cloud Provider Interface (CPI) Google Compute Engine and Apache CloudStack.<br>
+            <strong>Stemcell</strong>: a versioned IaaS-specific OS image with pre-installed utilities. Does not include any application code.<br>
+            <strong>Release</strong>: placed on top of a <strong>Stemcell</strong> and consists of versioned configuration and source code to build and deploy an application.<br>
+            <strong>Deployment</strong>: a collection of VMs built from Stemcells, populated with specific Releases on top, and having disks to keep persistent data<br>
+            <strong>BOSH Director</strong>: central orchestrator, controlling VM creation and deployment. Upload Stemcells, Releases, and Deployment manifest files to Director to process. Example Deployment manifests can be found on BOSH web site.<br>
+            There is a BOSH repo that gives you a demo project to learn BOSH locally.<br>
+            Supports AWS, OpenStack, VMware vSphere, etc..
+          </p>
+
+          <h3>Key-Value Pair Store</h3>
+          <p>
+            There must be a source of truth for all configuration key value pairs for use in an environment. An API that supports GET, PUT, and DELETE is common. Some key-value stores are <strong>etcd</strong>, <strong>Consul</strong>, and <strong>ZooKeeper</strong>.
+          </p>
+
+          <h3>etcd (key-value store)</h3>
+          <p>
+            Open source distributed key-value storage using Raft consensus algorithm for communicating between instances. Works as a stand alone or in a distributed cluster and boasts high availability in a distributed cluster. I allows watching of a key-value pair to perform an operation as a result of a change. Used in Kubernetes, rook, locksmith, vulcand, Doorman, CoreDNS, and OpenStack.
+          </p>
+          <p><strong>Use Cases</strong></p>
+          <ul>
+            <li>Store connections, configuration, cluster bootstrapping keys, and other settings</li>
+            <li>Service discovery in conjunction with tools like skyDNS</li>
+            <li>Metadata and configuration data for service discovery</li>
+            <li>Container management</li>
+          </ul>
+          <p><strong>Benefits</strong></p>
+          <ul>
+            <li>Benchmarked at 10,000 writes per instance, Fast</li>
+            <li>Easy to deploy and set up</li>
+            <li>Secured by optional SSL certificates for authentication</li>
+          </ul>
+
+          <h3>Consul KV (key-value store)</h3>
+          <p>
+            Distributed, highly available system for service discovery and configuration<br>
+            In addition to key-value storage, it provides service discovery in conjunction with DNS or HTTP, health checks, and multi-datacenter support.<br>
+            Built on top of <strong>Serf</strong>, providing membership, failure detection, and event broadcasting.<br>
+            Uses Raft consensus algorithm for leadership election and consistency.<br>
+            Manages network discovery and load balancing while reducing downtime.<br>
+            Supports multi-platform secure service to service communication.<br>
+            Allows for Blue-Green or Canary deployment patterns.
+          </p>
+
+          <h3>ZooKeeper (key-value store)</h3>
+          <p>
+            Stores configuration information, providing distributed synchronization with group services. It implements consensus, group management, and presence protocols for applications.<br>
+            Implements node coordination in a cluster.<br>
+            Manages cloud node memberships and distributed jobs<br>
+            Handles election of high availability leader.<br>
+            Light-weight failover and load balancing manager<br>
+            Offers a hierarchical key-value store (tree data structure)
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Image Building - Cloud Infrastructure Tools</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Building Images</h3>
+          <p>
+            We build a new image each time we push new code and deploy to an environment. The image creation should be automated and the image built stashed as a read-only image to be used as we proceed from environment to environment.
+          </p>
+
+          <h3>Docker Image Creation</h3>
+          <p>
+            Manually, we can create a custom image based on a pre-built image, install software and other things, then <code>docker commit</code> to save the image.<br>
+            <strong>Dockerfile</strong>: we can use a Dockerfile to automate the process of building images. Typically we start from a base image and then build on top of that, but you can start from scratch (build your own base image) if needed.<br>
+            <strong>Debootstrap</strong>: can be used to build an image directly from a working machine.<br>
+            <strong>supermin</strong>: also used to create a base image.<br>
+            Finally, the Docker GitHub repo has helper scripts to help create your own image.<br>
+            <strong>Multi-Stage Dockerfile</strong>: allow us to combine multiple steps (used to require multiple Dockerfiles) into a single Dockerfile.
+          </p>
+
+          <h3>Podman Image Creation</h3>
+          <p>
+            After starting a container, we can install software and configure it as desired and then using the <code>podman commit</code> command we can save it to persistent storage as a new container image. Doing this manually is not scalable and requires a lot of work. We can use a <strong>Containerfile</strong> or a <strong>Dockerfile</strong> to do the same thing using the <code>podman build</code> command.
+          </p>
+
+          <h3>Buildah Image Creation</h3>
+          <p>
+            <code>buildah bud</code> (build-using-dockerfile) is run to create an image from a Containerfile or Dockerfile. You can also run the instructions found in the file manually one by one.
+          </p>
+
+          <h3>Packer Image Building</h3>
+          <p>
+            Images as code built in HashiCorp Configuration Language (HCL). Creates virtual machine images on cloud platforms.<br>
+            <strong>Parallel Builds</strong>: You can build multiple images in parallel from the same template file called<br>
+            The three basic steps for building Virtual Machine images are: 1) Building the base image; 2) Provision the base image for configuration using Shell, Ansible, Puppet, Chef, etc..; 3) Perform optional post-build operations (Copy move machine to image repo or create a Vagrant box)<br>
+            Example: you can use Packer to build an image for use on DigitalOcean. JSON is created that will build and provision an image on DigitalOcean. Inside the VM we will run a script to configure nginx. The script upgrades and updates ubuntu and installs nginx and starts the nginx service.
+          </p>
+
+          <h3>Image Registries</h3>
+          <p>
+            <ul>
+              <li>ArtifactHub: sandbox project to store Helm charts, Tekton pipelines, OPA policies, Falco rules, Krew Kubectl plugins, etc..</li>
+              <li>JFrog Artifactory: Docker container images, Helm charts, OS images, App packages, App dependencies, etc...</li>
+              <li>Docker Hub: registry for Docker</li>
+              <li>Harbor: Kubernetes and Docker</li>
+              <li>Quay: Red Hat integration with GitHub and Bitbucket managing images for Podman, Docker, and Rkt</li>
+              <li>Google Container Registry: Docker images</li>
+              <li>Amazon Elastic Container Registry: Docker, Helm charts, OS images, and Kubernetes addons.</li>
+              <li>Azure Container Registry: manage container images for Docker and Helm charts.</li>
+              <li>Skopeo: open source tool to interface between multiple registries. Move images between registries like docker.io, quay.io, and private/local repos.</li>
+            </ul>
+          </p>
+        </section>
+
+        <button type="button" class="collapse-button">Debugging, Logging, and Monitoring Containerized Applications</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Tools for Troubleshooting on Bare Metal and VMs</h3>
+          <ul>
+            <li>strace</li>
+            <li>SAR (System Activity Reporter)</li>
+            <li>tcpdump</li>
+            <li>GDB (GNU Project Debugger)</li>
+            <li>syslog</li>
+            <li>Nagios</li>
+            <li>Zabbix</li>
+          </ul>
+          <p>
+            Containers have challenges: 1) Since they are ephemeral we need to store logs in persistent storage; 2) Containers do not have kernel-space components; 3) Keeping a containers footprint small is counter to the need for installing debugging and monitoring tools; 4) Collecting individual per container statistics and debugging info then compiling and analyzing is tedious.
+          </p>
+          <p>We have tools designed for containers: </p>
+          <ul>
+            <li><strong>Debugging</strong>: Docker CLI, Kubernetes CLI, Podman CLI, crictl CLI, Sysdig</li>
+            <li><strong>Logging</strong>: Docker CLI, Docker Logging Driver, Kubernetes CLI, Podman CLI, Podman Logging Driver, crictl CLI</li>
+            <li><strong>Monitoring</strong>: Docker CLI, Kubernetes CLI, Podman CLI, Sysdig, cAdvisor, Prometheus, Datadog, New Relic</li>
+          </ul>
+          <p>The tools are very similar.</p>
+          <ul>
+            <li><strong>Debugging</strong>: <code>docker inspect</code>, <code>podman inspect</code>, <code>crictl inspect</code></li>
+            <li><strong>Logging</strong>: <code>docker logs</code>, <code>podman logs</code>, <code>crictl logs</code></li>
+            <li><strong>Monitoring</strong>: <code>docker stats</code>, <code>podman stats</code>, <code>docker top</code>, <code>podman top</code></li>
+          </ul>
+          <p>
+            <strong>Docker Logging Drivers</strong>: Docker lets you choose a logging policy for a group or single container. Docker forwards logs to the corresponding logger drivers (jsonfile, syslog, journald, gelf (Graylog Extended Log Format), fluentd, awslogs, Splunk). Once saved in a central location, we can use the respective tools to query for insights.<br>
+            <strong>Podman</strong>: also supports logging drivers (k8s-file, journald, none, and passthrough, with json-file aliased to k8s-file for scripting compatibility)
+          </p>
+
+          <h3>Sysdig</h3>
+          <p>
+            An on-cloud or on-premises platform for DevOps security for containers, Kubernetes, monitoring and forensics through DevSecOps. There are two open source tools as well as an enterprise class offering. Install Sysdig agents on all the nodes to collect information at a central location. To capture system calls and OS events a kernel component must be installed.<br>
+            <strong>Sysdig</strong>: saves low level system information from a running Linux instance, that can be filtered and further analyzed<br>
+            <strong>Sysdig Monitor</strong>: a paid offering providing full-stack monitoring and alerting in addition to the open source version. Gives you a dashboard and Prometheus compatibility.<br>
+            <strong>Enterprise Falco</strong>: Fine grained visibility into containers and apps. Collects information about the system, network, and file level. Rule sets allow automated actions based on security information. Example: kill a container that does not satisy security requirements.<br>
+            <strong>Sysdig Secure</strong>: Paid offering that identifies vulnerabilities, checks compliance, blocks threats, and improved response time.
+          </p>
+
+          <h3>cAdvisor (Container Advisor)</h3>
+          <p>
+            Open source tool that collects resource usage and performance characteristics of the host and running containers. Run cAdvisor as a Docker container and use your browser to get live statistics via a dashboard. It also has a REST API, exports to InfluxDB, and as Prometheus metrics.  
+          </p>
+
+          <h3>Elasticsearch</h3>
+          <p>
+            Distributed search and analytics engine of Elastic Stack. Elasiticsearch is responsible for data indexing, search, and analysis. Kibana is an interface that enables interactive data visualization and insights into the data.<br>
+            Elasticsearch with Kibana is the desired open source solution for use cases including machine learning, security, and reporting.
+          </p>
+          <ul>
+            <li>Management tools and APIs to allow control over data, users, cluster operations, snapshots and restores.</li>
+            <li>Secure access through encryption</li>
+            <li>Supports a variety of clients, standard RESTful APIs and JSON, Java, Python, SQL, and PHP.</li>
+            <li>Supports advanced searching mechanisms, analytics, aggregation, machine learning, and alerting.</li>
+          </ul>
+
+          <h3>Fluentd</h3>
+          <p>
+            A unified logging layer. Open source data collector for unified logging. Tries to structure data in JSON. Supports hundreds of plugins connecting input sources to output sources, after filtering, buffering, and routing. Fluentd is simple, fast, and flexible. It is performant and developer-friendly.<br>
+            Docker supports logging drivers, fluentd being one.
+          </p>
+
+          <h3>Datadog</h3>
+          <p>
+            Cloud monitoring and analytics with integrated security. It connects to Amazon EC2, Apache, Java, MySQL, CentOS, etc.. Install an agent in the host system, which sends the data to the Datadog's server. Once sent we can build an interactive dashboard, search and co-relate matrices and events, share the matrices and events, and receive alerts.<br>
+            Kubernetes monitoring for containers with Datadog gives us a dashboard that shows the number of nodes in the cluster, the running and stopped containers, the most resource-consuming pods, the number of running pods per node, the number of running containers per node, resource utilization per node, etc..<br>
+            Datadog enables DevSecOps through a full stack of automated security threat detection and incident response workflows. 
+          </p>
+
+          <h3>Prometheus</h3>
+          <p>
+            Open source tool for monitoring and alerting. Records any purely numeric time-series data. Works well for both machine-centric monitoring like CPU, memory usage, and monitoring of highly dynamic service oriented architechtures. Written in Go.<br>
+            Supports a multi-dimensional data model with time-series data key/value pairs with a query language to get data. Supports metrics collection through a pull or push. Has service discovery or static configuration. Connects to Grafana and Pagerduty for dashboards and alerting. Supports client libraries for Go, Java, Python, etc..<br>
+            Has a central Prometheus server that scrapes and stores pull and push based metrics, an Alertmanager (PagerDuty, email, etc..), Web UI or Grafana, Service Discovery.
+          </p>
+
+          <h3>Splunk</h3>
+          <p>
+            Data aggregation and analysis. Provides interactive dashboards full of customizations. Even provides augmented reality and virtual reality :)<br>
+            Enables DevSecOps through automation and orchestration of security threat detection, weakness discovery, and countering workflows.
+          </p>
+
+          <h3>OpenTelemetry</h3>
+          <p>
+            Tools, APIs, and SDKs to enable observability. Create, retrieve, and export metrics, logs, and traces for analysis. The core component is a Collector, a vendor agnostic single code base agent supporting telemetry data formats from Jaeger, Prometheus, Fluent Bit, etc..<br>
+            It supports .NET, C++, Java, JavaScript, Go, Python, PHP, Ruby, Rust, etc..<br>
+            The brilliance is that it is open source and vendor agnostic.
+          </p>
+
+          <h3>Dynatrace</h3>
+          <p>
+            AI-powered unified platform for observability, automation, and security. On-premise, cloud, hybrid, it does it all. Automates DevOps and DevSecOps activities by optimizing the integration between AI and Kubernetes to secure cloud pipelines. Out of the box support for AWS, Azure, GCP, Kubernetes, OpenShift, VMware Tanzu.<br>
+            Enables cloud native DevOps continuous delivery pipelines.<br>
+            It uses <strong>Keptn</strong>, an open source project, created by Dynatrace for GitOps, to automate cloud native software delivery.
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Service Mesh</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Network Communication for Microservices</h3>
+          <p>
+            <strong>Service mesh</strong> allows us to decouple resilient communication patterns such as circuit breakers and timeouts from the application code, when multiple microservices are communicating with each other.<br>
+            It is usually implemented using a sidecar proxy (a container that runs alongside the primary application), which adds additional features like logging, monitoring, and traffic routing. In service mesh architechture, the sidecar pattern implements inter-service communication, monitoring, or other features that can be decoupled and abstracted away from individual services.
+          </p>
+          <h3>Features of Service Mesh</h3>
+          <ul>
+            <li>Communication: flexible, reliable, and fast communication between various service intances.</li>
+            <li>Circuit Breakers: restricts traffic to unhealthy service intances.</li>
+            <li>Routing: passes a REST request for /foo from the local service instance, to which the service is connected.</li>
+            <li>Retries and Timeouts: Automatically retry requests on certain failures and can timeout requests after a specified period.</li>
+            <li>Service Discover: discovers healthy available instances.</li>
+            <li>Observability: monitors latency, traces traffic flow, and generates access logs</li>
+            <li>Authentication and Authorization</li>
+            <li>Transport Layer Security (TLS) Encryption</li>
+          </ul>
+
+          <h3>Data Plane and Control Plan</h3>
+          <ul>
+            <li>Service Mesh Data Plane: provides features above and touches every packet/request in the system. Projects for the Data Plane:</li>
+            <ul>
+              <li>Linderd</li>
+              <li>NGINX</li>
+              <li>HAProxy</li>
+              <li>Envoy</li>
+              <li>Traefik/Maesh</li>
+            </ul>
+            <li>Service Mesh Control Plane: provides policy and configuration for the Data Plane. We can specify settings for load balancing and circuit breakers, for example. Projects for Control Plane:</li>
+            <ul>
+              <li>Istio</li>
+              <li>Nelson</li>
+              <li>SmartStack</li>
+            </ul>
+          </ul>
+
+          <h3>Consul</h3>
+          <p>
+            An open source project aiming to provide secure multi-cloud service networking through automated network configuration and service discovery.<br>
+            Client services have automatic service discovery. A distributed agent and node failure detection supports scalability more than the traditional heartbeating schemes. Very low coupling between datacenters, failure detection, connection caching, and multiplexing ensures fast reliable cross datacenter requests. Data caching is also available to ease situations where communication is down.<br>
+            It deploys easily on Kubernetes through Helm and is injected as a sidecar container in Kubernetes objects.<br>
+            Integrates with CI/CD tools<br>
+            Provides dynamic load balancing, service discovery, health checking, and reduce downtimes.<br>
+            Provides monitoring using statistics, logging, and distributed tracing.<br>
+            Provides mTLS communication encryption between resources.
+          </p>
+
+          <h3>Envoy</h3>
+          <p>
+            Open source project providing L7 proxy and communication bus for large service oriented architechtures.<br>
+            Out-of-process architechture, meaning not dependent on application code. It runs alongside the application and communicates with the application on localhost (sidecar pattern). It can work with any language and can be managed independently.<br>
+            With sidecar applications need not be aware of the network topology.<br>
+            Can be configured as a service or edge proxy. In the service type of configuration, it is used as a communication bus for all traffic between microservices. With edge type of configuration, it provides a single point of ingress to the external world.<br>
+            Has all the benefits of sidecar mentioned above as well as monitoring and SSL communication.
+          </p>
+
+          <h3>Istio</h3>
+          <p>
+            Popular service mesh solution. Separated into a Data Plane and Control Plane.<br>
+            The main components are:<br>
+            <strong>Envoy Proxy</strong>: Istio uses an extended version of Envoy proxy for service discovery, load balancing, TLS termination, circuit breakers, health checks, etc.. deployed as a sidecar.<br>
+            <strong>Istiod</strong>: Provides service discovery, configuration, and certificate management.<br>
+            Provides traffic control enforcing rich routing rules and load balancing for HTTP, gRPC, WebSocket, and TCP traffic.<br>
+            Network resiliency (retries, failovers, circuit breakers, fault protection)<br>
+            Security and authentication, access control and rate limiting.<br>
+            Pluggable extensions based on WebAssembly for custom policy enforcement and telemetry generation for mesh traffic.<br>
+            Has a nice web interface.
+          </p>
+
+          <h3>Kuma</h3>
+          <p>
+            A platform agnostic open source control plane for Service Mesh. Based on the Envoy Proxy, sidecar proxy designed for cloud native apps. With Envoy as the data plane, Kuma handles L4/L7 traffic to observe and route traffic between services.<br>
+            <strong>Kuma Modes</strong><br>
+            <strong>Universal mode</strong> - Installed on Linux Compatible system, VMs, or bare metal, containers built on Linux-based Micro OSes. In this Mode, Kuma needs to store its state in Postgres SQL database.<br>
+            <strong>Kubernetes Mode</strong> - Deployed on Kubernetes, state is stored on Kubernetes API server, which injects a proxy sidecar into the desired Kubernetes Pods.
+          </p>
+
+          <h3>Linkerd</h3>
+          <p>
+            Open source network proxy that supports all the features of Service Mesh previously described. It can also be installed per host or instance, as a replacement for the sidecar deployment.
+          </p>
+
+          <h3>Traefik Mesh</h3>
+          <p>
+            Simple and easy to configure service mesh that provides traffic visibility and management inside a Kubernetes cluster.<br>
+            Improves security through monitoring, logging, visibility, and access controls. Can also help with traffic optimization and increased application performance. Able to reveal underutilized resources, or overloaded services, helping with proper resources allocation.<br>
+            Does not require any sidecar containers to be injected into Kubernetes pods. Instead, it routes through proxy endpoints, called mesh controllers, that run on each node as dedicated pods.<br>
+            Open source and prevents vendor lock-in<br>
+            Easy to install and non-invasive.<br>
+            Supports OpenTracing and metrics through Prometheus and Grafana<br>
+            Supports HTTP, HTTP/2, native gRPC, Websockets, and TCP connection routing.<br>
+            Supports weighted round-robin load balancing and canary deployments<br>
+            Automated retries and failover, together with circuit breaker and rate limits<br>
+            Access control policies
+          </p>
+
+          <h3>Tanzu Service Mesh</h3>
+          <p>
+            Enterprise class service mesh developed by VMware. Connects and secures applications running on Kubernetes multi-clusters and multi-cloud environments.<br>
+            Unique to Tanzu is its ability to support cross-cluster and cross-cloud applications through Global Namespaces (GNS).
+          </p>
+
+        </section>
+
+        <button type="button" class="collapse-button">Internet of Things (IoT)</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Internet of Things</h3>
+          <p>
+            <strong>Things</strong>: not just devices, but people and interconnected systems.
+          </p>
+          <p>IoT has use cases in different verticals, as it provides value by saving time, money, etc..</p>
+          <ul>
+            <li>Consumer Applications: Wearable devices, connnected vehicles, appliances, and smart homes.</li>
+            <li>Infrastructure: Monitoring and controlling railway tracks and wind turbines. Preventive maintenance.</li>
+            <li>Manufacturing: Asset management, optimizing supply-chain.</li>
+            <li>Agriculture: Collecting data on temperature, rainfall, humidity, and soil composition.</li>
+            <li>Energy Management: Optimizing energy consumption.</li>
+            <li>Environmental Monitoring: Monitoring air and water quality, soil and atmospheric conditions.</li>
+            <li>Medical and Healthcare: Remote health monitoring and emergency notifications.</li>
+          </ul>
+
+          <h3>Network for IoT</h3>
+          <p>
+            IPv4 can handle enough addresses in an isolated network, but when it comes to the IoT IPv6 is essential to keep the world connected to these devices.<br>
+            To address the demands, the following list of Network standards have been built based on network ranges:
+          </p>
+          <ul>
+            <li><strong>Short-range Wireless</strong></li>
+            <li>Bluetooth mesh networking</li>
+            <li>Light fidelity (Li-Fi)</li>
+            <li>Radio-frequency identification (RFID)</li>
+            <li>Near-field communication (NFC)</li>
+            <li>Wi-Fi</li>
+            <li>Zigbee</li>
+            <li><strong>Medium-range Wireless</strong></li>
+            <li>Wi-Fi HaLow (IEEE 802.11ah)</li>
+            <li>LTE Advanced</li>
+            <li><strong>Long-range Wireless</strong></li>
+            <li>Low-Power Wide-Area Network (LPWAN)</li>
+            <li>Very small aperture terminal (VSAT)</li>
+            <li><strong>Wired</strong></li>
+            <li>Ethernet</li>
+            <li>Multimedia over Coax Alliance (MoCA)</li>
+            <li>Power-line communication (PLC)</li>
+          </ul>
+
+          <h3>Computing for IoT</h3>
+          <p>
+            Computing has evolved for IoT as well. <br>
+            <strong>Latency</strong>: between the cloud storage and your device.<br>
+            Not sending unnecessary data, like frequent keep-alive messages from the devices/sensors to the backend.<br>
+            <strong>Distributed Computing Architecture</strong> has evolved to include <strong>edge</strong> and <strong>fog</strong> computing, bringing computing away from central nodes (datacenter) to the other logical extreme (the edge) of the internet.
+          </p>
+
+          <h3>Data Management and Analytics for IoT</h3>
+          <p>
+            Regular collection of data from IoT devices and analysis for smart decision making, sometimes in real-time (self-driving cars). With IoT, we generate a variety of data in large volumes at very high speeds, which means we need Big Data technologies like Apache Hadoop. With Big Data comes Machine Learning and AI.<br>
+            Specialized offerings for Iot come from AWS Iot, Google Cloud IoT, and Azure Iot.
+          </p>
+
+          <h3>Challenges of IoT</h3>
+          <ul>
+            <li><strong>Scale</strong>: with millions of devices added yearly...</li>
+            <li><strong>Security</strong>: how to maintain secure connections and what is shared if a IoT device is breached?</li>
+            <li><strong>Privacy</strong>: ...</li>
+            <li><strong>Interoperability</strong>: legacy and newer devices communication..</li>
+          </ul>
+
+        </section>
+
+        <button type="button" class="collapse-button">Serverless Computing</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Serverless</h3>
+          <p>
+            Running applications without concerns about the provisioning of computer servers or any of the compute resources. Behind the scenes, compute servers are most definitely involved. Serverless is similar to the wireless internet where the wires exist, but are not visible to end-users.<br>
+            Serverless computing requires compute resources to run applications, but the server management and capacity planning decisions are completely abstracted from the developers and users.<br>
+            In serverless computing we create an application/function that does one task. We upload it to the cloud provider and it is invoked via different events, such as HTTP requests, webhooks, etc..<br>
+            Most commonly used for stateless applications like data processing or real-time stream processing. It can augment a stateful application. IoT and ChatBots are common use cases of serverless computing.<br>
+            All major cloud providers like AWS, Google Cloud, etc.. include serverless options. We can also build our own serverless solutions on container orchestrators like Docker Swarm and Kubernetes.<br>
+            Serverless computing is frequently referred to as "services offered" by cloud providers.
+          </p>
+
+          <h3>Benefits</h3>
+          <ul>
+            <li>No Server Management</li>
+            <li>Cost-Effective: pay for CPU time when executed. No charge when not running. No need for fixed quantities of servers.</li>
+            <li>Flexible Scaling: no need for set up or tune autoscaling. Automatically scaled up/down based on demand.</li>
+            <li>Automated High Availability and Fault Tolerance: No need to program for such features.</li>
+          </ul>
+
+          <h3>Drawbacks</h3>
+          <ul>
+            <li>Vendor Lock-in: implementations vary and changing your provider can incur additional expenses.</li>
+            <li>Multitenancy and Security: You cannot be sure what other applications/functions run alongside yours.</li>
+            <li>Performance: If not in use the provider can take it down affecting performance to spin it back up.</li>
+            <li>Resource Limits: safer to not use serverless for high-performance or resource-intensive workloads.</li>
+            <li>Monitoring and Debugging: It is more challenging to monitor serverless applications.</li>
+          </ul>
+
+          <h3>AWS Lambda</h3>
+          <p>
+            AWS Lambda can be triggered in different ways, such as HTTP request or upload of new document to S3 bucket, a scheduled job, an AWS Kinesis data stream, a notification from AWS Simple Notification Service, or a REST API call through Amazon API Gateway.<br>
+            In addition Lambdas are capable of:
+          </p>
+          <ul>
+            <li>Integrating with other AWS Services</li>
+            <li>Extending other AWS Services</li>
+            <li>Building custom backend services</li>
+            <li>Bringing users own code: supports Node.js, Java, C#, Go, and Python.</li>
+            <li>Connecting to shared file systems: Elastic File System (EFS)</li>
+            <li>Integrating security: AWS IAM support.</li>
+          </ul>
+
+          <h3>Google Cloud Functions</h3>
+          <p>
+            A Cloud Function is essentially a Function-as-a-Service (FaaS) offering. It is complemented by two other services, App Engine and Cloud Run.<br>
+            <strong>App Engine</strong> allows users to build applications on a fully managed serverless platform using Node.js, Java, Ruby, C#, Go, Python, PHP, etc..<br>
+            <strong>Cloud Run</strong> platform for deployment and scaling of containerized applications. Integrates with all Google logging and monitoring.<br>
+            Google Cloud Functions play well with other Google services and AWS services.<br>
+            Google Cloud has great tutorials to get you started.
+          </p>
+
+          <h3>Azure Functions</h3>
+          <p>
+            Azure has Azure Functions for serverless computing and Serverless Kubernetes and Serverless application environments as well.<br>
+            <strong>Azure Functions</strong>: Event driven environment as managed service in Azure and Azure Stack and Kubernetes, Azure IoT Edge, on-premesis, and other clouds<br>
+            <strong>Serverless Kubernetes</strong>: orchestrated with Azure Kubernetes Service (AKS) and AKS virtual nodes, based on open-source Virtual Kublet project.<br>
+            <strong>Serverless application environments</strong>: allow running and scaling of web, mobile, and API applications on any platform of your choice through Azure App Service.<br>
+            You can do pay as you go or Azure App Service, which allows Azure Functions at no additional cost.<br>
+            Supports NuGet and NPM so you can use custom packages.<br>
+            Azure has good guides for getting started.
+          </p>
+
+          <h3>Containers and Serverless</h3>
+          <p>
+            Projects that use container images for packaging serverless applications:
+          </p>
+          <ul>
+            <li>Azure Container Instances (ACI)</li>
+            <li>AWS Fargate</li>
+            <li>Kubeless</li>
+            <li>Fission</li>
+            <li>Fn Project</li>
+            <li>Virtual Kubelet</li>
+            <li>Knative: open source based on Kubernetes allows for deployment and management of serverless applications.</li>
+            <li>OpenFaaS: functions and code deployment directly to Kubernetes, OpenShift, or Docker Swarm. Uses Docker for runtime. Allows for microservices and function deployment in containers.</li>
+          </ul>
+
+        </section>
+
+        <button type="button" class="collapse-button">Distributed Tracing</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Introduction</h3>
+          <p>
+            In large organizations with the number of microservices growing quickly, we need to instrument the behavior of each participating service in our microservices-based application. After collecting and combining the instrumented data from each participating service, we should be able to gain visibility of the entire system, otherwise known as <strong>distributed tracing</strong>.<br>
+            Distributed tracing tools such as Zipkin, Dapper, HTrace, and X-Trace instrument applications using their own specific APIs (vendor lock-in).<br>
+            OpenTracing offers vendor-neutral APIs.
+          </p>
+
+          <h3>Tracing with OpenTracing</h3>
+          <p>
+            A trace represents the details about a transaction, like the time taken to call a specific function. In OpenTracing, a trace is referred to by the directed acyclic graph (DAG) of spans. Each span can be referred to as a timed operation between contiguous segments of work. In distributed tracing, each service would contribute to its own span or set of spans. A parent can start other spans, either in serial or in parallel. A timing visualization is helpful (see visualizations on opentracing.io).<br>
+            <strong>Tracers</strong> are used to collect information to create graphs like the ones on opentracing.io.<br>
+            Languages supported include every one you would think they would use.<br>
+            Tracers supported:
+          </p>
+          <ul>
+            <li>Jaeger</li>
+            <li>LightStep</li>
+            <li>Instana</li>
+            <li>Elastic APM</li>
+            <li>Wavefront by VMware</li>
+          </ul>
+
+          <h3>Jaeger</h3>
+          <p>
+            Jaeger can be used for the following:
+          </p>
+          <ul>
+            <li>Distributed content propagation</li>
+            <li>Distributed transaction monitoring</li>
+            <li>Root Cause Analysis</li>
+            <li>Service dependency analysis</li>
+            <li>Performance and latency optimization</li>
+          </ul>
+          <p>
+            Jaeger clients (language specific), get attached to the OpenTracing APIs to intrument the applications.<br>
+            They send the collected data to the Jaeger agent running on the host or container which runs the application. Agents send collected instrumented data to a central storage called Jaeger collector. The collector supports Cassandra and ElasticSearch as storage backends. We can then query the collected data using Jaeger-UI.<br>
+            Observability via Prometheus and other metrics backends is supported.
+          </p>
+        </section>
+
+        <button type="button" class="collapse-button">Success in the Cloud</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          
+          <h3>Cloud Computing For All</h3>
+          <p>
+            The price for entry is lower than ever for start-ups and small business. Open source tools and ecosystems enable innovation and adaptation at speed.<br>
+            Innovate fast, listen to feedback, and then iterate over it. DevOps practices allow small teams to manage the entire lifecycle of their products, from development to support. Technologies like Container as a Service and Continuous Integration and Deployment enable small teams access to development, QA, and deployment environments.<br>
+            In the modern cloud environment, Dev, QA, and Ops need to work together and not in the old silos. Business is expected to respond to customer feedback sooner than ever before.
+          </p>
+
+          <h3>Skills Necessary</h3>
+          <p>
+            You do not have to master them, but you should be familiar with all of the following:
+          </p>
+          <ul>
+            <li>Different cloud offerings (IaaS, PaaS, SaaS) and cloud models (public, private, and hybrid)</li>
+            <li>Container technologies like Docker, Podman, Kubernetes, Nomad, Swarm, and their ecosystems</li>
+            <li>DevOps, DevSecOps, and GitOps</li>
+            <li>Continuous Integration (CI), Continuous Delivery (CD), and Continuous Deployment (CD) pipelines</li>
+            <li>Cloud Native (CI/CD)</li>
+            <li>Software Defined Networking and Storage</li>
+            <li>Debugging, Logging, Monitoring, Telemetery of cloud applications</li>
+          </ul>
+
+          <h3>Choose the Right Provider</h3>
+          <p>
+            Which cloud provider do you want to choose?<br>
+            Private, public, or hybrid? Private data on-premises and public services?
+          </p>
+
+          <h3>Choose the Right Technology Stack</h3>
+          <p>
+            Should you go for a IaaS or PaaS solution?<br>
+            VMs or containers for deployment of cloud apps?
+          </p>
+
+          <h3>Security</h3>
+          <p>
+            Compliance with standards for data privacy can mean that you need to host data privately instead of publically.<br>
+            Cloud Security Alliance (CSA) is a good place to explore secure clouds.
+          </p>
+
+          <h3>Cost Management</h3>
+          <p>
+            Most studies show that you save when you move to the cloud, but you need to do the math.
+          </p>
+
+          <h3>Vendor Lock-in</h3>
+          <p>
+            Ensure you can move to another provider easily. Kubernetes makes this easier.
+          </p>
+        </section>
+
         <button type="button" class="collapse-button">Title of Note</button>
         <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
         <section class="collapsible-section">
+          
           <h3>Below are notes on ...</h3>
           <p>
             Take notes and drop in here...
@@ -254,27 +2454,6 @@ Docuement and test yourself on cloud technologies using the following flashcards
           <p>
             A
           </p>
-
-          <ul>
-            <li>A quick note.</li>
-            <li>Another quick note.</li>
-          </ul>
-
-          <p>
-            Intro to list of quick notes<br>
-            <ul>
-              <li>Note 1</li>
-            </ul>
-          </p>
-
-          <p>
-            Introduction to code...
-          </p>
-<pre><code>&lt;tag&gt;
-  &lt;tag&gt;
-
-  &lt;/tag&gt;
-&lt;/tag&gt;</code></pre>
         </section>
 
       </section> <!-- End of Expandable Notes section -->
