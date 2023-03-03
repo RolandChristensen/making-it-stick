@@ -1627,7 +1627,7 @@ SCRIPT</code></pre>
 
           <h3>Storage Management for Docker Containers</h3>
           <p>
-            The ephemeral nature of containers means we need to persist data elsewhere and ensure that datas availability.<br>
+            The ephemeral nature of containers means we need to persist data elsewhere and ensure that data's availability.<br>
             Docker Volume plugins allow vendors to supply storage. Docker supports several storage drivers that enable the storage of container images, containers and other types of metadata.<br>
             Docker uses <strong>copy-on-write</strong> mechanism when containers are started from images, protecting the image from edits. All changes are saved on a writeable filesystem layer of the container, leaving the image on read-only storage. You can choose a storage driver: AUFS (Another Union File System), BtrFS, Device Mapper, Fuse-OverlayFS, Overlay2, VFS (Virtual File System), and ZFS.<br>
             Storing files on a host system:
@@ -1743,7 +1743,7 @@ SCRIPT</code></pre>
 
           <h3>Concourse</h3>
           <p>
-            An opensource CI/CD system, written in Go, using Docker and Docker-Compose to run a series of containerized tasks to perform desired operations. Uses configuration files, driven by the <strong>fly</strong> CLI and a web UI.<br>
+            An open source CI/CD system, written in Go, using Docker and Docker-Compose to run a series of containerized tasks to perform desired operations. Uses configuration files, driven by the <strong>fly</strong> CLI and a web UI.<br>
             You can set it up on-premises or in the cloud.<br>
             The web UI has good visualization for pipeline and tasks<br>
             Scalable across multiple servers.<br>
@@ -1778,7 +1778,7 @@ SCRIPT</code></pre>
           
           <h3>Infrastructure as Code</h3>
           <p>
-            To ensure consistent environments we control the configuration just like we would source code. Infrastructure resources are defined in a declarative fashion in config files. These are reusable for provisioning reproducibe systems across environments.<br>
+            To ensure consistent environments we control the configuration just like we would source code. Infrastructure resources are defined in a declarative fashion in config files. These are reusable for provisioning reproducible systems across environments.<br>
             <strong>Infrastructure as Code</strong>: the process of treating config files for infrastructure as source.<br>
             With some tooling around environments, we can create the same environments on different cloud providers.<br>
             Ansible, Chef, Puppet, and Salt provide Configuration Management (CM).<br>
@@ -1817,7 +1817,7 @@ SCRIPT</code></pre>
           <h3>Chef</h3>
           <p>
             A client/server model based configuration tool. The Chef Client is installed on each host. The server is called Chef Server. There is also a Chef Workstation used to develop <strong>cookbooks</strong> and <strong>recipes</strong>, synchronize <strong>chef-repo</strong> with version control, run commands, configure policy & roles etc.., and interact with nodes to perform one-off configuration.<br>
-            <strong>Chef Cookbook</strong> is the basic confifuration unit that defines a scenario. It uses <strong>recipes</strong> which lists resources and actions to perform on those resources and <strong>attributes</strong> that help define the state of the node. After each <strong>chef-client</strong> run the nodes state is updated on Chef Server.<br>
+            <strong>Chef Cookbook</strong> is the basic configuration unit that defines a scenario. It uses <strong>recipes</strong> which lists resources and actions to perform on those resources and <strong>attributes</strong> that help define the state of the node. After each <strong>chef-client</strong> run the nodes state is updated on Chef Server.<br>
             <strong>Knife</strong> is an interface between a local <strong>chef-repo</strong> and the Chef Server.<br>
             Clients can be installed on most major OSes and the server can be installed on major Linux distros.<br>
             You can find cookbooks and download them from <strong>Supermarket</strong> created by the community.<br>
@@ -1840,7 +1840,7 @@ SCRIPT</code></pre>
             <strong>Terraform Providers</strong>: machines (physical and virtual), network switches, or containers are called providers.<br>
             You can create custom providers through plugins. The provider is responsible for understanding the API, so Terraform is agnostic to the platform. Providers come in stacks for IaaS (AWS, Azure, etc..), PaaS (Heroku, Cloud Foundry, etc..), and SaaS (DNSimple, etc..)<br>
             Infrastructure is stored in a *.tf file. Example: main.tf file that will log into AWS and build a web server with security to allow HTTP and SSH access.<br>
-            By running <code>$ terraform plan ...</code> you can see what would change if it were to actually run before commiting to the change and then using the <code>$ terraform apply ...</code>.<br>
+            By running <code>$ terraform plan ...</code> you can see what would change if it were to actually run before committing to the change and then using the <code>$ terraform apply ...</code>.<br>
           </p>
 
           <h3>CloudFormation</h3>
@@ -1864,7 +1864,7 @@ SCRIPT</code></pre>
             <li>Define the instance type of container to run</li>
             <li>Define the instance image to use</li>
             <li>Define the IP range allowed for SSH for use in the firewall rules</li>
-            <li>Add default mappings for instances to architechture and mappings to regions</li>
+            <li>Add default mappings for instances to architecture and mappings to regions</li>
             <li>Add definition for resources to be created based on the earlier settings, security group settings to use, and a start-up script to get the ball rolling</li>
             <li>Add security group settings to allow things like http and ssh</li>
             <li>Validate the JSON using <code>$ aws cloudformation validate-template ...</code></li>
@@ -2023,7 +2023,7 @@ SCRIPT</code></pre>
             An on-cloud or on-premises platform for DevOps security for containers, Kubernetes, monitoring and forensics through DevSecOps. There are two open source tools as well as an enterprise class offering. Install Sysdig agents on all the nodes to collect information at a central location. To capture system calls and OS events a kernel component must be installed.<br>
             <strong>Sysdig</strong>: saves low level system information from a running Linux instance, that can be filtered and further analyzed<br>
             <strong>Sysdig Monitor</strong>: a paid offering providing full-stack monitoring and alerting in addition to the open source version. Gives you a dashboard and Prometheus compatibility.<br>
-            <strong>Enterprise Falco</strong>: Fine grained visibility into containers and apps. Collects information about the system, network, and file level. Rule sets allow automated actions based on security information. Example: kill a container that does not satisy security requirements.<br>
+            <strong>Enterprise Falco</strong>: Fine grained visibility into containers and apps. Collects information about the system, network, and file level. Rule sets allow automated actions based on security information. Example: kill a container that does not satisfy security requirements.<br>
             <strong>Sysdig Secure</strong>: Paid offering that identifies vulnerabilities, checks compliance, blocks threats, and improved response time.
           </p>
 
@@ -2034,7 +2034,7 @@ SCRIPT</code></pre>
 
           <h3>Elasticsearch</h3>
           <p>
-            Distributed search and analytics engine of Elastic Stack. Elasiticsearch is responsible for data indexing, search, and analysis. Kibana is an interface that enables interactive data visualization and insights into the data.<br>
+            Distributed search and analytics engine of Elastic Stack. Elasticsearch is responsible for data indexing, search, and analysis. Kibana is an interface that enables interactive data visualization and insights into the data.<br>
             Elasticsearch with Kibana is the desired open source solution for use cases including machine learning, security, and reporting.
           </p>
           <ul>
@@ -2059,7 +2059,7 @@ SCRIPT</code></pre>
 
           <h3>Prometheus</h3>
           <p>
-            Open source tool for monitoring and alerting. Records any purely numeric time-series data. Works well for both machine-centric monitoring like CPU, memory usage, and monitoring of highly dynamic service oriented architechtures. Written in Go.<br>
+            Open source tool for monitoring and alerting. Records any purely numeric time-series data. Works well for both machine-centric monitoring like CPU, memory usage, and monitoring of highly dynamic service oriented architectures. Written in Go.<br>
             Supports a multi-dimensional data model with time-series data key/value pairs with a query language to get data. Supports metrics collection through a pull or push. Has service discovery or static configuration. Connects to Grafana and Pagerduty for dashboards and alerting. Supports client libraries for Go, Java, Python, etc..<br>
             Has a central Prometheus server that scrapes and stores pull and push based metrics, an Alertmanager (PagerDuty, email, etc..), Web UI or Grafana, Service Discovery.
           </p>
@@ -2093,12 +2093,12 @@ SCRIPT</code></pre>
           <h3>Network Communication for Microservices</h3>
           <p>
             <strong>Service mesh</strong> allows us to decouple resilient communication patterns such as circuit breakers and timeouts from the application code, when multiple microservices are communicating with each other.<br>
-            It is usually implemented using a sidecar proxy (a container that runs alongside the primary application), which adds additional features like logging, monitoring, and traffic routing. In service mesh architechture, the sidecar pattern implements inter-service communication, monitoring, or other features that can be decoupled and abstracted away from individual services.
+            It is usually implemented using a sidecar proxy (a container that runs alongside the primary application), which adds additional features like logging, monitoring, and traffic routing. In service mesh architecture, the sidecar pattern implements inter-service communication, monitoring, or other features that can be decoupled and abstracted away from individual services.
           </p>
           <h3>Features of Service Mesh</h3>
           <ul>
-            <li>Communication: flexible, reliable, and fast communication between various service intances.</li>
-            <li>Circuit Breakers: restricts traffic to unhealthy service intances.</li>
+            <li>Communication: flexible, reliable, and fast communication between various service instances.</li>
+            <li>Circuit Breakers: restricts traffic to unhealthy service instances.</li>
             <li>Routing: passes a REST request for /foo from the local service instance, to which the service is connected.</li>
             <li>Retries and Timeouts: Automatically retry requests on certain failures and can timeout requests after a specified period.</li>
             <li>Service Discover: discovers healthy available instances.</li>
@@ -2138,8 +2138,8 @@ SCRIPT</code></pre>
 
           <h3>Envoy</h3>
           <p>
-            Open source project providing L7 proxy and communication bus for large service oriented architechtures.<br>
-            Out-of-process architechture, meaning not dependent on application code. It runs alongside the application and communicates with the application on localhost (sidecar pattern). It can work with any language and can be managed independently.<br>
+            Open source project providing L7 proxy and communication bus for large service oriented architectures.<br>
+            Out-of-process architecture, meaning not dependent on application code. It runs alongside the application and communicates with the application on localhost (sidecar pattern). It can work with any language and can be managed independently.<br>
             With sidecar applications need not be aware of the network topology.<br>
             Can be configured as a service or edge proxy. In the service type of configuration, it is used as a communication bus for all traffic between microservices. With edge type of configuration, it provides a single point of ingress to the external world.<br>
             Has all the benefits of sidecar mentioned above as well as monitoring and SSL communication.
@@ -2203,7 +2203,7 @@ SCRIPT</code></pre>
           </p>
           <p>IoT has use cases in different verticals, as it provides value by saving time, money, etc..</p>
           <ul>
-            <li>Consumer Applications: Wearable devices, connnected vehicles, appliances, and smart homes.</li>
+            <li>Consumer Applications: Wearable devices, connected vehicles, appliances, and smart homes.</li>
             <li>Infrastructure: Monitoring and controlling railway tracks and wind turbines. Preventive maintenance.</li>
             <li>Manufacturing: Asset management, optimizing supply-chain.</li>
             <li>Agriculture: Collecting data on temperature, rainfall, humidity, and soil composition.</li>
@@ -2318,7 +2318,7 @@ SCRIPT</code></pre>
           <h3>Azure Functions</h3>
           <p>
             Azure has Azure Functions for serverless computing and Serverless Kubernetes and Serverless application environments as well.<br>
-            <strong>Azure Functions</strong>: Event driven environment as managed service in Azure and Azure Stack and Kubernetes, Azure IoT Edge, on-premesis, and other clouds<br>
+            <strong>Azure Functions</strong>: Event driven environment as managed service in Azure and Azure Stack and Kubernetes, Azure IoT Edge, on-premises, and other clouds<br>
             <strong>Serverless Kubernetes</strong>: orchestrated with Azure Kubernetes Service (AKS) and AKS virtual nodes, based on open-source Virtual Kublet project.<br>
             <strong>Serverless application environments</strong>: allow running and scaling of web, mobile, and API applications on any platform of your choice through Azure App Service.<br>
             You can do pay as you go or Azure App Service, which allows Azure Functions at no additional cost.<br>
@@ -2381,7 +2381,7 @@ SCRIPT</code></pre>
             <li>Performance and latency optimization</li>
           </ul>
           <p>
-            Jaeger clients (language specific), get attached to the OpenTracing APIs to intrument the applications.<br>
+            Jaeger clients (language specific), get attached to the OpenTracing APIs to instrument the applications.<br>
             They send the collected data to the Jaeger agent running on the host or container which runs the application. Agents send collected instrumented data to a central storage called Jaeger collector. The collector supports Cassandra and ElasticSearch as storage backends. We can then query the collected data using Jaeger-UI.<br>
             Observability via Prometheus and other metrics backends is supported.
           </p>
@@ -2409,7 +2409,7 @@ SCRIPT</code></pre>
             <li>Continuous Integration (CI), Continuous Delivery (CD), and Continuous Deployment (CD) pipelines</li>
             <li>Cloud Native (CI/CD)</li>
             <li>Software Defined Networking and Storage</li>
-            <li>Debugging, Logging, Monitoring, Telemetery of cloud applications</li>
+            <li>Debugging, Logging, Monitoring, Telemetry of cloud applications</li>
           </ul>
 
           <h3>Choose the Right Provider</h3>
