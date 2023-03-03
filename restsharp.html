@@ -286,7 +286,11 @@ public ConstructorName()
           <li>Timeout: Sets the timeout client side to give up waiting for a response. Example: The service I am connecting to uses MuleSoft Gateway and has a timeout of 35 seconds. I set my timeout to 40 seconds to give myself a 5 second buffer. If the gateway is up, then I will get a Gateway Timeout, but if it is not up I will get a client side timeout from RestSharp.</li>
         </ul>
 
-        <p>The base class should have methods that use generic typed parameters to execute requests. The type should be a class that can be deserialized from the response. Example: </p>
+        <p>The base class should have a method that uses generic typed parameters to execute requests. The type should be a class that can be deserialized from the response.</p>
+
+        <ul>
+          <li>RestSharp 107 only uses asynchronous calls, so if you want a synchronous method use the ExecuteAsync().Result </li>
+        </ul>
 
         <pre> <code>// Uses .Result to make this synchronous.
 public T Execute&lt;T&gt;(RestRequest request) where T : new()
@@ -435,7 +439,7 @@ public async Task&lt;RestResponse&lt;List&lt;T&gt;&gt;&gt; ExecuteReturnsList&lt
         <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
         <section class="collapsible-section">
           <h3>Converting the Response from JSON to C# Class</h3>
-          
+
           <p>RestSharp automatically deserializes responses into classes using generic type parameters.</p>
 
         </section>
