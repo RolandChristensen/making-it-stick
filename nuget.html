@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<!--
+NuGet package manager for Visual Studio notes.
+
+Got to https://learn.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio-mac
+
+- Roland Christensen 2023-02-20
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>NuGet Notes and Flash Cards</title>
+
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/notes-section.css">
+    <link rel="stylesheet" href="css/code.css">
+
+    <script src="js/notes.js"></script>
+  </head>
+
+  <body onload="OnBodyLoad();">
+    <header>
+
+    </header>
+
+    <main>
+      <h1>Nuget Flashcards</h1>
+
+      <div class="flashcards-grid">
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Why is the sky blue in the day?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>Because black was already taken!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+        <div class="flashcard-frame">
+          <div class="flashcard" onclick="this.classList.toggle('flip');">
+            <div class="flip-card">
+              <div class="card-front">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+
+                <div class="top-left">
+                  <p>Question</p>
+                </div>
+
+                <div class="center-left">
+                  <p>What is your question?</p>
+                </div>
+              </div>
+
+              <div class="card-back">
+                <img src="images/flashcard.gif" alt="Image of a flashcard.">
+                <div class="top-left">
+                  <p>Answer</p>
+                </div>
+
+                <div class="center-left">
+                  <p>The answer to the question.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- End of Flashcard Frame -->
+
+      </div> <!-- End of Flash Cards Grid section -->
+
+      <section class="notes-section">
+        <h2>Notes On Nuget</h2>
+
+        <button type="button" class="collapse-button">NuGet Package Management</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>NuGet: MS .NET Package Management</h3>
+          <p>
+            The way to share useful code when using MS .NET is through NuGet.<br>
+            Search the NuGet.org web site for useful code to avoid re-inventing the wheel.<br>
+            A NuGet package is a zip file with the extension *.nupkg containing all the files needed and a descriptive manifest.<br>
+            A package can be shared publicly (nuget.org) or privately on a private server, private cloud, private shared filesystem or even locally. You can configure which hosts can be accessed by any given computer to ensure packages are retrieved from a specific source.<br>
+            The creator of a package builds and packs the source into a package then publishes the package on the host for consumers to search for and install in their project.
+          </p>
+
+          <h3>Package Target Compatibility</h3>
+          <p>
+            Compatibility means that the package was built for at least one target .NET framework. The consumers target framework should match, or be within the range of, the package target. For maximum compatibility, target the <code>.NET Standard</code>, for all .NET and .NET Core projects to consume. Currently (2/20/2023), target <strong>netstandard2.0</strong> for the broadest set of APIs.
+          </p>
+          <p>
+            If you need APIs outside of .NET Standard (multi-targeting), create separate assemblies for the different target frameworks supported and include them in the same package. NuGet is smart enough to extract only the assemblies needed for the target framework. This is harder to maintain for obvious reasons.
+          </p>
+
+          <h3>NuGet Tools</h3>
+          <ul>
+            <li><strong>dotnet CLI</strong>: Provides some NuGet CLI capabilities in the .NET Core tool chain. Installed with any .NET Core related workflows. Works for any SDK-style project.</li>
+            <li><strong>nuget.exe CLI</strong>: Provides all NuGet capabilities. For use in creation and consumption of packages. This is a platform agnostic tool that does not interact with Visual Studio. Works for any non-SDK-style project. Download from nuget.org and place it in the path for PowerShell (C:\Windows\system32)</li>
+            <li><strong>Package Manager Console</strong>: Visual Studio on Windows PowerShell commands for installing and managing packages.</li>
+            <li><strong>Package Manager UI</strong>: Visual Studio on Windows UI for installing and managing packages.</li>
+            <li><strong>Manage NuGet UI</strong>: Visual Studio Mac UI for installing and managing packages.</li>
+            <li><strong>MSBuild</strong>: provides the ability to create packages and restore packages used in a project directly through the MSBuild tool chain.</li>
+          </ul>
+
+          <h3>Dependency Resolution</h3>
+          <p>
+            NuGet handles dependencies automatically. A package can have a dependency on various other packages and multiple packages can have the same dependency. Only one version of each package can be used and NuGet resolves which version is used.<br>
+            If you need a higher version of a package, but another package uses a lower version, you are stuck with the lower version.
+          </p>
+
+          <h3>Tracking References to Packages for Easy Restoration</h3>
+          <p>
+            NuGet tracks what packages are installed and we check that into source control rather than check in binaries which would increase the footprint on source servers and local environments. When built the packages are restored from the hosts referenced. Build servers perform a <code>NuGet restore</code> step. Locally, you can use <code>nuget restore</code> on the NuGet CLI, <code>dotnet restore</code> on the dotnet CLI, or <code>Install-Package</code> in the Package Manager Console. Visual Studio is smart enough to automatically restore packages when building a project (unless you were dumb enough to disable this in settings :).<br>
+            References are maintained in one of two formats:<br>
+            <strong>PackageReference</strong>: (NuGet 4.0+) Maintains a list of top-level dependencies directly in your project file, so no second file is needed. An associated file "obj/project.assets.json" is generated dynamically to manage the overall dependencies including downstream. .NET Core projects always use this method.<br>
+            <strong>packages.config</strong>: (NuGet 1.0+) An XML file that maintains dependencies. All packages installed are stored in "packages" folder. This is kept for backwards compatibility only.<br>
+            <strong>Note</strong>: package references are only added when installing packages from the Visual Studio Package Manager (UI or Console) or dotnet.exe CLI. Do not use the nuget.exe if you expect the package to be installed by others downloading your source.<br>
+            Example project reference in *.csproj file:
+<code><pre>
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="package name" Version="#.#.#.#" /&gt;
+  ...
+</pre></code>
+          </p>
+
+          <h3>NuGet Maintains Specifications for Package</h3>
+          <p>
+            Localization and Debug Symbols and how they are referenced including version ranges and pre-release versions are all managed by NuGet. It also provides APIs to work with its services programmatically for Visual Studio extensions and project templates.
+          </p>
+
+          <h3>Usage</h3>
+          <ol>
+            <li>Search for and find useful packages that enable you to spend time on the code you really care about.</li>
+            <li>Use NuGet to install the package.</li>
+            <li>Include a <code>using {namespace}</code> statement to include the package in a class. The <code>namespace</code> is usually the same as the package name, which is a good idea if you are creating packages.</li>
+          </ol>
+
+        </section>
+
+        <button type="button" class="collapse-button">NuGet Client Tools</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Tools</h3>
+          <p>
+            <strong>Guidelines</strong><br>
+            For developing on Windows or Mac, use Visual Studio to search for, install, and update packages. It will automatically add packages to the project files for source control.<br>
+            If you are developing on multiple platforms, learn to use the Nuget CLI. There are limitations running under Mono on Linux and Mac, but still boasts the most features.<br>
+            NuGet CLI on Windows has the most features available to it, with the limitation that it does not add package info to the project files (Use Visual Studio to install and update).<br>
+          </p>
+          <ul>
+            <li><strong>dotnet.exe CLI</strong>: automatically installed with any .NET Core related workloads in Visual Studio 2017+ and with the .Net SDK. Works on Windows, Mac, and Linux (No need to install Mono). To install on build servers you will need to use a tool for Continuous Integration.</li>
+            <li><strong>nuget.exe CLI (Windows)</strong>: Provides all NuGet functionality on Windows and most functionality on Mac or Linux running under Mono. Microsoft has nuget.exe downloads available, just search for it. Nuget.exe on Windows has the most features available to it, more than any of the others in this list. Note: do not use it to install packages, however, because it does not add references in project files, so it is best to use dotnet.exe or Visual Studio.</li>
+            <li><strong>nuget.exe CLI (Mono)</strong>: </li>
+            <li><strong>Visual Studio</strong>: most features are available in Package Manager Console and in Package Manager UI, with a pretty front-end. The commands available in Package Manager Console are only available via Visual Studio and not other PowerShell environments. Visual Studio (2017+) installer has an option to install NuGet.</li>
+            <li><strong>Visual Studio for Mac</strong>: not all features are available. Use dotnet.exe or nuget.exe.</li>
+            <li><strong>Visual Studio Code</strong>: NuGet functionality through extensions.</li>
+            <li><strong>MSBuild CLI</strong>: for build servers you can restore and create packages, but is not really a general purpose tool for NuGet.</li>
+          </ul>
+          <p>
+            <strong>CLI tools</strong>: use dotnet.exe for .NET Core or .NET Standard. However, if you have a .NET Framework (non-SDK-style) project use nuget.exe unless the project has been migrated from packages.config to PackageReference. You can use dotnet.exe on Linux and Mac without installing Mono. Nuget.exe requires the installation of Mono on Linux and Mac.<br>
+          </p>
+
+          <p>
+            Package references are included in the *.csproj file as shown below, with the caveats mentioned above when using NuGet CLI.
+<code><pre>
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="package name" Version="#.#.#.#" /&gt;
+  ...
+</pre></code>
+          </p>
+        </section>
+
+        <button type="button" class="collapse-button">dotnet CLI</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Command Line for Developing, Building, Running, and Publishing .NET Applications</h3>
+          <p>
+            The dotnet CLI has a lot of functionality available to .NET programmers, including integrated tools for NuGet package management.
+          </p>
+
+          <h4>Search Packages</h4>
+          <p>
+            There is no built in way to search for packages built into the CLI at the time of writing.<br>
+            You can use your browser to find NuGet packages on the NuGet.org site or use another NuGet tool. 
+          </p>
+
+          <h4>Install / Uninstall Packages</h4>
+          <p>
+            <code>dotnet add package {package name}</code> - installs a package<br>
+            This adds a package reference in the XML for the project.<br>
+<code><pre>
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="package name" Version="#.#.#.#" /&gt;
+  ...
+</pre></code>
+            Search for dotnet add command for all the options available.
+          </p>
+
+          <h4>Update Packages</h4>
+          <p>
+            
+          </p>
+
+          <h4>Restore Packages</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage Package Feeds (Sources)</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Manage Packages on a Feed</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Set API Keys for Feeds</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Create Packages</h4>
+          <p>
+            To create a package you will need to add metadata so the NuGet package manifest is created.
+          </p>
+          <ol>
+            <li>Open the .csproj (or project file for f# or visual basic)</li>
+            <li>Find the <code>&lt;PropertyGroup&gt;</code> tag and add the following XML</li>
+            <li><code>&lt;PackageId&gt;unique-identifier.##.##.##.###.Test&lt;/PackageId&gt;</code> - This must be unique across nuget.org and other package sources.</li>
+            <li><code>&lt;Version&gt;1.0.0&lt;/Version&gt;</code></li>
+            <li><code>&lt;Authors&gt;names&lt;/Authors&gt;</code></li>
+            <li><code>&lt;Company&gt;company&lt;/Company&gt;</code></li>
+          </ol>
+          <p>
+            Add additional tags as needed. Search for MSBuild reference for .NET SDK projects to find additional information.
+          </p>
+          <p>
+            <code>dotnet pack -h</code> for help (<code>--help</code> is also valid)<br>
+            <br>
+            <code>dotnet pack</code> - builds a .nupkg file from the project. The output of the command shows you where the package is located.<br>
+            <br>
+            To automatically create the package each build, add <code>&lt;GeneratePackageOnBuild&gt;true&lt;/GeneratePackageOnBuild&gt;</code> to the <code>&lt;PropertyGroup&gt;</code> of the project file.<br>
+            <br>
+            <code>dotnet pack --include-symbols</code> adds debug symbols, so you can trace through the code.<br>
+            <code>dotnet pack --include-source</code> adds a <code>src</code> folder to the package.<br>
+            <br>
+            By default, dotnet pack, builds the project first, but may not be desireable in a CI build. Pass the <code>--no-build</code> option to avoid this.<br>
+            <br>
+            Todo: start taking notes on the dotnet CLI and commands, then finish up these rough notes there.
+          </p>
+          
+          <h4>Publish Packages</h4>
+          <p>
+            To publish to nuget.org you will need to create a free individual account.<br>
+            <br>
+            <code>dotnet nuget push</code> - use this with the API key you get from nuget.org to publish packages to the site.
+          </p>
+          
+          <h4>Replicate Packages</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Manage Global-Package and Cache Folders</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage NuGet Configuration</h4>
+          <p>
+            n/a
+          </p>
+        </section>
+
+        <button type="button" class="collapse-button">NuGet CLI (Windows)</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Command Line for Managing NuGet</h3>
+          <p>
+            The NuGet CLI is the only tool that actually supports all features of NuGet package management. However, it does not integrate well with project files in .NET, so it is better to add, remove, and update using Visual Studio or dotnet CLI.<br>
+            <br>
+            To open the NuGet Package Manager Console from Visual Studio. Navigate the menus: Tools > NuGet Package Manager > Package Manager Console
+          </p>
+          <ol>
+
+          <h4>Search Packages</h4>
+          <p>
+
+          </p>
+
+          <h4>Install / Uninstall Packages</h4>
+          <p>
+
+          </p>
+
+          <h4>Update Packages</h4>
+          <p>
+            
+          </p>
+
+          <h4>Restore Packages</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage Package Feeds (Sources)</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage Packages on a Feed</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Set API Keys for Feeds</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Create Packages</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Publish Packages</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Replicate Packages</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage Global-Package and Cache Folders</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage NuGet Configuration</h4>
+          <p>
+            
+          </p>
+        </section>
+
+        <button type="button" class="collapse-button">NuGet CLI (Mono)</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Command Line for Managing NuGet Running under Mono (Linux and Mac)</h3>
+          <p>
+            Overview
+          </p>
+
+          <h4>Search Packages</h4>
+          <p>
+
+          </p>
+
+          <h4>Install / Uninstall Packages</h4>
+          <p>
+            
+          </p>
+
+          <h4>Update Packages</h4>
+          <p>
+            n/a
+          </p>
+
+          <h4>Restore Packages</h4>
+          <p>
+            NuGet CLI for Mono only works with packages.config file and not with the solution files.
+          </p>
+          
+          <h4>Manage Package Feeds (Sources)</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage Packages on a Feed</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Set API Keys for Feeds</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Create Packages</h4>
+          <p>
+            NuGet for Mono works with .nuspec files, but not project files.
+          </p>
+          
+          <h4>Publish Packages</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Replicate Packages</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage Global-Package and Cache Folders</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage NuGet Configuration</h4>
+          <p>
+            
+          </p>
+        </section>
+
+        <button type="button" class="collapse-button">Visual Studio (Windows)</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>UI Panel Integrated with Visual Studio</h3>
+          <p>
+            To open the NuGet Package Manager from Visual Studio.
+          </p>
+          <ol>
+            <li>Using the menus: Project > Manage NuGet Packages...</li>
+            <li>Using the right click menu: Right click the project in Solution Explorer then select Manage NuGet Packages...</li>
+          </ol>
+
+          <h4>Search Packages</h4>
+          <p>
+            From the NuGet Package Manager UI
+          </p>
+          <ol>
+            <li>Select the "Browse" tab</li>
+            <li>Select the package source from the dropdown (generally defaulted to nuget.org)</li>
+            <li>Type the package to search for into the search box. (If you know what you are looking for this is easy, but it may be best to search using your browser before starting in the NuGet Package Manager.)</li>
+          </ol>
+          
+          <h4>Install / Uninstall Packages</h4>
+          <p>
+            From the Package Manager UI:
+          </p>
+          <ol>
+            <li>Search for and find the package to install</li>
+            <li>Select the package to install in the search results</li>
+            <li>Select the version (The latest is selected by default)</li>
+            <li>Click the Install button</li>
+            <li>A prompt may appear with additional dependencies you will need to install. Select OK, if you are happy with those.</li>
+          </ol>
+          <p>
+            From the NuGet Package Manager Console:
+          </p>
+          <ol>
+            <li>Select the source from the dropdown.</li>
+            <li>Select the project from the Default project dropdown.</li>
+            <li>PM&gt; <code>Install-Package {package name}</code> </li>
+          </ol>
+
+          <h4>Update Packages</h4>
+          <p>
+            
+          </p>
+
+          <h4>Restore Packages</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage Package Feeds (Sources)</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage Packages on a Feed</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Set API Keys for Feeds</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Create Packages</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Publish Packages</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Replicate Packages</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Manage Global-Package and Cache Folders</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Manage NuGet Configuration</h4>
+          <p>
+            n/a
+          </p>
+        </section>
+
+        <button type="button" class="collapse-button">Visual Studio for Mac</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>UI Panel Integrated with Visual Studio for Mac</h3>
+          <p>
+            To open the Nuget Package Manager in Visual Studio for Mac
+          </p>
+          <ol>
+            <li>Open Solution Explorer</li>
+            <li>Expand the project until you see the Dependencies folder</li>
+            <li>Right click Dependencies</li>
+            <li>Select Add Packages... from the right click menu</li>
+          </ol>
+
+          <h4>Search Packages</h4>
+          <p>
+            Open the NuGet Package Manager
+          </p>
+          <ol>
+            <li>Select the source from the dropdown on the left top</li>
+            <li>Type the name of the package to find in the right text box</li>
+          </ol>
+
+          <h4>Install / Uninstall Packages</h4>
+          <ol>
+            <li>Search for the package to install in the NuGet Package Manager</li>
+            <li>Check the box next to the package you want to install</li>
+            <li>Click the Add Package button</li>
+          </ol>
+
+          <h4>Update Packages</h4>
+          <p>
+            
+          </p>
+
+          <h4>Restore Packages</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage Package Feeds (Sources)</h4>
+          <p>
+            
+          </p>
+          
+          <h4>Manage Packages on a Feed</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Set API Keys for Feeds</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Create Packages</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Publish Packages</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Replicate Packages</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Manage Global-Package and Cache Folders</h4>
+          <p>
+            n/a
+          </p>
+          
+          <h4>Manage NuGet Configuration</h4>
+          <p>
+            n/a
+          </p>
+        </section>
+
+        <button type="button" class="collapse-button">Host Your Own NuGet Feed (Publish to private feed)</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Private Feeds</h3>
+          <p>
+            Use private feeds to keep your private code private and to restrict third-party libraries developers can use.
+          </p>
+          <ul>
+            <li>Local Feed: Packages are placed on a network share. Use <code>nuget init</code> and <code>nuget add</code> to create a hierarchical folder structure.</li>
+            <li>NuGet.Server: Local HTTP server</li>
+            <li>NuGet Gallery: Hosted on an Internet server using NuGet Gallery Project, which provides user management and features similar to nuget.org</li>
+          </ul>
+          <p>There are a host of other NuGet hosting products out there. A simple search will uncover: Artifactory, Azure Artifacts, BaGet, Bytesafe, Cloudsmith, Gitea, GitHub package registry, GitLab Package Registry, JetBrains Space, LiGet, MyGet, Nexus Repository OSS, NuGet Server (Open source), ProGet, Sleet, and TeamCity.</p>
+          <p>Add the available sources to the NuGet.Config file using Visual Studio or from the nuget CLI.</p>
+
+          <h3>Azure Artifacts</h3>
+          <p>todo</p>
+
+          <h3>NuGet.Server</h3>
+          <p>todo</p>
+
+          <h3>Local Feeds</h3>
+          <p>
+            A hierarchical folder structure on the local network or local computer containing packages. These are then used as package sources in your favorite NuGet manager.<br>
+            See instructions above for your favorite Package Management tool to add the source. In this case simply add the folder path.
+          </p>
+
+          <h3>Initializing and Maintaining Hierarchical Folders</h3>
+          <p>
+            Older versions of NuGet did not maintain hierarchical folders and instead put all packages in a single folder, decreasing performance.<br>
+            The folder hierarchy follows this structure:
+<pre><code>\\serverName\packages
+  packageID
+    versionNumber
+      packageID.version.nupkg
+      file1
+      file2
+      ...
+</code></pre>
+            To add a *.nupkg file to a source use the nuget command<br>
+            <code>nuget add new-package.1.0.0.nupkg -source \\serverName\packages</code> - This will set up the folder structure necessary on the server.<br>
+            <code>nuget init c:\packages \\serverName\packages</code> - Sets up an entire folder of packages as if using the <code>add</code> command repeatedly.
+          </p>
+        </section>
+
+        <button type="button" class="collapse-button">Title of Note</button>
+        <!-- Button above toggles section below to expand/contract. The JavaScript requires this to be the next element to work. -->
+        <section class="collapsible-section">
+          <h3>Below are notes on ...</h3>
+          <p>
+            Take notes and drop in here...
+          </p>
+
+          <ul>
+            <li>A quick note.</li>
+            <li>Another quick note.</li>
+          </ul>
+
+          <p>
+            Intro to list of quick notes<br>
+            <ul>
+              <li>Note 1</li>
+            </ul>
+          </p>
+
+          <p>
+            Introduction to code...
+          </p>
+<pre><code>&lt;tag&gt;
+  &lt;tag&gt;
+
+  &lt;/tag&gt;
+&lt;/tag&gt;</code></pre>
+        </section>
+
+      </section> <!-- End of Expandable Notes section -->
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+  </body>
+</html>
